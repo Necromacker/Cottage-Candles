@@ -519,12 +519,13 @@ body.dark-theme {
 /*=============== FEATURED ===============*/
 .featured__container {
   row-gap: 2.5rem;
+  padding: 1rem;
 }
 
 .featured__card {
+  border-radius: 2rem;
   position: relative;
   text-align: center;
-  background-color: var(--container-color);
   padding-top: 2rem;
   border: 1px solid var(--border-color);
   overflow-y: hidden;
@@ -547,12 +548,57 @@ body.dark-theme {
 .featured__img {
   height: 214px;
   margin-bottom: var(--mb-1);
+  border-radius: 1.5rem;
 }
-
 .featured__title,
 .featured__price {
+  color: white;
   font-size: var(--h3-font-size);
   font-weight: var(--font-bold);
+}
+
+#featured1 {
+  background-color: #3f3c4f;
+}
+#featured__title1 {
+  color: #d9f8f6;
+}
+#featured__price1 {
+  color: #d9f8f6;
+}
+#featured__button1 {
+  color: #3f3c4f;
+  background-color: #d9f8f6;
+  border-radius: 1rem;
+}
+
+#featured2 {
+  background-color: #ffe584;
+}
+#featured__title2 {
+  color: #634e4e;
+}
+#featured__price2 {
+  color: #634e4e;
+}
+#featured__button2 {
+  color: white;
+  background-color: #634e4e;
+  border-radius: 1rem;
+}
+
+#featured3 {
+  background-color: #d9f8f6;
+}
+#featured__title3 {
+  color: #3f3c4f;
+}
+#featured__price3 {
+  color: #3f3c4f;
+}
+#featured__button3 {
+  background-color: #3f3c4f;
+  border-radius: 1rem;
 }
 
 .featured__title {
@@ -589,6 +635,8 @@ body.dark-theme {
 /*=============== STORY ===============*/
 .story__container {
   row-gap: 7.5rem;
+  justify-items: center;
+  align-items: center;
 }
 
 .story__title {
@@ -597,20 +645,29 @@ body.dark-theme {
 }
 
 .story__description {
+  max-width: 500px;
   margin-bottom: var(--mb-2-5);
+}
+
+.story__data {
+  text-align: center;
+  max-width: 640px;
+  padding-right: 2rem;
+  padding-left: 2rem;
 }
 
 .story__images {
   position: relative;
+  padding-right: 3rem;
 }
 
 .story__img,
 .story__square {
-  width: 250px;
+  width: 280px;
 }
 
 .story__square {
-  height: 250px;
+  height: 280px;
   background-color: var(--first-color);
 }
 
@@ -753,29 +810,9 @@ body.dark-theme {
   margin-right: initial;
 }
 
-.swiper-button-prev:after,
-.swiper-button-next:after {
-  content: "";
-}
+/* removed swiper prev button pseudo-element */
 
-/* Swiper class */
-.swiper-button-next,
-.swiper-button-prev {
-  top: initial;
-  bottom: 5%;
-  width: initial;
-  height: initial;
-  background-color: var(--container-color);
-  box-shadow: 0 4px 12px hsla(0, 0%, 20%, 0.1);
-  padding: 0.25rem;
-  font-size: 1.5rem;
-  color: var(--first-color);
-}
-
-.swiper-button-next {
-  right: initial;
-  left: 4rem;
-}
+/* removed swiper prev button styles */
 
 /*=============== NEW ===============*/
 .new__card {
@@ -1174,8 +1211,11 @@ body.dark-theme {
   .story__container,
   .testimonial__container,
   .newsletter__bg {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 0.8fr 1fr;
     align-items: center;
+    column-gap: 4rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .story__section-title {
@@ -1183,6 +1223,9 @@ body.dark-theme {
   }
   .story__section-title::before {
     margin: initial;
+  }
+  .story__data {
+    text-align: initial;
   }
   .story__images {
     order: -1;
@@ -1221,7 +1264,7 @@ body.dark-theme {
   }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1100px) {
   .section__title {
     font-size: var(--h2-font-size);
   }
@@ -1241,11 +1284,12 @@ body.dark-theme {
   }
 
   .featured__container {
-    grid-template-columns: repeat(3, 312px);
+    grid-template-columns: repeat(3, 350px);
     padding-top: 2rem;
+    align-items: center;
+    justify-content: space-evenly;
   }
 
-  .story__container,
   .testimonial__container {
     column-gap: 8rem;
   }
@@ -1273,18 +1317,12 @@ body.dark-theme {
 }
 
 /* For large devices */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 992px) {
   .story__container,
   .testimonial__container {
-    column-gap: 13rem;
-  }
-
-  .story__container {
-    padding-top: 3rem;
-  }
-  .story__img {
-    left: 5rem;
-    top: -5rem;
+    column-gap: 3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .testimonial__img {
