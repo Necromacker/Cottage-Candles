@@ -3,306 +3,583 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!--=============== FAVICON ===============-->
-    <link
-      rel="stylesheet"
-      href="path/to/font-awesome/css/font-awesome.min.css"
-    />
-    <link
-      rel="shortcut icon"
-      href="assets/img/favicon.png"
-      type="image/x-icon"
-    />
-
-    <!--=============== BOXICONS ===============-->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
-    />
-
-    <!--=============== FONT AWESOME ===============-->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-
-    <!--=============== SWIPER CSS ===============-->
-    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
-
-    <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/styles.css" />
-
     <title>Cottage Candles</title>
+    <meta
+      name="description"
+      content="Discover Lumina's handcrafted luxury candles, elegant diffusers, and thoughtfully curated gift hampers. Transform your space with premium fragrances."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ovo&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   </head>
-  <body>
-    <!--==================== HEADER ====================-->
-    <header class="header" id="header">
-      <nav class="nav container">
-        <a href="#" class="nav__logo">
-          <img
-            src="assets/img/favicon.png"
-            alt="Rolex Logo"
-            class="nav__logo-icon"
-          />
-          <div class="Brand_name">Cottage Candles</div>
-        </a>
-
-        <div class="nav__menu" id="nav-menu">
-          <ul class="nav__list">
-            <li class="nav__item">
-              <a href="#home" class="nav__link active-link">Home</a>
-            </li>
-            <li class="nav__item">
-              <a href="#shop" class="nav__link">Shop</a>
-            </li>
-            <li class="nav__item">
-              <a href="#about" class="nav__link">About</a>
-            </li>
-            <li class="nav__item">
-              <a href="#blog" class="nav__link">Blog</a>
-            </li>
-          </ul>
-
-          <div class="nav__close" id="nav-close">
-            <i class="bx bx-x"></i>
+  <body class="theme-transition">
+    <!-- Navigation -->
+    <nav class="navigation" id="navigation">
+      <div class="container nav-container">
+        <div class="nav-content">
+          <!-- Logo -->
+          <div class="nav-logo">
+            <a href="#home" class="logo-link">
+              <div class="logo-icon">
+                <img
+                  src="images/logo-light.png"
+                  alt="Lumina Logo"
+                  class="logo-image"
+                />
+              </div>
+              <span class="logo-text">Cottage Candles</span>
+            </a>
           </div>
+
+          <!-- Desktop Navigation -->
+          <div class="nav-links desktop-nav">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#shop" class="nav-link">Shop</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#blog" class="nav-link">Blog</a>
+          </div>
+
+          <!-- Desktop Actions -->
+          <div class="nav-actions desktop-nav">
+            <button
+              class="nav-btn theme-toggle"
+              id="theme-toggle"
+              aria-label="Toggle theme"
+            >
+              <i data-lucide="moon" class="theme-icon moon-icon"></i>
+              <i data-lucide="sun" class="theme-icon sun-icon"></i>
+            </button>
+            <button class="nav-btn" aria-label="User account">
+              <i data-lucide="user"></i>
+            </button>
+            <button class="nav-btn" aria-label="Search">
+              <i data-lucide="search"></i>
+            </button>
+            <button class="nav-btn" aria-label="Shopping cart">
+              <i data-lucide="shopping-bag"></i>
+            </button>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button
+            class="nav-btn mobile-menu-toggle"
+            id="mobile-menu-toggle"
+            aria-label="Toggle mobile menu"
+          >
+            <i data-lucide="menu" class="menu-icon"></i>
+            <i data-lucide="x" class="close-icon"></i>
+          </button>
         </div>
 
-        <div class="nav__btns">
-          <!-- Search input -->
-          <div class="nav__search" id="nav-search">
-            <div class="input-group">
-              <input
-                required=""
-                type="text"
-                name="search"
-                autocomplete="off"
-                class="input"
-                id="search-input"
-              />
-              <label class="user-label">Search</label>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+          <div class="mobile-nav-links">
+            <a href="#home" class="mobile-nav-link">Home</a>
+            <a href="#shop" class="mobile-nav-link">Shop</a>
+            <a href="#about" class="mobile-nav-link">About</a>
+            <a href="#blog" class="mobile-nav-link">Blog</a>
+            <div class="mobile-nav-actions">
+              <button
+                class="nav-btn theme-toggle"
+                id="theme-toggle-mobile"
+                aria-label="Toggle theme"
+              >
+                <i data-lucide="moon" class="theme-icon moon-icon"></i>
+                <i data-lucide="sun" class="theme-icon sun-icon"></i>
+              </button>
+              <button class="nav-btn" aria-label="User account">
+                <i data-lucide="user"></i>
+              </button>
+              <button class="nav-btn" aria-label="Search">
+                <i data-lucide="search"></i>
+              </button>
+              <button class="nav-btn" aria-label="Shopping cart">
+                <i data-lucide="shopping-bag"></i>
+              </button>
             </div>
-            <i class="bx bx-x nav__search-close" id="search-close"></i>
-          </div>
-
-          <!-- Search button -->
-          <i class="fa-solid fa-magnifying-glass" id="search-button"></i>
-
-          <!-- Theme change button -->
-          <i class="bx bx-moon change-theme" id="theme-button"></i>
-
-          <div class="nav__shop" id="cart-shop">
-            <i class="bx bx-shopping-bag"></i>
-          </div>
-
-          <div class="nav__toggle" id="nav-toggle">
-            <i class="bx bx-grid-alt"></i>
           </div>
         </div>
-      </nav>
-    </header>
-
-    <!--==================== CART ====================-->
-    <div class="cart" id="cart">
-      <i class="bx bx-x cart__close" id="cart-close"></i>
-
-      <h2 class="cart__title-center">My Cart</h2>
-
-      <div class="cart__container">
-        <article class="cart__card">
-          <div class="cart__box">
-            <img src="assets/img/featured1.png" alt="" class="cart__img" />
-          </div>
-
-          <div class="cart__details">
-            <h3 class="cart__title">Jazzmaster</h3>
-            <span class="cart__price">$1050</span>
-
-            <div class="cart__amount">
-              <div class="cart__amount-content">
-                <span class="cart__amount-box">
-                  <i class="bx bx-minus"></i>
-                </span>
-
-                <span class="cart__amount-number">1</span>
-
-                <span class="cart__amount-box">
-                  <i class="bx bx-plus"></i>
-                </span>
-              </div>
-
-              <i class="bx bx-trash-alt cart__amount-trash"></i>
-            </div>
-          </div>
-        </article>
-
-        <article class="cart__card">
-          <div class="cart__box">
-            <img src="assets/img/featured3.png" alt="" class="cart__img" />
-          </div>
-
-          <div class="cart__details">
-            <h3 class="cart__title">Rose Gold</h3>
-            <span class="cart__price">$850</span>
-
-            <div class="cart__amount">
-              <div class="cart__amount-content">
-                <span class="cart__amount-box">
-                  <i class="bx bx-minus"></i>
-                </span>
-
-                <span class="cart__amount-number">1</span>
-
-                <span class="cart__amount-box">
-                  <i class="bx bx-plus"></i>
-                </span>
-              </div>
-
-              <i class="bx bx-trash-alt cart__amount-trash"></i>
-            </div>
-          </div>
-        </article>
-
-        <article class="cart__card">
-          <div class="cart__box">
-            <img src="assets/img/new1.png" alt="" class="cart__img" />
-          </div>
-
-          <div class="cart__details">
-            <h3 class="cart__title">Longines Rose</h3>
-            <span class="cart__price">$980</span>
-
-            <div class="cart__amount">
-              <div class="cart__amount-content">
-                <span class="cart__amount-box">
-                  <i class="bx bx-minus"></i>
-                </span>
-
-                <span class="cart__amount-number">1</span>
-
-                <span class="cart__amount-box">
-                  <i class="bx bx-plus"></i>
-                </span>
-              </div>
-
-              <i class="bx bx-trash-alt cart__amount-trash"></i>
-            </div>
-          </div>
-        </article>
       </div>
+    </nav>
 
-      <div class="cart__prices">
-        <span class="cart__prices-item">3 items</span>
-        <span class="cart__prices-total">$2880</span>
-      </div>
-    </div>
+    <main>
+      <!-- Hero Section -->
+      <section class="hero" id="home">
+        <div class="hero-image-container">
+          <video
+            src="images/hero-candles-bg.mp4"
+            class="hero-image"
+            autoplay
+            muted
+            loop
+            playsinline
+          >
+            <!-- Fallback image if video doesn't load -->
+            <img
+              src="images/hero-candles.jpg"
+              alt="Luxury candles in elegant setting"
+              class="hero-image"
+            />
+          </video>
+        </div>
+        <div class="hero-content">
+          <div class="hero-text"></div>
+        </div>
+      </section>
 
-    <!--==================== MAIN ====================-->
-    <main class="main">
-      <!--==================== HOME ====================-->
-      <section class="home" id="home">
-        <div class="home__container container grid">
-          <div class="home__img-bg">
-            <a href="#" class="nav_logo_2"><img src="assets/img/favicon.png" alt="Rolex Logo" class="nav__logo-icon_2" id="video_logo"/> <div class="Brand_logo_2">COTTAGE CANDLES</div><img src="assets/img/favicon.png" alt="Rolex Logo" class="nav__logo-icon_2" id="video_logo"/>  </a>
-            <video class="home__video-bg" autoplay muted loop playsinline>
-              <source
-                src="assets/img/background-video.mp4"
-                type="video/mp4"
-              />
-              
-            </video>
+      <!-- About Section -->
+      <section class="about section-padding" id="about">
+        <div class="container">
+          <div class="about-grid">
+            <!-- Image -->
+            <div class="about-image-container animate-on-scroll">
+              <div class="about-image-wrapper">
+                <img
+                  src="images/about-candles.jpg"
+                  alt="Luxury candles in elegant setting"
+                  class="about-image"
+                />
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="about-content animate-on-scroll">
+              <div class="about-header">
+                <div id="about-divider" class="section-divider"></div>
+                <h2 class="section-title">ABOUT US</h2>
+              </div>
+
+              <div class="about-text">
+                <p>
+                  Every Lumina creation begins with a story—sourced from the
+                  finest natural ingredients and hand-poured with mindful
+                  attention to detail.
+                </p>
+                <p>
+                  Our candles and diffusers are more than home accessories;
+                  they're gateways to moments of peace, reflection, and
+                  connection with yourself and your loved ones.
+                </p>
+              </div>
+
+              <div class="about-stats">
+                <div class="stat-item">
+                  <div class="stat-value">100%</div>
+                  <div class="stat-label">Natural Wax</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-value">48hr</div>
+                  <div class="stat-label">Burn Time</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-value">Hand</div>
+                  <div class="stat-label">Crafted</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!--==================== STORY ====================-->
-      <section class="story section container">
-        <div class="story__container grid">
-          <div class="story__data">
-            <h2 class="section__title story__section-title">About us</h2>
+      <!-- Categories Section -->
+      <section class="categories section-padding" id="shop">
+        <div class="container">
+          <!-- Header -->
+          <div class="section-header animate-on-scroll">
+            <div class="section-divider"></div>
+            <h2 class="section-title">COLLECTIONS</h2>
+          </div>
 
-            <h1 class="story__title">
-              Gift-Ready Candles with <br/>
-              pure Warmth
-            </h1>
+          <!-- Featured Cards Grid -->
+          <div class="featured__container grid">
+            <article class="featured__card" id="featured1">
+              <img
+                src="images/featured1.gif"
+                alt="Featured Product 1"
+                class="featured__img"
+              />
+              <div class="featured__data">
+                <h3 class="featured__title">CANDLES</h3>
+              </div>
+              <button class="button featured__button" id="featured__button1">
+                VIEW PRODUCTS
+              </button>
+            </article>
 
-            <p class="story__description">
-              Cottage Candles is a homegrown brand crafting hand-poured, sustainable candles. Perfect for gifting, aromatherapy, and everyday living, our candles bring warmth, calm, and unmatched experiences—naturally made.
+            <article class="featured__card" id="featured2">
+              <img
+                src="images/featured2.gif"
+                alt="Featured Product 2"
+                class="featured__img"
+              />
+              <div class="featured__data">
+                <h3 class="featured__title">DIFFUSERS</h3>
+              </div>
+              <button class="button featured__button" id="featured__button2">
+                VIEW PRODUCTS
+              </button>
+            </article>
+
+            <article class="featured__card" id="featured3">
+              <img
+                src="images/featured3.gif"
+                alt="Featured Product 3"
+                class="featured__img"
+              />
+              <div class="featured__data">
+                <h3 class="featured__title">HAMPERS</h3>
+              </div>
+              <button class="button featured__button" id="featured__button3">
+                VIEW PRODUCTS
+              </button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bestsellers Section -->
+      <section class="bestsellers section-padding" id="bestsellers">
+        <div class="container">
+          <!-- Header -->
+          <div class="section-header animate-on-scroll">
+            <h2 class="section-title">Bestsellers</h2>
+            <div class="section-divider"></div>
+            <p class="section-description">
+              Discover the fragrances our customers love most, handpicked for
+              their exceptional quality and lasting appeal.
+            </p>
+          </div>
+
+          <!-- Carousel -->
+          <div class="carousel-container">
+            <!-- Navigation Buttons -->
+            <button
+              class="carousel-btn prev-btn"
+              id="prev-btn"
+              aria-label="Previous products"
+            >
+              <i data-lucide="chevron-left"></i>
+            </button>
+            <button
+              class="carousel-btn next-btn"
+              id="next-btn"
+              aria-label="Next products"
+            >
+              <i data-lucide="chevron-right"></i>
+            </button>
+
+            <!-- Products -->
+            <div class="products-grid" id="products-grid">
+              <div class="product-card animate-scale-in" data-delay="0">
+                <div class="product-image-placeholder">
+                  <div class="candle-placeholder">
+                    <div class="candle-body"></div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h3 class="product-name">Midnight Amber</h3>
+
+                  <p class="product-description">
+                    Rich amber and vanilla notes
+                  </p>
+                  <div class="product-price">$48</div>
+                </div>
+                <button class="add-to-cart-btn">Add to Cart</button>
+              </div>
+
+              <div class="product-card animate-scale-in" data-delay="100">
+                <div class="product-image-placeholder">
+                  <div class="candle-placeholder">
+                    <div class="candle-body"></div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h3 class="product-name">Sage & Sea Salt</h3>
+                  <p class="product-description">Fresh coastal breeze scent</p>
+                  <div class="product-price">$52</div>
+                </div>
+                <button class="add-to-cart-btn">Add to Cart</button>
+              </div>
+
+              <div class="product-card animate-scale-in" data-delay="200">
+                <div class="product-image-placeholder">
+                  <div class="candle-placeholder">
+                    <div class="candle-body"></div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h3 class="product-name">Cedarwood Dreams</h3>
+                  <p class="product-description">Warm woody aromatics</p>
+                  <div class="product-price">$45</div>
+                </div>
+                <button class="add-to-cart-btn">Add to Cart</button>
+              </div>
+            </div>
+
+            <!-- Dots Indicator -->
+            <div class="carousel-dots" id="carousel-dots">
+              <button class="dot active" data-slide="0"></button>
+              <button class="dot" data-slide="1"></button>
+              <button class="dot" data-slide="2"></button>
+              <button class="dot" data-slide="3"></button>
+              <button class="dot" data-slide="4"></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section class="testimonials section-padding" id="testimonials">
+        <div class="testimonials-bg">
+          <img
+            src="images/hero-candles.jpg"
+            alt="Testimonial background"
+            class="testimonials-bg-image"
+          />
+          <div class="testimonials-overlay"></div>
+        </div>
+
+        <div class="container testimonials-content">
+          <!-- Header -->
+          <div class="section-header animate-on-scroll">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="section-divider"></div>
+            <p class="section-description">
+              Join thousands of satisfied customers who have made Lumina part of
+              their daily rituals.
+            </p>
+          </div>
+
+          <!-- Testimonials Grid -->
+          <div class="testimonials-grid">
+            <div class="testimonial-card animate-on-scroll" data-delay="0">
+              <div class="stars">
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+              </div>
+              <blockquote class="testimonial-text">
+                "These candles have completely transformed my evening routine.
+                The quality is exceptional and the scents are so sophisticated."
+              </blockquote>
+              <div class="testimonial-author">
+                <div class="author-avatar">
+                  <span>SC</span>
+                </div>
+                <div class="author-info">
+                  <div class="author-name">Sarah Chen</div>
+                  <div class="author-label">Verified Customer</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card animate-on-scroll" data-delay="200">
+              <div class="stars">
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+              </div>
+              <blockquote class="testimonial-text">
+                "The gift hamper I ordered was beautifully packaged and arrived
+                exactly when promised. Perfect for special occasions."
+              </blockquote>
+              <div class="testimonial-author">
+                <div class="author-avatar">
+                  <span>MJ</span>
+                </div>
+                <div class="author-info">
+                  <div class="author-name">Marcus Johnson</div>
+                  <div class="author-label">Verified Customer</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card animate-on-scroll" data-delay="400">
+              <div class="stars">
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+              </div>
+              <blockquote class="testimonial-text">
+                "I've never experienced such long-lasting fragrance from a
+                diffuser. The sage scent fills my entire living room
+                beautifully."
+              </blockquote>
+              <div class="testimonial-author">
+                <div class="author-avatar">
+                  <span>ER</span>
+                </div>
+                <div class="author-info">
+                  <div class="author-name">Elena Rodriguez</div>
+                  <div class="author-label">Verified Customer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Newsletter Section -->
+      <section class="newsletter section-padding">
+        <div class="container">
+          <div class="newsletter-content animate-on-scroll">
+            <!-- Icon -->
+            <div class="newsletter-icon">
+              <i data-lucide="mail"></i>
+            </div>
+
+            <!-- Header -->
+            <h2 class="newsletter-title">Stay in the Light</h2>
+            <div class="section-divider"></div>
+            <p class="newsletter-description">
+              Be the first to discover new fragrances, seasonal collections, and
+              exclusive offers designed to elevate your everyday moments.
             </p>
 
-            <a href="#" class="button button--small">Learn more</a>
-          </div>
+            <!-- Form -->
+            <form class="newsletter-form" id="newsletter-form">
+              <div class="form-group">
+                <input
+                  type="email"
+                  placeholder="Enter your email address"
+                  class="newsletter-input"
+                  id="newsletter-email"
+                  required
+                />
+                <button
+                  type="submit"
+                  class="newsletter-btn"
+                  id="newsletter-submit"
+                >
+                  Subscribe
+                </button>
+              </div>
+            </form>
 
-          <div class="story__images">
-            <img src="assets/img/story.jpg" alt="" class="story__img" />
-            <div class="story__square"></div>
+            <!-- Success Message -->
+            <div class="newsletter-success" id="newsletter-success">
+              Thank you for subscribing! Welcome to the Lumina family.
+            </div>
+
+            <!-- Privacy Note -->
+            <p class="newsletter-privacy">
+              We respect your privacy. Unsubscribe at any time.
+            </p>
           </div>
         </div>
       </section>
+    </main>
 
-      <!--==================== FEATURED ====================-->
-      <section class="featured section container" id="featured">
-        <h2 class="section__title">Collections</h2>
-
-        <div class="featured__container grid" >
-          <article class="featured__card" id="featured1">
-           
-
-            <img src="assets/img/featured1.gif" alt="" class="featured__img" />
-
-            <div class="featured__data">
-              <h3 class="featured__title" id="featured__title1">CANDLES</h3>
-              <span class="featured__price" id="featured__price1">Light Your Space</span>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <!-- Brand -->
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <a href="#home" class="logo-link">
+                <div class="logo-icon">
+                  <img
+                    src="images/logo-light.png"
+                    alt="Lumina Logo"
+                    class="logo-image"
+                  />
+                </div>
+                <span class="logo-text">Lumina</span>
+              </a>
             </div>
-
-            <button class="button featured__button"  id="featured__button1">VIEW PRODUCTS</button>
-          </article>
-
-          <article class="featured__card" id="featured2">
-        
-
-            <img src="assets/img/featured2.gif" alt="" class="featured__img" />
-
-            <div class="featured__data">
-              <h3 class="featured__title" id="featured__title2">DIFFUSERS</h3>
-              <span class="featured__price" id="featured__price2">Fill with Fragrance</span>
+            <p class="footer-description">
+              Illuminate your sacred space with our handcrafted candles,
+              diffusers, and curated gift collections.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Instagram">
+                <i data-lucide="instagram"></i>
+              </a>
+              <a href="#" class="social-link" aria-label="Facebook">
+                <i data-lucide="facebook"></i>
+              </a>
+              <a href="#" class="social-link" aria-label="Twitter">
+                <i data-lucide="twitter"></i>
+              </a>
             </div>
+          </div>
 
-            <button class="button featured__button" id="featured__button2">VIEW PRODUCTS</button>
-          </article>
+          <!-- Quick Links -->
+          <div class="footer-column">
+            <h3 class="footer-title">Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="#">Shop All</a></li>
+              <li><a href="#">Candles</a></li>
+              <li><a href="#">Diffusers</a></li>
+              <li><a href="#">Gift Hampers</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Blog</a></li>
+            </ul>
+          </div>
 
-          <article class="featured__card" id="featured3">
-        
+          <!-- Customer Care -->
+          <div class="footer-column">
+            <h3 class="footer-title">Customer Care</h3>
+            <ul class="footer-links">
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Shipping Info</a></li>
+              <li><a href="#">Returns</a></li>
+              <li><a href="#">Size Guide</a></li>
+              <li><a href="#">Care Instructions</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
 
-            <img src="assets/img/featured3.gif" alt="" class="featured__img" />
-
-            <div class="featured__data">
-              <h3 class="featured__title" id="featured__title3">HAMPERS</h3>
-              <span class="featured__price" id="featured__price3">Share the Glow</span>
+          <!-- Contact Info -->
+          <div class="footer-column">
+            <h3 class="footer-title">Get in Touch</h3>
+            <div class="contact-info">
+              <div class="contact-item">
+                <i data-lucide="map-pin"></i>
+                <span>123 Serenity Lane<br />Peaceful Valley, CA 90210</span>
+              </div>
+              <div class="contact-item">
+                <i data-lucide="phone"></i>
+                <span>+1 (555) 123-4567</span>
+              </div>
+              <div class="contact-item">
+                <i data-lucide="mail"></i>
+                <span>hello@lumina.com</span>
+              </div>
             </div>
-
-            <button class="button featured__button" id="featured__button3">VIEW PRODUCTS</button>
-          </article>
+          </div>
         </div>
-      </section>
 
-     
+        <!-- Bottom Bar -->
+        <div class="footer-bottom">
+          <p class="footer-copyright">© 2024 Lumina. All rights reserved.</p>
+          <div class="footer-legal">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
 
-
-
-    <!--=============== SWIPER JS ===============-->
-
-    <script src="assets/js/swiper-bundle.min.js"></script>
-
-
-
-    <!--=============== MAIN JS ===============-->
-
-    <script src="assets/js/main.js"></script>
-
+    <script src="script.js"></script>
   </body>
-
 </html>
-
-
