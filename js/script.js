@@ -358,7 +358,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const categoriesDiv = document.querySelector(".Categories-Div");
     const hamperCategory = document.querySelector(".Hamper-Category");
     const diffuserCategory = document.querySelector(".Diffuser-Category");
-
+    const slideImages = document.querySelectorAll(".slide-image");
     if (!categoriesDiv || !hamperCategory || !diffuserCategory) return;
 
     // Set initial states for the background images
@@ -388,14 +388,8 @@ document.addEventListener("DOMContentLoaded", function () {
         end: "bottom bottom",
         scrub: 1,
         pin: true,
-        markers: true,
         anticipatePin: 1,
-        onEnter: () => {
-          console.log("Categories animation started!");
-        },
-        onComplete: () => {
-          console.log("Categories animation completed!");
-        },
+        markers: true,
       },
     });
 
@@ -403,45 +397,26 @@ document.addEventListener("DOMContentLoaded", function () {
     categoryTimeline
       .to(hamperCategory, {
         height: 0,
+        
         ease: "power2.inOut",
       })
-      // Animate Diffuser-Category height to 0 (starts slightly before Hamper finishes)
+      .to(slideImages[2], {
+      
+          y: "30vh",
+        ease: "power2.inOut",
+      },"<") 
+      
       .to(diffuserCategory, {
         height: 0,
         ease: "power2.inOut",
-      });
+      })
+      .to(slideImages[1], {
+        y: "30vh",
+        ease: "power2.inOut",
+      },"<")
   }
 });
 
-// Sliding Images Animation
-document.addEventListener("DOMContentLoaded", function () {
-  if (window.gsap && window.ScrollTrigger) {
-    gsap.registerPlugin(ScrollTrigger);
 
-    const categoriesDiv = document.querySelector(".Categories-Div");
-    const slideImages = document.querySelectorAll(".slide-image");
 
-    if (!categoriesDiv || slideImages.length === 0) return;
-
-    // Set initial state - all three images positioned for sliding
-    gsap.set(slideImages[0], { y: 0, opacity: 1 });
-    gsap.set(slideImages[1], { y: "100vh", opacity: 1 });
-    gsap.set(slideImages[2], { y: "200vh", opacity: 1 });
-
-    // Create scroll trigger for direct scroll-synchronized animation
-    ScrollTrigger.create({
-      trigger: categoriesDiv,
-      start: "top top",
-      end: "bottom bottom",
-      scrub: 1,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        
-        // Direct scroll-synchronized sliding - all three images visible
-        gsap.set(slideImages[0], { y: -progress * 100 + "vh" });
-        gsap.set(slideImages[1], { y: (1 - progress) * 100 + "vh" });
-        gsap.set(slideImages[2], { y: (2 - progress) * 100 + "vh" });
-      },
-    });
-  }
-});
+      

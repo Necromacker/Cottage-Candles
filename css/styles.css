@@ -398,6 +398,7 @@ body.dark-theme .mobile-menu-item:hover {
 }
 .Candle-Category {
   height: 100vh;
+
   background-image: url(https://images.pexels.com/photos/289756/pexels-photo-289756.jpeg?cs=srgb&dl=pexels-erenlerhakan-289756.jpg&fm=jpg);
   background-size: cover;
   background-position: bottom;
@@ -410,6 +411,7 @@ body.dark-theme .mobile-menu-item:hover {
   height: 100vh;
   background-image: url(https://cdn.mos.cms.futurecdn.net/m9Nz2b2ur2PFomz3VjXgCV.jpg);
   background-size: cover;
+
   background-position: top;
   background-size: 100%;
 }
@@ -419,6 +421,7 @@ body.dark-theme .mobile-menu-item:hover {
   height: 100vh;
   background-image: url(https://cdn.manifestmagazine.in/2024/11/Binge-bakery-Hamper-3.jpg);
   background-size: cover;
+
   background-position: top;
   background-size: 100%;
   display: flex;
@@ -426,6 +429,7 @@ body.dark-theme .mobile-menu-item:hover {
   justify-content: center;
 }
 .Square-Container {
+  background-color: #3030309a;
   position: absolute;
   height: 100vh;
   width: 100vw;
@@ -435,54 +439,37 @@ body.dark-theme .mobile-menu-item:hover {
   z-index: 999;
 }
 .Square-Div {
+  cursor: pointer;
+  border-radius: 1rem;
   position: sticky;
-  width: 30vh;
+  display: flex;
+  flex-direction: column  ;
   height: 30vh;
   background-color: rgba(255, 255, 255, 0.7);
   z-index: 1000;
   overflow: hidden;
+  transition: transform 0.3s ease-in-out;
 }
-
-.sliding-images {
-  position: relative;
-  width: 100%;
-  height: 100%;
+.Square-Div:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
 }
 
 .slide-image {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.8s ease, opacity 0.8s ease;
+  float: left;
+  position: relative;
+ 
+  height: 30vh;
 }
 
-.slide-image.image-1 {
+#image1 {
   transform: translateY(0);
-  opacity: 1;
-  z-index: 3;
 }
-
-.slide-image.image-2 {
-  transform: translateY(100%);
-  opacity: 0;
-  z-index: 2;
+#image2 {
+  transform: translateY(-30vh);
 }
-
-.slide-image.image-3 {
-  transform: translateY(100%);
-  opacity: 0;
-  z-index: 1;
-}
-
-.slide-image.active {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.slide-image.prev {
-  transform: translateY(-100%);
-  opacity: 0;
+#image3 {
+  transform: translateY(-60vh);
 }
 .Footer {
   height: 100vh;
