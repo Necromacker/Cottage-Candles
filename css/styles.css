@@ -312,12 +312,11 @@ body.dark-theme .mobile-menu-item:hover {
   bottom: 2.5rem;
 }
 .Brand-name {
-  font-family: ovo;
   letter-spacing: 0.3rem;
   text-align: center;
   line-height: 1;
   font-size: clamp(3rem, 9vw, 8rem);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-primary);
 }
 .main-content {
