@@ -389,7 +389,6 @@ document.addEventListener("DOMContentLoaded", function () {
         scrub: 1,
         pin: true,
         anticipatePin: 1,
-        markers: true,
       },
     });
 
@@ -397,26 +396,236 @@ document.addEventListener("DOMContentLoaded", function () {
     categoryTimeline
       .to(hamperCategory, {
         height: 0,
-        
+
         ease: "power2.inOut",
       })
-      .to(slideImages[2], {
-      
+      .to(
+        slideImages[2],
+        {
           y: "30vh",
-        ease: "power2.inOut",
-      },"<") 
-      
+          ease: "power2.inOut",
+        },
+        "<"
+      )
+
       .to(diffuserCategory, {
         height: 0,
         ease: "power2.inOut",
       })
-      .to(slideImages[1], {
-        y: "30vh",
-        ease: "power2.inOut",
-      },"<")
+      .to(
+        slideImages[1],
+        {
+          y: "30vh",
+          ease: "power2.inOut",
+        },
+        "<"
+      );
   }
 });
 
+// 000 //
+// Best Sellers Carousel Functionality
+document.addEventListener("DOMContentLoaded", function () {
+  const carousel = document.getElementById("productsCarousel");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const productCards = document.querySelectorAll(".product-card");
+  const addToCartBtns = document.querySelectorAll(".add-to-cart-btn");
 
+  if (!carousel || !prevBtn || !nextBtn) return;
 
-      
+  // Create infinite scroll setup
+  const totalCards = productCards.length;
+  const visibleCards = 3;
+  const cardWidth = 350; // 320px card + 30px gap
+
+  let currentIndex = 0;
+  let isTransitioning = false;
+
+  // Clone cards for infinite scroll
+  function setupInfiniteScroll() {
+    // Clone first 3 cards and append to end
+    for (let i = 0; i < visibleCards; i++) {
+      const clone = productCards[i].cloneNode(true);
+      clone.classList.add("clone");
+      carousel.appendChild(clone);
+    }
+
+    // Clone last 3 cards and prepend to start
+    for (let i = totalCards - visibleCards; i < totalCards; i++) {
+      const clone = productCards[i].cloneNode(true);
+      clone.classList.add("clone");
+      carousel.insertBefore(clone, carousel.firstChild);
+    }
+
+    // Set initial position to show real first 3 cards
+    currentIndex = visibleCards;
+    updateCarousel(false);
+  }
+
+  // Auto-scroll functionality
+  let autoScrollInterval;
+
+  function startAutoScroll() {
+    autoScrollInterval = setInterval(() => {
+      if (!isTransitioning) {
+        nextSlide();
+      }
+    }, 4000); // Auto-scroll every 4 seconds
+  }
+
+  function stopAutoScroll() {
+    clearInterval(autoScrollInterval);
+  }
+
+  function updateCarousel(animate = true) {
+    if (animate) {
+      isTransitioning = true;
+      carousel.style.transition = "transform 0.6s ease-in-out";
+    } else {
+      carousel.style.transition = "none";
+    }
+
+    const translateX = -currentIndex * cardWidth;
+    carousel.style.transform = `translateX(${translateX}px)`;
+
+    if (animate) {
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 600);
+    }
+  }
+
+  function nextSlide() {
+    currentIndex++;
+    updateCarousel();
+
+    // Check if we need to reset position for infinite scroll
+    setTimeout(() => {
+      if (currentIndex >= totalCards + visibleCards) {
+        currentIndex = visibleCards;
+        updateCarousel(false);
+      }
+    }, 600);
+  }
+
+  function prevSlide() {
+    currentIndex--;
+    updateCarousel();
+
+    // Check if we need to reset position for infinite scroll
+    setTimeout(() => {
+      if (currentIndex < visibleCards) {
+        currentIndex = totalCards + visibleCards - 1;
+        updateCarousel(false);
+      }
+    }, 600);
+  }
+
+  // Navigation buttons
+  prevBtn.addEventListener("click", () => {
+    if (!isTransitioning) {
+      prevSlide();
+    }
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (!isTransitioning) {
+      nextSlide();
+    }
+  });
+
+  // Pause auto-scroll on hover
+  carousel.addEventListener("mouseenter", stopAutoScroll);
+  carousel.addEventListener("mouseleave", startAutoScroll);
+
+  // Add to cart functionality
+  addToCartBtns.forEach((btn, index) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      // GSAP animation for button click
+      gsap.to(btn, {
+        scale: 0.95,
+        duration: 0.1,
+        yoyo: true,
+        repeat: 1,
+        ease: "power2.inOut",
+        onComplete: () => {
+          // Change button text temporarily
+          const originalText = btn.querySelector(".btn-text").textContent;
+          btn.querySelector(".btn-text").textContent = "Added!";
+          btn.style.background =
+            "linear-gradient(135deg, #27ae60 0%, #2ecc71 100%)";
+
+          // Reset after 2 seconds
+          setTimeout(() => {
+            btn.querySelector(".btn-text").textContent = originalText;
+            btn.style.background =
+              "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
+          }, 2000);
+        },
+      });
+    });
+  });
+
+  // Initialize
+  setupInfiniteScroll();
+  startAutoScroll();
+
+  // Pause auto-scroll when page is not visible
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopAutoScroll();
+    } else {
+      startAutoScroll();
+    }
+  });
+
+  // Add ScrollTrigger animation for best sellers section
+  const bestSellersSection = document.querySelector(".best-sellers-section");
+  if (bestSellersSection && window.ScrollTrigger) {
+    gsap.fromTo(
+      bestSellersSection,
+      {
+        opacity: 0,
+        y: 50,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: bestSellersSection,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+
+    // Animate product cards with stagger
+    gsap.fromTo(
+      productCards,
+      {
+        opacity: 0,
+        y: 30,
+        scale: 0.9,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: bestSellersSection,
+          start: "top 70%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+  }
+});
