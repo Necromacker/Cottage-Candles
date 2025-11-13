@@ -407,12 +407,11 @@ body.dark-theme .mobile-menu-item:hover {
   width: 95vw;
   position: relative;
   top: 15vh;
-
   background-image: url(../images/candle-pc.png);
-  background-size: 95vw 80vh;
   background-repeat: no-repeat;
   background-position: top;
   border-radius: 1rem;
+  background-size: auto 80vh;
 }
 
 .Diffuser-Category {
@@ -421,11 +420,21 @@ body.dark-theme .mobile-menu-item:hover {
   width: 95vw;
   height: 80vh;
   background-image: url(/images/diffuser-pc.jpg);
-  background-size: 95vw 80vh;
   border-radius: 1rem;
   background-position: top;
   background-repeat: no-repeat;
+
+  /* Default background size */
+  background-size: auto 80vh;
 }
+
+/* Aspect ratio based background size */
+@media screen and (min-aspect-ratio: 126/100) {
+  .Diffuser-Category {
+    background-size: 95vw auto;
+  }
+}
+
 .Hamper-Category {
   position: relative;
   background-repeat: no-repeat;
@@ -435,14 +444,20 @@ body.dark-theme .mobile-menu-item:hover {
   height: 80vh;
   width: 95vw;
   background-image: url(../images/gift-pc.jpg);
-  background-size: 95vw 80vh;
   border-radius: 1rem;
   background-position: top;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /* Default background size */
+  background-size: auto 80vh;
 }
+
+/* Aspect ratio based background size */
+@media screen and (min-aspect-ratio: 126/100) {
+  .Hamper-Category {
+    background-size: 95vw auto;
+  }
+}
+
 .Square-Container {
   border: var(--flip-last-color) solid 0.3rem;
   border-radius: 1rem;
@@ -1240,6 +1255,15 @@ body.dark-theme .footer-bottom {
 
   .social-links {
     justify-content: center;
+  }
+}
+
+/* Aspect ratio based background size */
+@media screen and (min-aspect-ratio: 126/100) {
+  .Candle-Category,
+  .Diffuser-Category,
+  .Hamper-Category {
+    background-size: 95vw auto;
   }
 }
 
