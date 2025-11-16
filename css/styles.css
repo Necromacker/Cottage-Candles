@@ -509,11 +509,10 @@ body.dark-theme .mobile-menu-item:hover {
 }
 /* Best Sellers Section */
 .best-sellers-section {
-  padding: 40px 0;
   background: transparent;
   overflow: hidden;
   position: relative;
-  margin-top: -50px; /* Reduced gap from pinned categories */
+
   z-index: 1;
 }
 
@@ -1120,11 +1119,6 @@ body.dark-theme .footer-bottom {
 }
 
 @media (max-width: 768px) {
-  .best-sellers-section {
-    margin-top: -30px;
-    padding: 30px 0;
-  }
-
   .section-title {
     font-size: 2rem;
   }
@@ -1243,6 +1237,9 @@ body.dark-theme .footer-bottom {
 @media (max-width: 480px) {
   .reviews-section {
     padding: 40px 10px;
+  }
+  .Review-title {
+    font-size: 2rem;
   }
 
   .section-title {
@@ -1525,6 +1522,17 @@ p a {
   font-size: clamp(1rem, 1.5vw, 1.5rem);
   color: light-dark(var(--text-primary), var(--text-secondary));
 }
+.activities-count {
+  font-family: Poppins;
+  grid-column: 2 / -1;
+  place-self: start;
+  z-index: 99;
+  color: light-dark(var(--text-primary), var(--text-secondary));
+
+  @container activities-widget (width < 300px) {
+    display: none;
+  }
+}
 .Bestseller-heading {
   font-family: Poppins;
   font-size: clamp(2rem, 2.5vw, 3rem);
@@ -1542,6 +1550,7 @@ activities-widget {
 
   > * {
     grid-area: 1 / 1 / 1 / 1;
+    margin-left: 0px;
   }
 
   > .activity {
@@ -1554,6 +1563,7 @@ activities-widget {
 
     /* Using a div wrapper here because Firefox was blowing out the grid when making the image itself aspect-ratio: 1; */
     .img {
+      margin-bottom: 3rem;
       grid-column: 1 / 2;
       grid-row: 1 / 4;
       width: 100%;
@@ -1627,9 +1637,10 @@ activities-widget {
       }
     }
 
-    @container activities-widget (width < 300px) {
+    @container activities-widget (width < 400px) {
       display: block;
       padding: 1rem;
+      inline-size: min(100%, 40vw);
 
       .activity {
         display: block;
@@ -1637,7 +1648,6 @@ activities-widget {
         .img {
           max-inline-size: 125px;
           margin-inline: auto;
-          margin-block-end: 0.5rem;
         }
         .text {
           opacity: 1;
@@ -1648,7 +1658,10 @@ activities-widget {
       }
     }
   }
-
+  @media screen and (max-width: 800px) {
+    .activities-count {
+    }
+  }
   &.children-animating {
     .img {
       animation: 0.75s straightenImages;
@@ -1674,17 +1687,6 @@ activities-widget {
         color: Canvas;
       }
     }
-
-    @container activities-widget (width < 300px) {
-      display: none;
-    }
-  }
-  .activities-count {
-    font-family: Poppins;
-    grid-column: 2 / -1;
-    place-self: start;
-    z-index: 99;
-    color: light-dark(var(--text-primary), var(--text-secondary));
 
     @container activities-widget (width < 300px) {
       display: none;
@@ -1926,9 +1928,9 @@ activities-widget {
 }
 
 .card:hover .profile-pic img {
-  transform: scale(2.5);
-  -o-object-position: 0px 25px;
-  object-position: 0px 25px;
+  transform: scale(1.5);
+  /* -o-object-position: 0px 25px; */
+  object-position: 0px 1rem;
   transition: all 0.5s ease-in-out 0.5s;
 }
 

@@ -650,42 +650,97 @@ class ActivitiesWidget extends LitElement {
     this.allActivities = this.querySelectorAll(".activity");
     this.allActivities[0].classList.add("active");
     this.count = this.allActivities.length;
+    console.log("connectedCallback called");
+    console.log("Total activities:", this.count);
   }
 
   _makeActive(index) {
+    console.log("Activating card at index:", index);
+
     this.allActivities.forEach((activity, i) => {
       activity.classList.remove("active");
+      // Reset animation by removing animation style/classes
+      activity.style.animation = "none";
     });
-    this.allActivities[index].classList.add("active");
-    this.classList.add("children-animating");
-    this.allActivities[index].addEventListener(
+
+    const activeActivity = this.allActivities[index];
+
+    // Force reflow to restart animation
+    void activeActivity.offsetWidth;
+
+    activeActivity.classList.add("active");
+    activeActivity.style.animation = ""; // Re-enable animation via CSS
+
+    // Animation end event listener remains unchanged
+    activeActivity.addEventListener(
       "animationend",
       () => {
         this.classList.remove("children-animating");
+        console.log("Animation ended for card index:", index);
       },
       { once: true }
     );
+
+    this.classList.add("children-animating");
   }
 
-  _movePrevious(e) {
-    this.activeActivity--;
-    if (this.activeActivity < 1) {
-      this.activeActivity = this.count;
-      this._makeActive(this.count - 1);
-    } else {
-      this._makeActive(this.activeActivity - 1);
-    }
+  _movePrevious() {
+    const currentIndex = this.activeActivity;
+    let previousIndex = this.activeActivity - 1;
+    if (previousIndex < 0) previousIndex = this.count - 1;
+
+    // immediately set current active card z-index to 2 (on top)
+    this.allActivities[currentIndex].style.zIndex = "2";
+
+    // set previous card z-index to 1 (below current)
+    this.allActivities[previousIndex].style.zIndex = "1";
+
+    // activate previous card with animation
+    this._makeActive(currentIndex);
+
+    // after delay, swap z-index to make previous card top and current card back
+    setTimeout(() => {
+      this.allActivities[currentIndex].style.zIndex = "0";
+      this.allActivities[previousIndex].style.zIndex = "2";
+    }, 330); // animation midpoint delay
+
+    // reset all other cards z-index to 0
+    this.allActivities.forEach((card, index) => {
+      if (index !== currentIndex && index !== previousIndex) {
+        card.style.zIndex = "0";
+      }
+    });
+
+    // update activeActivity index
+    this.activeActivity = previousIndex;
   }
 
-  _moveNext(e) {
-    this.activeActivity++;
-    if (this.activeActivity > this.count) {
-      this.activeActivity = 1;
-      this._makeActive(0);
-    } else {
-      this._makeActive(this.activeActivity - 1);
-    }
+  _moveNext() {
+    // current active card z-index 1
+    this.allActivities[this.activeActivity].style.zIndex = "1";
+
+    // increment activeActivity index
+    this.activeActivity = (this.activeActivity + 1) % this.count;
+
+    // activate next card with animation
+    this._makeActive(this.activeActivity);
+
+    // next card z-index 2 to appear on top during animation
+    setTimeout(() => {
+      this.allActivities[this.activeActivity].style.zIndex = "2";
+    }, 330);
+
+    // reset other cards z-index to 0 or lower
+    this.allActivities.forEach((card, index) => {
+      if (
+        index !== this.activeActivity &&
+        index !== (this.activeActivity - 1 + this.count) % this.count
+      ) {
+        card.style.zIndex = "0";
+      }
+    });
   }
+
   connectedCallback() {
     super.connectedCallback();
     this.allActivities = this.querySelectorAll(".activity");
@@ -696,9 +751,11 @@ class ActivitiesWidget extends LitElement {
     const right_btn = document.getElementById("right");
 
     left_btn.addEventListener("click", () => {
+      console.log("Left button clicked");
       this._movePrevious();
     });
     right_btn.addEventListener("click", () => {
+      console.log("Right button clicked");
       this._moveNext();
     });
   }
@@ -711,7 +768,9 @@ class ActivitiesWidget extends LitElement {
   // Inject additional stuff into DOM (stays Light DOM), and allow Lit-style reactivity and event handling.
   render() {
     return html`
-      <div class="activities-count">${this.activeActivity}/${this.count}</div>
+      <div class="activities-count">
+        ${this.activeActivity + 1}/${this.count}
+      </div>
     `;
   }
 }
