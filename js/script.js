@@ -201,6 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const themeToggle = document.getElementById("theme-toggle");
   const body = document.body;
   const brandLogo = document.querySelector(".Brand-logo");
+  const footerLogo = document.querySelector(".Footer-logo");
 
   if (!themeToggle) {
     console.error("Theme toggle button not found!");
@@ -243,11 +244,13 @@ document.addEventListener("DOMContentLoaded", function () {
       themeToggle.classList.remove("light-mode");
       themeToggle.classList.add("dark-mode");
       if (brandLogo) brandLogo.src = "/images/logo-light.png";
+      if (footerLogo) footerLogo.src = "/images/logo-dark.png";
     } else {
       body.classList.remove("dark-theme");
       themeToggle.classList.remove("dark-mode");
       themeToggle.classList.add("light-mode");
       if (brandLogo) brandLogo.src = "/images/logo-dark.png";
+      if (footerLogo) footerLogo.src = "/images/logo-light.png";
     }
   }
 });

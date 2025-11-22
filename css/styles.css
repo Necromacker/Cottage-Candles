@@ -11,6 +11,7 @@
   --flip-first-color: #704a70;
   --flip-last-color: #6b4a40;
   --arrow-secondary: #494949;
+  --Footer-div-bg: #fdcffa;
 }
 
 body.dark-theme {
@@ -26,6 +27,7 @@ body.dark-theme {
   --flip-first-color: #fae2f8;
   --flip-last-color: #fcebe3;
   --arrow-secondary: #b4b4b4;
+  --Footer-div-bg: #ffade4;
 }
 
 * {
@@ -800,8 +802,8 @@ body.dark-theme .carousel-nav:hover {
 
 /* Customer Reviews Section */
 .reviews-section {
-  padding: 80px 20px;
-  background: linear-gradient(135deg, #f2f3f5 0%, #e4e4e4 100%);
+  padding: 7rem 20px;
+  background: linear-gradient(90deg, #f2f3f5 0%, #e4e4e4 100%);
   position: relative;
 }
 
@@ -876,198 +878,112 @@ body.dark-theme .carousel-nav:hover {
   color: #666;
   font-family: "Montserrat", sans-serif;
 }
-
-/* Website Footer */
-.website-footer {
-  background: #2c3e50;
-  color: white;
-  padding: 60px 0 20px;
+.Footer-Upper-Section {
+  display: flex;
+  height: 80%;
+  width: 100%;
+}
+.Website-Footer {
   position: relative;
+  bottom: 185vh;
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+
+  width: 100vw;
 }
 
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+.Footer-Left {
+  padding-top: 1rem;
+  background-color: var(--text-primary);
+  border-top-right-radius: 1rem;
+  height: 100%;
+  width: 40%;
+}
+.Footer-Right {
+  padding-bottom: 1rem;
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--text-primary);
 }
 
-.footer-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
-  margin-bottom: 40px;
-}
+.Brand-FooterName-Div > h1 {
+  font-size: 5rem;
+  font-family: Poppins;
+  font-weight: 400;
 
-.footer-section h3,
-.footer-section h4 {
-  margin-bottom: 20px;
-  font-family: "Poppins", sans-serif;
+  color: var(--text-primary);
 }
-
-.footer-logo {
+.Brand-FooterName-Div {
+  border-bottom-left-radius: 1.5rem;
+  background: linear-gradient(90deg, #e9e9ea 0%, #e4e4e4 100%);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  height: 40%;
+  width: 100%;
+}
+.Stay-Updated {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 15px;
+  justify-content: center;
+  height: 100%;
+  width: 70%;
 }
-
-.footer-logo-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+.Brand-FooterLogo {
+  height: 100%;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
 }
-
-.footer-logo h3 {
+.Footer-logo {
+  height: 80%;
+}
+.Updates {
+  display: flex;
+  flex-direction: row;
+  height: 60%;
+  width: 100%;
+  margin-left: 2rem;
+}
+.stay-updated-text {
   font-size: 1.5rem;
-  font-weight: 700;
-  color: white;
+  font-family: Poppins;
+  font-weight: 500;
+  color: black;
 }
-
-.footer-description {
-  color: #bdc3c7;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  font-family: "Montserrat", sans-serif;
-}
-
-.social-links {
+.Stay-Updated-Div {
+  height: 100%;
+  width: 93%;
+  position: relative;
+  bottom: 10%;
   display: flex;
-  gap: 15px;
-}
-
-.social-link {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  background: #34495e;
-  color: white;
-  text-align: center;
-  line-height: 40px;
-  border-radius: 50%;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-size: 1.2rem;
-}
-
-.social-link:hover {
-  background: #667eea;
-  transform: translateY(-2px);
-}
-
-.footer-title {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: white;
-  margin-bottom: 20px;
-}
-
-.footer-links {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-links li {
-  margin-bottom: 10px;
-}
-
-.footer-link {
-  color: #bdc3c7;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  font-family: "Montserrat", sans-serif;
-}
-
-.footer-link:hover {
-  color: #667eea;
-}
-
-.newsletter-text {
-  color: #bdc3c7;
-  margin-bottom: 15px;
-  font-family: "Montserrat", sans-serif;
-}
-
-.newsletter-form {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.newsletter-input {
-  flex: 1;
-  padding: 12px 15px;
-  border: 1px solid #34495e;
-  border-radius: 25px;
-  background: #34495e;
-  color: white;
-  font-family: "Montserrat", sans-serif;
-}
-
-.newsletter-input::placeholder {
-  color: #bdc3c7;
-}
-
-.newsletter-btn {
-  padding: 12px 20px;
-  background: #667eea;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  font-family: "Montserrat", sans-serif;
-}
-
-.newsletter-btn:hover {
-  background: #5a6fd8;
-  transform: translateY(-2px);
-}
-
-.contact-info p {
-  color: #bdc3c7;
-  margin-bottom: 8px;
-  font-family: "Montserrat", sans-serif;
-}
-
-.footer-bottom {
-  border-top: 1px solid #34495e;
-  padding-top: 20px;
-}
-
-.footer-bottom-content {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--Footer-div-bg);
+  border-radius: 1.5rem;
 }
-
-.copyright {
-  color: #bdc3c7;
-  font-family: "Montserrat", sans-serif;
-}
-
-.footer-bottom-links {
+.Stay-Updated-Border {
   display: flex;
-  gap: 20px;
-}
+  align-items: center;
+  justify-content: center;
+  height: 70%;
+  width: 90%;
 
-.footer-bottom-link {
-  color: #bdc3c7;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.3s ease;
-  font-family: "Montserrat", sans-serif;
+  border-radius: 1.5rem;
+  border: solid 0.3rem var(--bg-primary);
 }
-
-.footer-bottom-link:hover {
-  color: #667eea;
-}
-
 /* Dark Theme Support for Reviews and Footer */
 body.dark-theme .reviews-section {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  background: linear-gradient(90deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+body.dark-theme .Brand-FooterName-Div {
+  background: linear-gradient(90deg, #232323 0%, #2d2d2d 100%);
 }
 
 body.dark-theme .review-card {
@@ -1941,4 +1857,213 @@ activities-widget {
 .Rating-para {
   font-family: Poppins;
   font-weight: 800;
+}
+.input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1em 0;
+  font-family: poppins, sans-serif;
+}
+#input-div {
+  width: 90%;
+}
+.input label {
+  font-size: 1rem;
+  position: absolute;
+  left: 0;
+  padding: 0.8em;
+  margin-left: 0.5em;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  color: black;
+}
+
+.input input {
+  width: 77%;
+  padding: 0.8em;
+  font-size: 1rem;
+  border: 2px solid black;
+  border-radius: 20px;
+  background-color: transparent;
+  outline: none;
+}
+
+.input input:focus,
+.input input:valid {
+  border-color: rgb(37, 37, 211);
+}
+
+/* This requires modern browsers supporting :has() */
+.input:has(input:focus) label,
+.input:has(input:valid) label {
+  transform: translateY(-50%) scale(0.9);
+  margin: 0em;
+  margin-left: 1.3em;
+  padding: 0.4em;
+  background-color: var(--Footer-div-bg);
+}
+/* From Uiverse.io by cssbuttons-io */
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+button.learn-more {
+  height: auto;
+}
+
+button.learn-more .circle {
+  font-size: 2.8rem;
+  color: #282936;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: white;
+  border-radius: 1.625rem;
+  border: #282936 0.2rem solid;
+}
+.Youtube-Svg-Border {
+  width: 25%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  border: solid 0.3rem var(--bg-primary);
+  border-radius: 20px;
+  background-color: transparent;
+  outline: none;
+}
+.Youtube-Div-Border {
+  width: 55%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  border: solid 0.3rem var(--bg-primary);
+  border-radius: 20px;
+  background-color: transparent;
+  outline: none;
+}
+.Socials-Upper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+
+  height: 50%;
+  width: 100%;
+}
+.Socials-Lower {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+
+  height: 50%;
+  width: 100%;
+}
+.Youtube-Svg-Div {
+  height: 105%;
+  width: 80%;
+  position: relative;
+  bottom: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--Footer-div-bg);
+  border-radius: 1.5rem;
+}
+.Youtube-Div {
+  height: 105%;
+  width: 90%;
+  position: relative;
+  bottom: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-direction: column;
+  background-color: var(--Footer-div-bg);
+  border-radius: 1.5rem;
+}
+.Instagram_Img {
+  height: 105%;
+  width: 80%;
+  object-fit: contain;
+}
+.Youtube-Img {
+  height: 105%;
+  width: 80%;
+  object-fit: contain;
+}
+.Instagram-Heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-family: Poppins;
+  font-weight: 600;
+  color: black;
+}
+.Instagram-Text {
+  display: flex;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-family: Poppins;
+  font-weight: 400;
+  color: black;
+}
+@keyframes infiniteScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.horizontal-div {
+  margin-top: 2rem;
+  width: 100%;
+  overflow-x: hidden;
+
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  cursor: default;
+}
+.horizontal-scrolling-items {
+  display: flex;
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  font-family: Poppins;
+  width: 2600px;
+  animation-name: infiniteScroll;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.horizontal-scrolling-items__item {
+  white-space: nowrap;
 }
