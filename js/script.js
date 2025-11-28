@@ -287,8 +287,8 @@ document.addEventListener("DOMContentLoaded", function () {
   menuOverlay.innerHTML = `
         <div class="mobile-menu-content">
             <div class="mobile-menu-items">
-                <a href="#" class="mobile-menu-item">Home</a>
-                <a href="#" class="mobile-menu-item">Shop</a>
+                <a href="index.html" class="mobile-menu-item">Home</a>
+                <a href="shop.html" class="mobile-menu-item">Shop</a>
                 <a href="#" class="mobile-menu-item">About</a>
                 <a href="#" class="mobile-menu-item">Blog</a>
             </div>

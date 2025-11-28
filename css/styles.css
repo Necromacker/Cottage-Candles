@@ -411,7 +411,7 @@ body.dark-theme .mobile-menu-item:hover {
   width: 95vw;
   position: relative;
   top: 15vh;
-  background-image: url(../images/candle-pc.png);
+  background-image: url(../images/candle-pc.jpg);
   background-repeat: no-repeat;
   background-position: top;
   border-radius: 1rem;
@@ -882,6 +882,8 @@ body.dark-theme .carousel-nav:hover {
   display: flex;
   height: 80%;
   width: 100%;
+
+  flex-wrap: wrap;
 }
 .Website-Footer {
   position: relative;
@@ -899,18 +901,22 @@ body.dark-theme .carousel-nav:hover {
   border-top-right-radius: 1rem;
   height: 100%;
   width: 40%;
+  min-width: 320px;
+  flex: 1 1 360px;
 }
 .Footer-Right {
   padding-bottom: 1rem;
   height: 100%;
-  width: 60%;
+  width: 50%;
+  min-width: 320px;
+  flex: 1 1 420px;
   display: flex;
   flex-direction: column;
   background-color: var(--text-primary);
 }
 
 .Brand-FooterName-Div > h1 {
-  font-size: 5rem;
+  font-size: 5.5vw;
   font-family: Poppins;
   font-weight: 400;
 
@@ -932,23 +938,18 @@ body.dark-theme .carousel-nav:hover {
   justify-content: center;
   height: 100%;
   width: 70%;
+  min-width: 280px;
+  flex: 2 1 360px;
 }
-.Brand-FooterLogo {
-  height: 100%;
-  width: 30%;
-  display: flex;
-  align-items: center;
-  justify-content: start;
-}
-.Footer-logo {
-  height: 80%;
-}
+
 .Updates {
   display: flex;
   flex-direction: row;
   height: 60%;
   width: 100%;
-  margin-left: 2rem;
+
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 .stay-updated-text {
   font-size: 1.5rem;
@@ -1021,6 +1022,157 @@ body.dark-theme .newsletter-input {
 
 body.dark-theme .footer-bottom {
   border-top-color: #444;
+}
+
+/* Responsive Footer */
+@media (max-width: 500px) {
+  .Website-Footer {
+    height: auto;
+    padding: 2.5rem 2rem 3rem;
+    width: 100%;
+    gap: 2rem;
+  }
+
+  .Footer-Upper-Section {
+    height: auto;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .Footer-Left,
+  .Footer-Right {
+    width: 100%;
+    height: auto;
+  }
+
+  .Brand-FooterName-Div {
+    height: auto;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .Brand-FooterName-Div > h1 {
+    text-align: center;
+    font-size: clamp(2.5rem, 7vw, 4rem);
+  }
+
+  .Updates {
+    height: auto;
+    margin-left: 0;
+    justify-content: space-between;
+  }
+
+  .Socials-Upper,
+  .Socials-Lower {
+    flex-direction: column;
+    gap: 1.25rem;
+    height: auto;
+  }
+
+  .Youtube-Svg-Border,
+  .Youtube-Div-Border {
+    width: 100%;
+    height: auto;
+  }
+
+  .Youtube-Svg-Div,
+  .Youtube-Div {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .Footer-Upper-Section {
+    padding: 0;
+  }
+
+  .Updates {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .Stay-Updated,
+  .Brand-FooterLogo {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .Brand-FooterLogo {
+    align-items: center;
+  }
+
+  .Footer-logo {
+    height: auto;
+    max-width: 220px;
+  }
+
+  .stay-updated-text {
+    font-size: 1.2rem;
+  }
+
+  .horizontal-scrolling-items {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .Website-Footer {
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  .Brand-FooterName-Div > h1 {
+    font-size: 2.4rem;
+  }
+
+  .Brand-FooterName-Div {
+    padding: 2rem 1rem;
+  }
+
+  .Socials-Upper,
+  .Socials-Lower {
+    width: 100%;
+  }
+
+  .Instagram-Heading {
+    font-size: 1rem;
+  }
+
+  .Instagram-Text {
+    font-size: 0.85rem;
+  }
+
+  .Youtube-Svg-Border,
+  .Youtube-Div-Border {
+    border-width: 0.2rem;
+  }
+
+  .Stay-Updated-Div {
+    bottom: 0;
+    padding: 1rem;
+  }
+
+  .Stay-Updated-Border {
+    width: 100%;
+  }
+
+  #input-div {
+    width: 100%;
+  }
+
+  #input-div input {
+    width: 100%;
+  }
+
+  .horizontal-scrolling-items {
+    font-size: 1.2rem;
+    min-width: 150%;
+  }
+
+  .horizontal-div {
+    margin-top: 1.5rem;
+  }
 }
 
 /* Responsive Styles for Best Sellers */
@@ -1574,10 +1726,6 @@ activities-widget {
       }
     }
   }
-  @media screen and (max-width: 800px) {
-    .activities-count {
-    }
-  }
   &.children-animating {
     .img {
       animation: 0.75s straightenImages;
@@ -2058,11 +2206,13 @@ button.learn-more .circle {
   text-transform: uppercase;
 
   font-family: Poppins;
-  width: 2600px;
+  width: max-content;
+  min-width: 200%;
   animation-name: infiniteScroll;
   animation-duration: 20s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+  gap: 2rem;
 }
 .horizontal-scrolling-items__item {
   white-space: nowrap;
