@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cottage Candles - Premium Hampers</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/hamper.css" />
+    <link rel="stylesheet" href="css/cart.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Ovo&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  </head>
+  <body>
+    <div class="Nav-container">
+      <div class="Navbar">
+        <div class="Branding">
+          <img src="images/logo-dark.png" alt="Logo" class="Brand-logo" />
+          <h1>Cottage Candles</h1>
+        </div>
+        <div class="Nav-links">
+          <a href="index.html" id="buttons">
+            <span class="text">Home</span><span>Home</span>
+          </a>
+          <a href="shop.html" id="buttons">
+            <span class="text">Shop</span><span>Shop</span>
+          </a>
+          <button id="buttons">
+            <span class="text">About</span><span>About</span>
+          </button>
+          <button id="buttons">
+            <span class="text">Blog</span><span>Blog</span>
+          </button>
+        </div>
+
+        <div class="Nav-buttons">
+          <div class="nav-actions desktop-nav">
+            <button
+              class="nav-btn theme-toggle cursor-target light-mode"
+              id="theme-toggle"
+              aria-label="Toggle theme"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                data-lucide="moon"
+                class="lucide lucide-moon theme-icon moon-icon"
+              >
+                <path
+                  d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"
+                ></path>
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                data-lucide="sun"
+                class="lucide lucide-sun theme-icon sun-icon"
+              >
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+            </button>
+            <button class="nav-btn cursor-target" aria-label="User account">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                data-lucide="user"
+                class="lucide lucide-user"
+              >
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </button>
+            <button class="nav-btn cursor-target" aria-label="Search">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                data-lucide="search"
+                class="lucide lucide-search"
+              >
+                <path d="m21 21-4.34-4.34"></path>
+                <circle cx="11" cy="11" r="8"></circle>
+              </svg>
+            </button>
+            <button class="nav-btn cursor-target" aria-label="Shopping cart">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                data-lucide="shopping-bag"
+                class="lucide lucide-shopping-bag"
+              >
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                <path d="M3.103 6.034h17.794"></path>
+                <path
+                  d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="MobileMenu">
+        Menu
+        <input id="checkbox2" type="checkbox" />
+        <label class="toggle toggle2" for="checkbox2">
+          <div id="bar4" class="bars"></div>
+          <div id="bar5" class="bars"></div>
+          <div id="bar6" class="bars"></div>
+        </label>
+      </div>
+    </div>
+    <!-- Scroll Spacer to allow scrolling -->
+    <div class="scroll-spacer"></div>
+
+    <div class="scene-wrapper">
+      <div class="scene">
+        <!-- Background Blocks (Full Screen) -->
+        <div class="bg-blocks">
+          <div class="block block-1">
+            <div class="bg-overlay-1 p2-bg-1"></div>
+            <div class="bg-overlay-1 p3-bg-1"></div>
+            <div class="block-3">
+              <div class="bg-overlay-3 p2-bg-3"></div>
+              <div class="bg-overlay-3 p3-bg-3"></div>
+            </div>
+            <div class="block-4">
+              <div class="bg-overlay-4 p2-bg-4"></div>
+              <div class="bg-overlay-4 p3-bg-4"></div>
+            </div>
+          </div>
+
+          <div class="block block-2"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-wrapper">
+          <div class="main-layout">
+            <!-- Left Side: Product -->
+            <div class="product-section">
+              <div class="products-stack">
+                <div class="product-item item-1">
+                  <img
+                    src="images/hamper.png"
+                    alt="Luxury Spa Hamper"
+                    class="product-image"
+                  />
+                  <div class="product-shadow"></div>
+                </div>
+                <div class="product-item item-2">
+                  <img
+                    src="images/hamper2.png"
+                    alt="Relaxation Hamper"
+                    class="product-image"
+                  />
+                  <div class="product-shadow"></div>
+                </div>
+                <div class="product-item item-3">
+                  <img
+                    src="images/hamper1.png"
+                    alt="Ultimate Serenity Hamper"
+                    class="product-image"
+                  />
+                  <div class="product-shadow"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Side: Details -->
+            <div class="details-section">
+              <!-- Floating Particles -->
+              <div></div>
+              <div></div>
+              <div class="info-stack">
+                <!-- Product 1 Info -->
+                <div class="product-info info-1">
+                  <div class="text-mask-flavour" id="Flavour">
+                    <span class="tag anim-text">CELEBRATION</span>
+                  </div>
+                  <h1 class="title" id="Heading">
+                    <div class="text-mask">
+                      <span class="line anim-text">SPA</span>
+                    </div>
+                    <div class="text-mask">
+                      <span class="line anim-text">COLLECTION</span>
+                    </div>
+                  </h1>
+
+                  <div class="description-box-1">
+                    <div class="text-mask" id="desc">
+                      <p class="desc-text anim-text">
+                        The ultimate self-care experience. Curated with our
+                        finest candles, diffusers, and bath essentials to
+                        transform your bathroom into a luxury spa.
+                      </p>
+                    </div>
+                    <div class="specs">
+                      <div class="spec-item">
+                        <div class="text-mask">
+                          <span class="label anim-text">Includes</span>
+                        </div>
+                        <div class="text-mask">
+                          <span class="value anim-text"
+                            >Candle<br />Diffuser</span
+                          >
+                        </div>
+                      </div>
+                      <div class="spec-item">
+                        <div class="text-mask">
+                          <span class="label anim-text">Mood</span>
+                        </div>
+                        <div class="text-mask">
+                          <span class="value anim-text"
+                            >Relaxing<br />Indulgent</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Product 2 Info -->
+                <div class="product-info info-2">
+                  <div class="text-mask-flavour">
+                    <span class="tag anim-text">GIFT SET</span>
+                  </div>
+                  <h1 class="title" id="title-2">
+                    <div class="text-mask">
+                      <span class="line anim-text">EVENING</span>
+                    </div>
+                    <div class="text-mask">
+                      <span class="line anim-text">UNWIND</span>
+                    </div>
+                  </h1>
+
+                  <div class="description-box">
+                    <div class="text-mask" id="desc">
+                      <p class="desc-text anim-text">
+                        Perfect for winding down after a long day. This hamper
+                        features calming lavender scents and a soft eye mask for
+                        restful sleep.
+                      </p>
+                    </div>
+                    <div class="specs">
+                      <div class="spec-item">
+                        <div class="text-mask">
+                          <span class="label anim-text">Includes</span>
+                        </div>
+                        <div class="text-mask">
+                          <span class="value anim-text"
+                            >Lavender Candle<br />Eye Mask</span
+                          >
+                        </div>
+                      </div>
+                      <div class="spec-item">
+                        <div class="text-mask">
+                          <span class="label anim-text">Mood</span>
+                        </div>
+                        <div class="text-mask">
+                          <span class="value anim-text">Calm<br />Sleepy</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Product 3 Info -->
+                <div class="product-info info-3">
+                  <div class="text-mask-flavour">
+                    <span class="tag anim-text">LUXURY</span>
+                  </div>
+                  <h1 class="title" id="title-2">
+                    <div class="text-mask">
+                      <span class="line anim-text">FESTIVE</span>
+                    </div>
+                    <div class="text-mask">
+                      <span class="line anim-text">JOY</span>
+                    </div>
+                  </h1>
+
+                  <div class="description-box">
+                    <div class="text-mask" id="desc">
+                      <p class="desc-text anim-text">
+                        Celebrate special moments with this festive hamper.
+                        Filled with vibrant scents and treats to spread joy and
+                        warmth.
+                      </p>
+                    </div>
+                    <div class="specs">
+                      <div class="spec-item">
+                        <div class="text-mask">
+                          <span class="label anim-text">Includes</span>
+                        </div>
+                        <div class="text-mask">
+                          <span class="value anim-text"
+                            >Scented Candle<br />Treats</span
+                          >
+                        </div>
+                      </div>
+                      <div class="spec-item">
+                        <div class="text-mask">
+                          <span class="label anim-text">Mood</span>
+                        </div>
+                        <div class="text-mask">
+                          <span class="value anim-text"
+                            >Joyful<br />Bright</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bottom Bar (Static parts) -->
+              <div class="bottom-bar">
+                <div class="price-placeholder">
+                  <div class="price-item">
+                    <div class="text-mask" id="price1">
+                      <div class="price-display anim-text">$85.00</div>
+                    </div>
+                  </div>
+                  <div class="price-item">
+                    <div class="text-mask" id="price">
+                      <div class="price-display anim-text">$65.00</div>
+                    </div>
+                  </div>
+                  <div class="price-item">
+                    <div class="text-mask" id="price">
+                      <div class="price-display anim-text">$95.00</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="cart-controls">
+                  <div class="qty-selector">1</div>
+                  <button class="add-btn">ADD TO CART</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="js/script.js"></script>
+    <script src="js/product-hamper.js"></script>
+    <script type="module" src="js/cart.js"></script>
+  </body>
+</html>
