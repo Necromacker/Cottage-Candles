@@ -19,7 +19,7 @@ body.dark-theme {
   --body-bg: #121212;
   --text-dark: #ffffff;
   --accent-blue: #e0e0e0;
-  
+
   /* Block Colors (Dark) - Wild Berry */
   --block-1: #4a235a;
   --block-2: #5b2c6f;
@@ -495,7 +495,7 @@ body {
 #price1 {
   padding: 5px;
   border-radius: 1rem;
-  border: #1a1a1a 1px solid;
+  border: var(--accent-blue) 1px solid;
 }
 #price {
   padding: 5px;
@@ -516,6 +516,7 @@ body {
 .add-btn:hover {
   transform: scale(1.05);
   background: var(--text-dark);
+  color: var(--bg-primary);
 }
 
 /* Price Animation Updates */

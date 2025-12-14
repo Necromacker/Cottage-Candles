@@ -7,7 +7,7 @@
   --text-light: #ffffff;
   --accent-blue: #2c3e50;
   --body-bg: #4a2b36;
-  
+
   /* Block Colors (Light/Default) - Luxury Spa (Teal/Green) */
   --block-1: #16a085; /* Teal */
   --block-2: #76d7c4; /* Light Teal */
@@ -19,7 +19,7 @@ body.dark-theme {
   --body-bg: #121212;
   --text-dark: #ffffff;
   --accent-blue: #e0e0e0;
-  
+
   /* Block Colors (Dark) - Luxury Spa */
   --block-1: #0e6655;
   --block-2: #148f77;
@@ -495,7 +495,7 @@ body {
 #price1 {
   padding: 5px;
   border-radius: 1rem;
-  border: #1a1a1a 1px solid;
+  border: var(--accent-blue) 1px solid;
 }
 #price {
   padding: 5px;
@@ -516,6 +516,7 @@ body {
 .add-btn:hover {
   transform: scale(1.05);
   background: var(--text-dark);
+  color: var(--bg-primary);
 }
 
 /* Price Animation Updates */
