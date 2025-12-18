@@ -9,10 +9,10 @@
   --body-bg: #4a2b36;
 
   /* Block Colors (Light/Default) */
-  --block-1: #cd2c58;
-  --block-2: #f5b8c1;
-  --block-3: #e06b80;
-  --block-4: #ffc69d;
+  --block-1: #6f4e37; /* Coffee */
+  --block-2: #d2b48c; /* Tan */
+  --block-3: #8d6e63; /* Cocoa */
+  --block-4: #efebe9; /* Cream */
 }
 
 body.dark-theme {
@@ -21,10 +21,10 @@ body.dark-theme {
   --accent-blue: #e0e0e0;
 
   /* Block Colors (Dark) */
-  --block-1: #591225;
-  --block-2: #2d1f23;
-  --block-3: #61212d;
-  --block-4: #4a332a;
+  --block-1: #3e2723;
+  --block-2: #4e342e;
+  --block-3: #5d4037;
+  --block-4: #2d1f23;
 }
 
 * {
@@ -42,7 +42,7 @@ body {
 }
 
 .scroll-spacer {
-  height: 600vh; /* Increased for longer scroll feel */
+  height: 1400vh; /* Increased for longer scroll feel */
   position: absolute;
   top: 0;
   left: 0;
@@ -149,33 +149,40 @@ body {
   top: auto;
   bottom: 0;
 }
-/* Product 2 Colors (Ice Coffee) */
-.p2-bg-1 {
-  background-color: #4e342e; /* Coffee Brown */
-}
-.p2-bg-3 {
-  background-color: #281914; /* Espresso */
-}
-.p2-bg-4 {
-  background-color: #d7ccc8; /* Latte Cream */
-}
+/* Product 2 Colors (Sunburst) */
+.p2-bg-1 { background-color: #ffb74d; }
+.p2-bg-3 { background-color: #e65100; }
+.p2-bg-4 { background-color: #fff8e1; }
 
-/* Product 3 Colors (Shortcake) */
-.p3-bg-1 {
-  background-color: #dd7bdf; /* Soft Pink */
-  height: 100%; /* Override default height 0 */
-  width: 0%; /* Start width 0 for L to R slide */
-}
-.p3-bg-3 {
-  background-color: #ffbbe1; /* Deep Pink */
-  top: auto; /* Override default top: 0 */
-  bottom: 0;
-  width: 100%; /* Override default width 0 */
-  height: 0%; /* Start height 0 for Bottom to Up slide */
-}
-.p3-bg-4 {
-  background-color: #b3bfff; /* Cream / Yellow-ish */
-}
+/* Product 3 Colors (Strawberry) */
+.p3-bg-1 { background-color: #ec407a; }
+.p3-bg-3 { background-color: #f48fb1; }
+.p3-bg-4 { background-color: #fce4ec; }
+
+/* Product 4 Colors (Mystic Ocean) */
+.p4-bg-1 { background-color: #00897b; } /* Teal */
+.p4-bg-3 { background-color: #004d40; } /* Dark Teal */
+.p4-bg-4 { background-color: #e0f2f1; } /* Light Teal */
+
+/* Product 5 Colors (Merry Christmas) */
+.p5-bg-1 { background-color: #c62828; } /* Red */
+.p5-bg-3 { background-color: #2e7d32; } /* Green */
+.p5-bg-4 { background-color: #fffde7; } /* Goldish */
+
+/* Product 6 Colors (Cooki) */
+.p6-bg-1 { background-color: #5d4037; } /* Brown */
+.p6-bg-3 { background-color: #3e2723; } /* Dark Brown */
+.p6-bg-4 { background-color: #d7ccc8; } /* Light Brown */
+
+/* Product 7 Colors (Moon Bloom) */
+.p7-bg-1 { background-color: #311b92; } /* Deep Purple */
+.p7-bg-3 { background-color: #4527a0; } /* Purple */
+.p7-bg-4 { background-color: #ede7f6; } /* Pale Purple */
+
+/* Product 8 Colors (Swan) */
+.p8-bg-1 { background-color: #e0e0e0; } /* Silver */
+.p8-bg-3 { background-color: #f5f5f5; } /* Light Gray */
+.p8-bg-4 { background-color: #ffffff; } /* Pure White */
 
 /* Content */
 .content-wrapper {

@@ -1,66 +1,34 @@
 // Cart Data Definitions mapped by Page URL (roughly)
 // Since we have specific pages for regular products, we can define the data here.
 const PRODUCT_DATA = {
-  "candles.html": [
-    {
-      id: "candle-1",
-      name: "Sweet Strawberry",
-      price: 32.0,
-      image: "images/Product-1.png",
-    },
-    {
-      id: "candle-2",
-      name: "Cold Brew Classic",
-      price: 28.0,
-      image: "images/Product-2.png",
-    },
-    {
-      id: "candle-3",
-      name: "Strawberry Shortcake",
-      price: 30.0,
-      image: "images/Product-3.png",
-    },
-  ],
-  "diffuser.html": [
-    {
-      id: "diffuser-1",
-      name: "Wild Berry Mist",
-      price: 45.0,
-      image: "images/diffuser1.png",
-    },
-    {
-      id: "diffuser-2",
-      name: "Calming Brew",
-      price: 42.0,
-      image: "images/diffuser2.png",
-    },
-    {
-      id: "diffuser-3",
-      name: "Vanilla Bean",
-      price: 48.0,
-      image: "images/diffuser3.png",
-    },
-  ],
-  "hamper.html": [
-    {
-      id: "hamper-1",
-      name: "Luxury Spa Collection",
-      price: 85.0,
-      image: "images/hamper.png",
-    },
-    {
-      id: "hamper-2",
-      name: "Evening Unwind",
-      price: 65.0,
-      image: "images/hamper2.png",
-    },
-    {
-      id: "hamper-3",
-      name: "Festive Joy",
-      price: 95.0,
-      image: "images/hamper1.png",
-    },
-  ],
+  // Candles
+  "candle-1": { id: "candle-1", name: "COFFEE LATTE", price: 32.0, image: "images/hero_candle.png" },
+  "candle-2": { id: "candle-2", name: "SUNBURST FLAVOUR", price: 28.0, image: "images/Product-2.png" },
+  "candle-3": { id: "candle-3", name: "STRAWBERRY SHORTCAKE", price: 30.0, image: "images/Product-3.png" },
+  "candle-4": { id: "candle-4", name: "MYSTIC OCEAN", price: 34.0, image: "images/hero_candle.png" },
+  "candle-5": { id: "candle-5", name: "MERRY CHRISTMAS", price: 35.0, image: "images/Product-2.png" },
+  "candle-6": { id: "candle-6", name: "SIMPLE COOKIE", price: 15.0, image: "images/Product-3.png" },
+  "candle-7": { id: "candle-7", name: "SMALL SWAN", price: 32.0, image: "images/Product-2.png" },
+  "candle-8": { id: "candle-8", name: "MOON BLOOM", price: 29.0, image: "images/hero_candle.png" },
+
+  // Diffusers
+  "diffuser-1": { id: "diffuser-1", name: "ROOM AND BATHROOM DIFFUSERS", price: 45.0, image: "images/diffuser1.png" },
+  "diffuser-2": { id: "diffuser-2", name: "CAR DIFFUSERS", price: 25.0, image: "images/diffuser2.png" },
+
+  // Jars (formerly Hampers)
+  "jar-1": { id: "jar-1", name: "SEA SHELL", price: 20.0, image: "images/hamper.png" },
+  "jar-2": { id: "jar-2", name: "DIWALI LADOO", price: 18.0, image: "images/hamper2.png" },
+  "jar-3": { id: "jar-3", name: "FAIRYTALE WALTZ", price: 24.0, image: "images/hamper1.png" },
+  "jar-4": { id: "jar-4", name: "PAINTED TAPER", price: 22.0, image: "images/hamper.png" },
+  "jar-5": { id: "jar-5", name: "SUNFLOWER BOQUET", price: 26.0, image: "images/hamper2.png" },
+  "jar-6": { id: "jar-6", name: "TULIP BOQUET", price: 28.0, image: "images/hamper1.png" }
+};
+
+const PAGE_PRODUCT_MAP = {
+    "candles.html": ["candle-1", "candle-2", "candle-3", "candle-4", "candle-5", "candle-6", "candle-7", "candle-8"],
+    "diffuser.html": ["diffuser-1", "diffuser-2"],
+    "jar.html": ["jar-1", "jar-2", "jar-3", "jar-4", "jar-5", "jar-6"],
+    "hamper.html": ["jar-1", "jar-2", "jar-3", "jar-4", "jar-5", "jar-6"] // Redirect/legacy support
 };
 
 class ShoppingCart {
@@ -146,22 +114,34 @@ class ShoppingCart {
     // For now, let's just assume qty 1 or implement click handlers if needed.
   }
 
+  // Handle Add from Scroll Page (context based)
   handleAddToCart() {
-    // 1. Identify Page
     const path = window.location.pathname.split("/").pop();
-    const pageData = PRODUCT_DATA[path] || PRODUCT_DATA["candles.html"]; // Fallback
-
-    // 2. Identify Active Product Index
-    // JS files need to update window.activeProductIndex
-    const index = window.activeProductIndex || 0;
-
-    if (pageData && pageData[index]) {
-      const product = pageData[index];
-      this.addItem(product);
-      this.openCart();
+    const productIds = PAGE_PRODUCT_MAP[path];
+    
+    if (productIds) {
+        const index = window.activeProductIndex || 0;
+        const productId = productIds[index];
+        if (productId) {
+            this.handleDirectAdd(productId);
+        } else {
+            console.error("Product ID not found for index:", index);
+        }
     } else {
-      console.error("Product data not found for index:", index);
+        // Fallback for pages not in map or if called incorrectly
+        console.warn("No product map for this page, check PAGE_PRODUCT_MAP in cart.js");
     }
+  }
+
+  // Handle Direct Add by ID (for Collection Pages)
+  handleDirectAdd(productId) {
+      const product = PRODUCT_DATA[productId];
+      if (product) {
+          this.addItem(product);
+          this.openCart();
+      } else {
+          console.error("Product not found:", productId);
+      }
   }
 
   addItem(product) {
@@ -257,6 +237,14 @@ class ShoppingCart {
 }
 
 // Initialize on load
+// Initialize on load
 document.addEventListener("DOMContentLoaded", () => {
-  new ShoppingCart();
+  window.cartInstance = new ShoppingCart();
 });
+
+// Global Function for Buy Now Buttons
+window.addToCart = function(productId) {
+    if (window.cartInstance) {
+        window.cartInstance.handleDirectAdd(productId);
+    }
+};

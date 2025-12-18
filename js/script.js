@@ -1,4 +1,6 @@
 import { LitElement, html, css } from "https://esm.sh/lit";
+// GSAP should be loaded via script tags in HTML.
+
 
 document.addEventListener("DOMContentLoaded", function () {
   gsap.from(".Branding", {

@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const priceItems = gsap.utils.toArray(".price-item");
 
     // Dynamic Scroll Spacer Height
-    // 200vh per product is a good rule of thumb based on previous feedback
     const spacerHeight = products.length * 180; 
     gsap.set(".scroll-spacer", { height: spacerHeight + "vh" });
   
@@ -46,18 +45,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (targetProduct !== null) {
       const productIndex = parseInt(targetProduct);
       if (!isNaN(productIndex) && productIndex >= 0 && productIndex < products.length) {
+        // Wait for page to fully load and ScrollTrigger to initialize
         window.addEventListener('load', () => {
           setTimeout(() => {
-            const scrollPerProduct = 200;
+            // Calculate the scroll position
+            // Each product transition happens at intervals in the scroll spacer
+            const scrollPerProduct = 200; // vh per product
             const targetScrollVh = productIndex * scrollPerProduct;
             const vh = window.innerHeight / 100;
             const targetScrollPx = targetScrollVh * vh;
             
+            // Scroll to position
             window.scrollTo({
               top: targetScrollPx,
               behavior: 'smooth'
             });
-          }, 500);
+          }, 500); // Increased delay to ensure everything is loaded
         });
       }
     }
@@ -106,28 +109,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
       suffixes.forEach((suffix) => {
         const bgSelector = `.p${bgIndex}-bg-${suffix}`;
-        // Verify element exists to avoid GSAP warnings
-        if (document.querySelector(bgSelector)) {
-            const dir = directions[Math.floor(Math.random() * directions.length)];
-            let fromVars = {};
-            let toVars = { duration: 2, ease: "power2.inOut" };
-    
-            if (dir === "top") {
-              fromVars = { top: 0, bottom: "auto", left: 0, right: "auto", width: "100%", height: "0%" };
-              toVars.height = "100%";
-            } else if (dir === "bottom") {
-              fromVars = { top: "auto", bottom: 0, left: 0, right: "auto", width: "100%", height: "0%" };
-              toVars.height = "100%";
-            } else if (dir === "left") {
-              fromVars = { left: 0, right: "auto", top: 0, bottom: "auto", height: "100%", width: "0%" };
-              toVars.width = "100%";
-            } else if (dir === "right") {
-              fromVars = { left: "auto", right: 0, top: 0, bottom: "auto", height: "100%", width: "0%" };
-              toVars.width = "100%";
-            }
-    
-            scrollTl.fromTo(bgSelector, fromVars, toVars, label);
+        const dir = directions[Math.floor(Math.random() * directions.length)];
+        let fromVars = {};
+        let toVars = { duration: 2, ease: "power2.inOut" };
+
+        if (dir === "top") {
+          fromVars = {
+            top: 0,
+            bottom: "auto",
+            left: 0,
+            right: "auto",
+            width: "100%",
+            height: "0%",
+          };
+          toVars.height = "100%";
+        } else if (dir === "bottom") {
+          fromVars = {
+            top: "auto",
+            bottom: 0,
+            left: 0,
+            right: "auto",
+            width: "100%",
+            height: "0%",
+          };
+          toVars.height = "100%";
+        } else if (dir === "left") {
+          fromVars = {
+            left: 0,
+            right: "auto",
+            top: 0,
+            bottom: "auto",
+            height: "100%",
+            width: "0%",
+          };
+          toVars.width = "100%";
+        } else if (dir === "right") {
+          fromVars = {
+            left: "auto",
+            right: 0,
+            top: 0,
+            bottom: "auto",
+            height: "100%",
+            width: "0%",
+          };
+          toVars.width = "100%";
         }
+
+        scrollTl.fromTo(bgSelector, fromVars, toVars, label);
       });
   
        // 4. Next Text Enters

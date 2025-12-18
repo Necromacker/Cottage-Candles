@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Candle Collection - Cottage Candles</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Ovo&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/candle-collection.css" />
+    <link rel="stylesheet" href="css/cart.css" />
+  </head>
+  <body>
+    <div class="Nav-container">
+      <div class="Navbar">
+        <div class="Branding">
+          <img src="images/logo-dark.png" alt="Logo" class="Brand-logo" />
+          <h1>Cottage Candles</h1>
+        </div>
+        <div class="Nav-links">
+          <a href="index.html" id="buttons">
+            <span class="text">Home</span><span>Home</span>
+          </a>
+          <a href="shop.html" id="buttons">
+            <span class="text">Shop</span><span>Shop</span>
+          </a>
+          <button id="buttons">
+            <span class="text">About</span><span>About</span>
+          </button>
+          <button id="buttons">
+            <span class="text">Blog</span><span>Blog</span>
+          </button>
+        </div>
+
+        <div class="Nav-buttons">
+          <div class="nav-actions desktop-nav">
+            <button
+              class="nav-btn theme-toggle cursor-target light-mode"
+              id="theme-toggle"
+              aria-label="Toggle theme"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-moon theme-icon moon-icon"
+              >
+                <path
+                  d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"
+                ></path>
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-sun theme-icon sun-icon"
+              >
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+            </button>
+            <button class="nav-btn cursor-target" aria-label="User account">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                data-lucide="user"
+                class="lucide lucide-user"
+              >
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </button>
+            <button class="nav-btn cursor-target" aria-label="Search">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                data-lucide="search"
+                class="lucide lucide-search"
+              >
+                <path d="m21 21-4.34-4.34"></path>
+                <circle cx="11" cy="11" r="8"></circle>
+              </svg>
+            </button>
+            <button class="nav-btn cursor-target" aria-label="Shopping cart">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                data-lucide="shopping-bag"
+                class="lucide lucide-shopping-bag"
+              >
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                <path d="M3.103 6.034h17.794"></path>
+                <path
+                  d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="MobileMenu">
+        Menu
+        <input id="checkbox2" type="checkbox" />
+        <label class="toggle toggle2" for="checkbox2">
+          <div id="bar4" class="bars"></div>
+          <div id="bar5" class="bars"></div>
+          <div id="bar6" class="bars"></div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Collection Header / Filter Bar -->
+    <div class="collection-header">
+       <div class="filter-bar">
+           <div class="filter-icon">
+               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+               <span>FILTER (7 products)</span>
+           </div>
+           <div class="filter-chips">
+               <button class="chip active">ALL</button>
+               <button class="chip">SWEET</button>
+               <button class="chip">FLORAL</button>
+               <button class="chip">FRESH</button>
+           </div>
+           <div class="sort-dropdown">
+               FEATURED <i class="ri-arrow-down-s-line"></i>
+           </div>
+       </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid-container">
+        <div class="product-grid">
+            <!-- Product 1: COFFEE LATTE -->
+            <div class="product-card">
+                <div class="card-image">
+                    <span class="badge">NEW</span>
+                    <img src="images/hero_candle.png" alt="Coffee Latte">
+                </div>
+                <div class="card-details">
+                    <h3>COFFEE LATTE</h3>
+                    <p class="sub-text">Warm & Roasted</p>
+                    <div class="card-actions">
+                        <button class="btn-view" onclick="event.stopPropagation(); location.href='candles.html?product=0'">View</button>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('candle-1')">Buy Now</button>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">$32.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2: SUNBURST -->
+            <div class="product-card">
+                <div class="card-image">
+                    <img src="images/Product-2.png" alt="Sunburst">
+                </div>
+                <div class="card-details">
+                    <h3>SUNBURST FLAVOUR</h3>
+                    <p class="sub-text">Bright Citrus</p>
+                    <div class="card-actions">
+                        <button class="btn-view" onclick="event.stopPropagation(); location.href='candles.html?product=1'">View</button>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('candle-2')">Buy Now</button>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">$28.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3: STRAWBERRYSHORTCAKE -->
+            <div class="product-card">
+                <div class="card-image">
+                    <span class="badge">POPULAR</span>
+                    <img src="images/Product-3.png" alt="Strawberry Shortcake">
+                </div>
+                <div class="card-details">
+                    <h3>STRAWBERRY SHORTCAKE</h3>
+                    <p class="sub-text">Sweet Dessert</p>
+                    <div class="card-actions">
+                        <button class="btn-view" onclick="event.stopPropagation(); location.href='candles.html?product=2'">View</button>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('candle-3')">Buy Now</button>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">$30.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4: MYSTIC OCEAN -->
+            <div class="product-card">
+                <div class="card-image">
+                    <img src="images/hero_candle.png" alt="Mystic Ocean">
+                </div>
+                <div class="card-details">
+                    <h3>MYSTIC OCEAN</h3>
+                    <p class="sub-text">Fresh Breeze</p>
+                    <div class="card-actions">
+                        <button class="btn-view" onclick="event.stopPropagation(); location.href='candles.html?product=3'">View</button>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('candle-4')">Buy Now</button>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">$34.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5: MERRY CHRISTMAS -->
+            <div class="product-card">
+                <div class="card-image">
+                    <img src="images/Product-2.png" alt="Merry Christmas">
+                </div>
+                <div class="card-details">
+                    <h3>MERRY CHRISTMAS</h3>
+                    <p class="sub-text">Holiday Spirit</p>
+                    <div class="card-actions">
+                        <button class="btn-view" onclick="event.stopPropagation(); location.href='candles.html?product=4'">View</button>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('candle-5')">Buy Now</button>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">$35.00</span>
+                        <span class="old-price">$45.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6: COOKIE -->
+            <div class="product-card">
+                <div class="card-image">
+                     <span class="badge">50% OFF</span>
+                    <img src="images/Product-3.png" alt="Cookie">
+                </div>
+                <div class="card-details">
+                    <h3>SIMPLE COOKIE</h3>
+                    <p class="sub-text">Baked Goodness</p>
+                    <div class="card-actions">
+                        <button class="btn-view" onclick="event.stopPropagation(); location.href='candles.html?product=5'">View</button>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('candle-6')">Buy Now</button>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">$15.00</span>
+                        <span class="old-price">$30.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 7: SWAN -->
+            <div class="product-card">
+                <div class="card-image">
+                    <span class="badge">ELEGANT</span>
+                    <img src="images/Product-2.png" alt="Swan">
+                </div>
+                <div class="card-details">
+                    <h3>SMALL SWAN</h3>
+                    <p class="sub-text">Graceful & Pure</p>
+                    <div class="card-actions">
+                        <button class="btn-view" onclick="event.stopPropagation(); location.href='candles.html?product=6'">View</button>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('candle-7')">Buy Now</button>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">$32.00</span>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Product 8: MOON BLOOM -->
+            <div class="product-card">
+                <div class="card-image">
+                    <img src="images/hero_candle.png" alt="Cookie Moon Bloom">
+                </div>
+                <div class="card-details">
+                    <h3>MOON BLOOM</h3>
+                    <p class="sub-text">Floral & Sweet</p>
+                    <div class="card-actions">
+                        <button class="btn-view" onclick="event.stopPropagation(); location.href='candles.html?product=7'">View</button>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('candle-8')">Buy Now</button>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">$29.00</span>
+                    </div>
+                </div>
+            </div>
+             <!-- Product 8: Adding one for symmetry/grid (optional but looks better) -->
+             <div class="product-card promo-card">
+                 <div class="promo-content">
+                     <h3>SITEWIDE SALE</h3>
+                     <p>30-50% OFF</p>
+                     <p>ALL YOUR FAVORITES</p>
+                     <button class="shop-btn">SHOP NOW</button>
+                 </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+      integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
+      integrity="sha512-Ic9xkERjyZ1xgJ5svx3y0u3xrvfT/uPkV99LBwe68xjy/mGtO+4eURHZBW2xW4SZbFrF1Tf090XqB+EVgXnVjw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script type="module" src="js/script.js"></script>
+    <script type="module" src="js/cart.js"></script>
+  </body>
+</html>

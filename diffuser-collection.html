@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Ovo&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diffuser Collection - Cottage Candles</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Ovo&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+      rel="stylesheet"
+    />
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/shop.css" />
+    <link rel="stylesheet" href="css/candle-collection.css" />
     <link rel="stylesheet" href="css/cart.css" />
-    <title>Cottage Candles</title>
   </head>
   <body>
     <div class="Nav-container">
@@ -55,7 +55,6 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                data-lucide="moon"
                 class="lucide lucide-moon theme-icon moon-icon"
               >
                 <path
@@ -72,7 +71,6 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                data-lucide="sun"
                 class="lucide lucide-sun theme-icon sun-icon"
               >
                 <circle cx="12" cy="12" r="4"></circle>
@@ -157,58 +155,65 @@
       </div>
     </div>
 
-    <div id="main">
-      <div class="one">
-        <h1>SERENITY</h1>
-        <img id="dried-orange" src="/images/Flower.png" alt="" />
-        <img id="hero-candle" src="/images/hero_candle.png" alt="" />
-        <img id="lavender" src="images/lavender.png" alt="" />
-        <img id="flower-petal" src="images/flower_petal.png" alt="" />
-        <img id="flower-petal2" src="images/flower_petal.png" alt="" />
-      </div>
-      <div class="two">
-        <div class="lft-two">
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <path
-              fill="var(--bg-primary)"
-              d="M41.5,-59.5C49.8,-51.1,49.7,-33.6,50.7,-19.2C51.7,-4.7,53.8,6.7,52.4,18.9C51.1,31.1,46.3,44.1,36.9,52.9C27.6,61.8,13.8,66.5,-2.5,70C-18.8,73.4,-37.7,75.6,-52.5,68.5C-67.3,61.5,-78.2,45.2,-84.5,27.1C-90.9,9,-92.7,-10.8,-80.5,-19.3C-68.3,-27.8,-42.1,-24.8,-26.3,-30.8C-10.6,-36.8,-5.3,-51.7,5.7,-59.5C16.6,-67.3,33.2,-68,41.5,-59.5Z"
-              transform="translate(100 100)"
-            />
-          </svg>
-        </div>
-        <div class="rght-two">
-          <h1>Essence of Calm</h1>
-          <p>
-            Discover the art of relaxation with our premium collection of
-            hand-poured candles, aromatic diffusers, and curated gift hampers.
-            Each scent is crafted to transport you to a place of serenity and
-            peace. Embrace the warmth, inhale the tranquility.
-          </p>
-        </div>
-      </div>
-      <div class="three">
-        <div class="card">
-          <img class="petal petal2" src="/images/diffuser.png" alt="" />
-          <h1>Diffusers</h1>
+    <!-- Collection Header / Filter Bar -->
+    <div class="collection-header">
+       <div class="filter-bar">
+           <div class="filter-icon">
+               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+               <span>FILTER (2 products)</span>
+           </div>
+           <div class="filter-chips">
+               <button class="chip active">ALL</button>
+               <button class="chip">HOME</button>
+               <button class="chip">CAR</button>
+           </div>
+           <div class="sort-dropdown">
+               FEATURED <i class="ri-arrow-down-s-line"></i>
+           </div>
+       </div>
+    </div>
 
-          <button class="btn" onclick="location.href='diffuser-collection.html'">
-            Shop now
-          </button>
+    <!-- Product Grid -->
+    <div class="product-grid-container">
+        <div class="product-grid">
+            <!-- Product 1: ROOM AND BATHROOM DIFFUSERS -->
+            <div class="product-card">
+                <div class="card-image">
+                    <span class="badge">BESTSELLER</span>
+                    <img src="images/diffuser1.png" alt="Room and Bathroom Diffuser">
+                </div>
+                <div class="card-details">
+                    <h3>ROOM AND BATHROOM DIFFUSERS</h3>
+                    <p class="sub-text">Continuous Freshness</p>
+                    <div class="card-actions">
+                        <button class="btn-view" onclick="event.stopPropagation(); location.href='diffuser.html?product=0'">View</button>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('diffuser-1')">Buy Now</button>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">$45.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2: CAR DIFFUSERS -->
+            <div class="product-card">
+                <div class="card-image">
+                    <span class="badge">TRAVEL</span>
+                    <img src="images/diffuser2.png" alt="Car Diffuser">
+                </div>
+                <div class="card-details">
+                    <h3>CAR DIFFUSERS</h3>
+                    <p class="sub-text">On-the-go Scent</p>
+                    <div class="card-actions">
+                        <button class="btn-view" onclick="event.stopPropagation(); location.href='diffuser.html?product=1'">View</button>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('diffuser-2')">Buy Now</button>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">$25.00</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="card">
-          <h1>Candle</h1>
-          <button class="btn" onclick="location.href='candle-collection.html'">
-            Shop now
-          </button>
-        </div>
-        <div class="card">
-          <img id="hamper" src="images/hamper.png" alt="" />
-          <h1>Candle Jars</h1>
-          <button class="btn" onclick="location.href='jar-collection.html'">
-            Shop now
-          </button>
-        </div>
-      </div>
     </div>
 
     <script
@@ -223,8 +228,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script type="module" src="/js/script.js"></script>
-    <script src="js/shop.js"></script>
+    <script type="module" src="js/script.js"></script>
     <script type="module" src="js/cart.js"></script>
   </body>
 </html>
