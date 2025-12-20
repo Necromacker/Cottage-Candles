@@ -177,21 +177,24 @@
     <!-- Product Grid -->
     <div class="product-grid-container">
         <div class="product-grid">
-            <!-- Product 1: SHELL -->
+            <!-- Product 1: SUNFLOWER BOQUET -->
             <div class="product-card">
                 <div class="card-image">
-                    <span class="badge">NEW</span>
-                    <img src="images/hamper.png" alt="Shell Candle">
+                    <img src="images/Products/Jars/Sunflower-Boquet-Light.png" 
+                         alt="Sunflower Boquet"
+                         data-light-src="images/Products/Jars/Sunflower-Boquet-Light.png"
+                         data-dark-src="images/Products/Jars/Sunflower-Boquet-Dark.png"
+                         class="theme-switchable-image">
                 </div>
                 <div class="card-details">
-                    <h3>SEA SHELL</h3>
-                    <p class="sub-text">Coastal Chic</p>
+                    <h3>SUNFLOWER BOQUET</h3>
+                    <p class="sub-text">Bright & Sunny</p>
                     <div class="card-actions">
                         <button class="btn-view" onclick="event.stopPropagation(); location.href='jar.html?product=0'">View</button>
-                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('jar-1')">Buy Now</button>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('jar-5')">Buy Now</button>
                     </div>
                     <div class="price-row">
-                        <span class="price">$20.00</span>
+                        <span class="price">$26.00</span>
                     </div>
                 </div>
             </div>
@@ -199,7 +202,11 @@
             <!-- Product 2: DIWALI LADOO -->
             <div class="product-card">
                 <div class="card-image">
-                    <img src="images/hamper2.png" alt="Diwali Ladoo">
+                    <img src="images/Products/Jars/Diwali-Ladoo-Light.png" 
+                         alt="Diwali Ladoo"
+                         data-light-src="images/Products/Jars/Diwali-Ladoo-Light.png"
+                         data-dark-src="images/Products/Jars/Diwali-Ladoo-Dark.png"
+                         class="theme-switchable-image">
                 </div>
                 <div class="card-details">
                     <h3>DIWALI LADOO</h3>
@@ -217,7 +224,11 @@
             <!-- Product 3: FAIRYTALE WALTZ -->
             <div class="product-card">
                 <div class="card-image">
-                    <img src="images/hamper1.png" alt="Fairytale Waltz">
+                    <img src="images/Products/Jars/Fairytale-Waltz-Light.png" 
+                         alt="Fairytale Waltz"
+                         data-light-src="images/Products/Jars/Fairytale-Waltz-Light.png"
+                         data-dark-src="images/Products/Jars/Fairytale-Waltz-Dark.png"
+                         class="theme-switchable-image">
                 </div>
                 <div class="card-details">
                     <h3>FAIRYTALE WALTZ</h3>
@@ -235,7 +246,11 @@
             <!-- Product 4: PAINTED TAPER -->
             <div class="product-card">
                 <div class="card-image">
-                    <img src="images/hamper.png" alt="Painted Taper">
+                    <img src="images/Products/Jars/Painted-Taper-Light.png" 
+                         alt="Painted Taper"
+                         data-light-src="images/Products/Jars/Painted-Taper-Light.png"
+                         data-dark-src="images/Products/Jars/Painted-Taper-Dark.png"
+                         class="theme-switchable-image">
                 </div>
                 <div class="card-details">
                     <h3>PAINTED TAPER</h3>
@@ -250,20 +265,25 @@
                 </div>
             </div>
 
-            <!-- Product 5: SUNFLOWER BOQUET -->
+            <!-- Product 5: SEA SHELL -->
             <div class="product-card">
                 <div class="card-image">
-                    <img src="images/hamper2.png" alt="Sunflower Boquet">
+                    <span class="badge">NEW</span>
+                    <img src="images/Products/Jars/Sea-Shell-Light.png" 
+                         alt="Sea Shell"
+                         data-light-src="images/Products/Jars/Sea-Shell-Light.png"
+                         data-dark-src="images/Products/Jars/Sea-Shell-Dark.png"
+                         class="theme-switchable-image">
                 </div>
                 <div class="card-details">
-                    <h3>SUNFLOWER BOQUET</h3>
-                    <p class="sub-text">Bright & Sunny</p>
+                    <h3>SEA SHELL</h3>
+                    <p class="sub-text">Coastal Chic</p>
                     <div class="card-actions">
                         <button class="btn-view" onclick="event.stopPropagation(); location.href='jar.html?product=4'">View</button>
-                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('jar-5')">Buy Now</button>
+                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('jar-1')">Buy Now</button>
                     </div>
                     <div class="price-row">
-                        <span class="price">$26.00</span>
+                        <span class="price">$20.00</span>
                     </div>
                 </div>
             </div>
@@ -271,7 +291,11 @@
             <!-- Product 6: TULIP BOQUET -->
             <div class="product-card">
                 <div class="card-image">
-                    <img src="images/hamper1.png" alt="Tulip Boquet">
+                    <img src="images/Products/Jars/Tulip-Boquet-Light.png" 
+                         alt="Tulip Boquet"
+                         data-light-src="images/Products/Jars/Tulip-Boquet-Light.png"
+                         data-dark-src="images/Products/Jars/Tulip-Boquet-Dark.png"
+                         class="theme-switchable-image">
                 </div>
                 <div class="card-details">
                     <h3>TULIP BOQUET</h3>
@@ -303,5 +327,51 @@
     ></script>
     <script type="module" src="js/script.js"></script>
     <script type="module" src="js/cart.js"></script>
+    
+    <!-- Theme-based Image Switching Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Function to update all theme-switchable images
+        function updateThemeImages() {
+          const isDark = document.body.classList.contains('dark-theme');
+          const images = document.querySelectorAll('.theme-switchable-image');
+          
+          images.forEach(img => {
+            const lightSrc = img.getAttribute('data-light-src');
+            const darkSrc = img.getAttribute('data-dark-src');
+            
+            if (lightSrc && darkSrc) {
+              img.src = isDark ? darkSrc : lightSrc;
+            }
+          });
+        }
+        
+        // Update images on initial load based on saved theme
+        updateThemeImages();
+        
+        // Listen for theme toggle clicks
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+          themeToggle.addEventListener('click', function() {
+            // Wait for theme class to be applied
+            setTimeout(updateThemeImages, 50);
+          });
+        }
+        
+        // Also observe body class changes (in case theme changes from other sources)
+        const observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.attributeName === 'class') {
+              updateThemeImages();
+            }
+          });
+        });
+        
+        observer.observe(document.body, {
+          attributes: true,
+          attributeFilter: ['class']
+        });
+      });
+    </script>
   </body>
 </html>

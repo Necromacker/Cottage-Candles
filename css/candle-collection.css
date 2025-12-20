@@ -86,6 +86,7 @@ body.dark-theme .promo-content .shop-btn {
 }
 
 .card-image {
+    overflow: hidden;
     position: relative;
     padding: 20px;
     background-color: #f9f9f9; /* Light gray background for image area */
@@ -96,8 +97,8 @@ body.dark-theme .promo-content .shop-btn {
 }
 
 .card-image img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 115%;
+ 
     object-fit: contain;
     transition: transform 0.5s ease;
 }

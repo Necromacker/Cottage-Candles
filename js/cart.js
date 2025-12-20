@@ -25,10 +25,10 @@ const PRODUCT_DATA = {
 };
 
 const PAGE_PRODUCT_MAP = {
-    "candles.html": ["candle-1", "candle-2", "candle-3", "candle-4", "candle-5", "candle-6", "candle-7", "candle-8"],
+    "candles.html": ["candle-3", "candle-2", "candle-1", "candle-4", "candle-5", "candle-6", "candle-7", "candle-8"],
     "diffuser.html": ["diffuser-1", "diffuser-2"],
-    "jar.html": ["jar-1", "jar-2", "jar-3", "jar-4", "jar-5", "jar-6"],
-    "hamper.html": ["jar-1", "jar-2", "jar-3", "jar-4", "jar-5", "jar-6"] // Redirect/legacy support
+    "jar.html": ["jar-5", "jar-2", "jar-3", "jar-4", "jar-1", "jar-6"],
+    "hamper.html": ["jar-5", "jar-2", "jar-3", "jar-4", "jar-1", "jar-6"] // Redirect/legacy support
 };
 
 class ShoppingCart {

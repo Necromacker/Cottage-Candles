@@ -180,7 +180,11 @@
             <div class="product-card">
                 <div class="card-image">
                     <span class="badge">BESTSELLER</span>
-                    <img src="images/diffuser1.png" alt="Room and Bathroom Diffuser">
+                    <img src="images/Products/Diffusers/Room-And-Bathroom-Diffusers-Light.png" 
+                         alt="Room And Bathroom Diffusers"
+                         data-light-src="images/Products/Diffusers/Room-And-Bathroom-Diffusers-Light.png"
+                         data-dark-src="images/Products/Diffusers/Room-And-Bathroom-Diffusers-Dark.png"
+                         class="theme-switchable-image">
                 </div>
                 <div class="card-details">
                     <h3>ROOM AND BATHROOM DIFFUSERS</h3>
@@ -199,7 +203,11 @@
             <div class="product-card">
                 <div class="card-image">
                     <span class="badge">TRAVEL</span>
-                    <img src="images/diffuser2.png" alt="Car Diffuser">
+                    <img src="images/Products/Diffusers/Car-Diffusers-Light.png" 
+                         alt="Car Diffusers"
+                         data-light-src="images/Products/Diffusers/Car-Diffusers-Light.png"
+                         data-dark-src="images/Products/Diffusers/Car-Diffusers-Dark.png"
+                         class="theme-switchable-image">
                 </div>
                 <div class="card-details">
                     <h3>CAR DIFFUSERS</h3>
@@ -230,5 +238,51 @@
     ></script>
     <script type="module" src="js/script.js"></script>
     <script type="module" src="js/cart.js"></script>
+    
+    <!-- Theme-based Image Switching Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Function to update all theme-switchable images
+        function updateThemeImages() {
+          const isDark = document.body.classList.contains('dark-theme');
+          const images = document.querySelectorAll('.theme-switchable-image');
+          
+          images.forEach(img => {
+            const lightSrc = img.getAttribute('data-light-src');
+            const darkSrc = img.getAttribute('data-dark-src');
+            
+            if (lightSrc && darkSrc) {
+              img.src = isDark ? darkSrc : lightSrc;
+            }
+          });
+        }
+        
+        // Update images on initial load based on saved theme
+        updateThemeImages();
+        
+        // Listen for theme toggle clicks
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+          themeToggle.addEventListener('click', function() {
+            // Wait for theme class to be applied
+            setTimeout(updateThemeImages, 50);
+          });
+        }
+        
+        // Also observe body class changes (in case theme changes from other sources)
+        const observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.attributeName === 'class') {
+              updateThemeImages();
+            }
+          });
+        });
+        
+        observer.observe(document.body, {
+          attributes: true,
+          attributeFilter: ['class']
+        });
+      });
+    </script>
   </body>
 </html>
