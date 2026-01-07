@@ -251,7 +251,7 @@ body {
   height: 100%;
 }
 
-.product-section {
+.product-section {border-right: 1px solid var(--text-dark);
   width: 40%;
   display: flex;
   justify-content: center;
@@ -276,7 +276,7 @@ body {
 }
 
 .product-image {
-  width: 100%;
+  width: 60%;
   height: auto;
   display: block;
   filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.3));
@@ -361,15 +361,17 @@ body {
   position: relative;
   left: 5rem;
 }
-#Flavour {
+#Odour {
+  border: 1px solid var(--accent-blue);
+  border-radius: 1rem;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+    border-bottom: none;
   position: relative;
   border-radius: 1rem;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
   width: fit-content;
-
-  border: 1px solid var(--accent-blue);
-  border-bottom: none;
 }
 
 .anim-text {
@@ -472,7 +474,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid rgb(44, 62, 80);
+  border-top: 1px solid var(--text-dark);
   padding: 2rem;
   width: 100%;
 }
@@ -502,9 +504,9 @@ body {
 }
 .add-btn {
   border-radius: 1rem;
-  background: var(--block-1);
-  color: #fff;
-  border: none;
+  background: var(--bg-primary);
+  color: var(--text-dark);
+  border: 1px solid var(--text-dark);
   padding: 0 30px;
   font-family: "Outfit", sans-serif;
   font-weight: 700;
@@ -517,6 +519,7 @@ body {
   transform: scale(1.05);
   background: var(--text-dark);
   color: var(--bg-primary);
+    border: 1px solid var(--bg-primary);
 }
 
 /* Price Animation Updates */

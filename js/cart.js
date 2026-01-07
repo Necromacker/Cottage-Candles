@@ -2,33 +2,134 @@
 // Since we have specific pages for regular products, we can define the data here.
 const PRODUCT_DATA = {
   // Candles
-  "candle-1": { id: "candle-1", name: "COFFEE LATTE", price: 32.0, image: "images/hero_candle.png" },
-  "candle-2": { id: "candle-2", name: "SUNBURST FLAVOUR", price: 28.0, image: "images/Product-2.png" },
-  "candle-3": { id: "candle-3", name: "STRAWBERRY SHORTCAKE", price: 30.0, image: "images/Product-3.png" },
-  "candle-4": { id: "candle-4", name: "MYSTIC OCEAN", price: 34.0, image: "images/hero_candle.png" },
-  "candle-5": { id: "candle-5", name: "MERRY CHRISTMAS", price: 35.0, image: "images/Product-2.png" },
-  "candle-6": { id: "candle-6", name: "SIMPLE COOKIE", price: 15.0, image: "images/Product-3.png" },
-  "candle-7": { id: "candle-7", name: "SMALL SWAN", price: 32.0, image: "images/Product-2.png" },
-  "candle-8": { id: "candle-8", name: "MOON BLOOM", price: 29.0, image: "images/hero_candle.png" },
+  "candle-1": { 
+    id: "candle-1", 
+    name: "COFFEE LATTE", 
+    price: 32.0, 
+    imageLight: "images/Products/Candles/Coffee-Latte-Light.png",
+    imageDark: "images/Products/Candles/Coffee-Latte-Dark.png"
+  },
+  "candle-2": { 
+    id: "candle-2", 
+    name: "SUNBURST FLAVOUR", 
+    price: 28.0, 
+    imageLight: "images/Products/Candles/Sunburst-Flavour-Light.png",
+    imageDark: "images/Products/Candles/Sunburst-Flavour-Dark.png"
+  },
+  "candle-3": { 
+    id: "candle-3", 
+    name: "STRAWBERRY SHORTCAKE", 
+    price: 30.0, 
+    imageLight: "images/Products/Candles/Strawberry-Shortcake-Light.png",
+    imageDark: "images/Products/Candles/Strawberry-Shortcake-Dark.png"
+  },
+  "candle-4": { 
+    id: "candle-4", 
+    name: "MYSTIC OCEAN", 
+    price: 34.0, 
+    imageLight: "images/Products/Candles/Mystic-Ocean-Light.png",
+    imageDark: "images/Products/Candles/Mystic-Ocean-Dark.png"
+  },
+  "candle-5": { 
+    id: "candle-5", 
+    name: "MERRY CHRISTMAS", 
+    price: 35.0, 
+    imageLight: "images/Products/Candles/Merry-Christmas-Light.png",
+    imageDark: "images/Products/Candles/Merry-Christmas-Dark.png"
+  },
+  "candle-6": { 
+    id: "candle-6", 
+    name: "SIMPLE COOKIE", 
+    price: 15.0, 
+    imageLight: "images/Products/Candles/Simple-Cookie-Light.png",
+    imageDark: "images/Products/Candles/Simple-Cookie-Dark.png"
+  },
+  "candle-7": { 
+    id: "candle-7", 
+    name: "SMALL SWAN", 
+    price: 32.0, 
+    imageLight: "images/Products/Candles/Small-Swan-Light.png",
+    imageDark: "images/Products/Candles/Small-Swan-Dark.png"
+  },
+  "candle-8": { 
+    id: "candle-8", 
+    name: "MOON BLOOM", 
+    price: 29.0, 
+    imageLight: "images/Products/Candles/Moon-Bloom-Light.png",
+    imageDark: "images/Products/Candles/Moon-Bloom-Dark.png"
+  },
 
   // Diffusers
-  "diffuser-1": { id: "diffuser-1", name: "ROOM AND BATHROOM DIFFUSERS", price: 45.0, image: "images/diffuser1.png" },
-  "diffuser-2": { id: "diffuser-2", name: "CAR DIFFUSERS", price: 25.0, image: "images/diffuser2.png" },
+  "diffuser-1": { 
+    id: "diffuser-1", 
+    name: "ROOM AND BATHROOM DIFFUSERS", 
+    price: 45.0, 
+    imageLight: "images/Products/Diffusers/Room-And-Bathroom-Diffusers-Light.png",
+    imageDark: "images/Products/Diffusers/Room-And-Bathroom-Diffusers-Dark.png"
+  },
+  "diffuser-2": { 
+    id: "diffuser-2", 
+    name: "CAR DIFFUSERS", 
+    price: 25.0, 
+    imageLight: "images/Products/Diffusers/Car-Diffusers-Light.png",
+    imageDark: "images/Products/Diffusers/Car-Diffusers-Dark.png"
+  },
 
-  // Jars (formerly Hampers)
-  "jar-1": { id: "jar-1", name: "SEA SHELL", price: 20.0, image: "images/hamper.png" },
-  "jar-2": { id: "jar-2", name: "DIWALI LADOO", price: 18.0, image: "images/hamper2.png" },
-  "jar-3": { id: "jar-3", name: "FAIRYTALE WALTZ", price: 24.0, image: "images/hamper1.png" },
-  "jar-4": { id: "jar-4", name: "PAINTED TAPER", price: 22.0, image: "images/hamper.png" },
-  "jar-5": { id: "jar-5", name: "SUNFLOWER BOQUET", price: 26.0, image: "images/hamper2.png" },
-  "jar-6": { id: "jar-6", name: "TULIP BOQUET", price: 28.0, image: "images/hamper1.png" }
+  // Jars (now in Candles)
+  "jar-1": { 
+    id: "jar-1", 
+    name: "SEA SHELL", 
+    price: 20.0, 
+    imageLight: "images/Products/Jars/Sea-Shell-Light.png",
+    imageDark: "images/Products/Jars/Sea-Shell-Dark.png"
+  },
+  "jar-2": { 
+    id: "jar-2", 
+    name: "DIWALI LADOO", 
+    price: 18.0, 
+    imageLight: "images/Products/Jars/Diwali-Ladoo-Light.png",
+    imageDark: "images/Products/Jars/Diwali-Ladoo-Dark.png"
+  },
+  "jar-3": { 
+    id: "jar-3", 
+    name: "FAIRYTALE WALTZ", 
+    price: 24.0, 
+    imageLight: "images/Products/Jars/Fairytale-Waltz-Light.png",
+    imageDark: "images/Products/Jars/Fairytale-Waltz-Dark.png"
+  },
+  "jar-4": { 
+    id: "jar-4", 
+    name: "PAINTED TAPER", 
+    price: 22.0, 
+    imageLight: "images/Products/Jars/Painted-Taper-Light.png",
+    imageDark: "images/Products/Jars/Painted-Taper-Dark.png"
+  },
+  "jar-5": { 
+    id: "jar-5", 
+    name: "SUNFLOWER BOQUET", 
+    price: 26.0, 
+    imageLight: "images/Products/Jars/Sunflower-Boquet-Light.png",
+    imageDark: "images/Products/Jars/Sunflower-Boquet-Dark.png"
+  },
+  "jar-6": { 
+    id: "jar-6", 
+    name: "TULIP BOQUET", 
+    price: 28.0, 
+    imageLight: "images/Products/Jars/Tulip-Boquet-Light.png",
+    imageDark: "images/Products/Jars/Tulip-Boquet-Dark.png"
+  },
+
+  // Hampers
+  "hamper-1": { id: "hamper-1", name: "LUXURY GIFT HAMPER", price: 55.0, image: "images/hamper2.png" },
+  "hamper-2": { id: "hamper-2", name: "SERENITY SCENTS TRIO", price: 42.0, image: "images/hamper1.png" },
+  "hamper-3": { id: "hamper-3", name: "FESTIVE SPARKLE BOX", price: 48.0, image: "images/hamper.png" }
 };
 
 const PAGE_PRODUCT_MAP = {
-    "candles.html": ["candle-3", "candle-2", "candle-1", "candle-4", "candle-5", "candle-6", "candle-7", "candle-8"],
+    "candles.html": ["candle-3", "candle-2", "candle-1", "candle-4", "candle-5", "candle-6", "candle-7", "candle-8", "jar-5", "jar-2", "jar-3", "jar-4", "jar-1", "jar-6"],
     "diffuser.html": ["diffuser-1", "diffuser-2"],
-    "jar.html": ["jar-5", "jar-2", "jar-3", "jar-4", "jar-1", "jar-6"],
-    "hamper.html": ["jar-5", "jar-2", "jar-3", "jar-4", "jar-1", "jar-6"] // Redirect/legacy support
+    "hampers.html": ["hamper-1", "hamper-2", "hamper-3"],
+    "jar.html": ["jar-5", "jar-2", "jar-3", "jar-4", "jar-1", "jar-6"] // Legacy support
 };
 
 class ShoppingCart {
@@ -41,6 +142,22 @@ class ShoppingCart {
     this.injectCartHTML();
     this.renderCart();
     this.setupEventListeners();
+    this.setupThemeObserver();
+  }
+
+  setupThemeObserver() {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === "class") {
+          this.renderCart();
+        }
+      });
+    });
+
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
   }
 
   injectCartHTML() {
@@ -186,16 +303,22 @@ class ShoppingCart {
     container.innerHTML = "";
 
     let total = 0;
+    const isDark = document.body.classList.contains("dark-theme");
 
     if (this.cart.length === 0) {
       container.innerHTML =
         '<p class="empty-cart-message">Your bag is empty.</p>';
     } else {
       this.cart.forEach((item) => {
+        const data = PRODUCT_DATA[item.id] || item;
         total += item.price * item.quantity;
+        const itemImage = isDark
+          ? data.imageDark || data.image || item.image
+          : data.imageLight || data.image || item.image;
+
         const html = `
                     <div class="cart-item" data-id="${item.id}">
-                        <img src="${item.image}" alt="${
+                        <img src="${itemImage}" alt="${
           item.name
         }" class="cart-item-image">
                         <div class="cart-item-details">

@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Dynamic Scroll Spacer Height
     // 200vh per product is a good rule of thumb based on previous feedback
-    const spacerHeight = products.length * 180; 
+    const spacerHeight = products.length * 150; 
     gsap.set(".scroll-spacer", { height: spacerHeight + "vh" });
   
     // Hide all products initially except the first one

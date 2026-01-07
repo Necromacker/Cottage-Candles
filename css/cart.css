@@ -91,6 +91,9 @@ body.dark-theme .cart-drawer {
 }
 
 .cart-item {
+  background-color: var(--text-primary);
+  padding: 0.5rem;
+  border-radius: 12px;
   display: flex;
   gap: 20px;
   animation: slideIn 0.3s ease forwards;
@@ -112,7 +115,7 @@ body.dark-theme .cart-drawer {
   height: 90px;
   border-radius: 12px;
   object-fit: cover;
-  background: #f5f5f5;
+border: 1px solid var(--bg-primary);
 }
 
 .cart-item-details {
@@ -126,13 +129,13 @@ body.dark-theme .cart-drawer {
   font-family: "Outfit", sans-serif;
   font-weight: 600;
   font-size: 1.1rem;
-  color: var(--text-primary, #1a1a1a);
+  color: var(--bg-primary);
   margin-bottom: 5px;
 }
 
 .item-price {
   font-family: "Outfit", sans-serif;
-  color: var(--text-secondary, #666);
+  color: var(--bg-primary);
   font-size: 0.95rem;
 }
 

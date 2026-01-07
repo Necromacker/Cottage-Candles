@@ -9,10 +9,10 @@
   --body-bg: #4a2b36;
 
   /* Block Colors (Light/Default) */
-  --block-1: #6f4e37; /* Coffee */
-  --block-2: #d2b48c; /* Tan */
-  --block-3: #8d6e63; /* Cocoa */
-  --block-4: #efebe9; /* Cream */
+  --block-1: #fdabab; /* Coffee */
+  --block-2: #ce8676; /* Tan */
+  --block-3: #ffe6e5; /* Cocoa */
+  --block-4: #fcc9c9; /* Cream */
 }
 
 body.dark-theme {
@@ -21,10 +21,10 @@ body.dark-theme {
   --accent-blue: #e0e0e0;
 
   /* Block Colors (Dark) */
-  --block-1: #3e2723;
+  --block-1: #FD7979;
   --block-2: #4e342e;
-  --block-3: #5d4037;
-  --block-4: #2d1f23;
+  --block-3: #FFCDC9;
+  --block-4: #FDACAC;
 }
 
 * {
@@ -181,8 +181,38 @@ body {
 
 /* Product 8 Colors (Swan) */
 .p8-bg-1 { background-color: #e0e0e0; } /* Silver */
-.p8-bg-3 { background-color: #f5f5f5; } /* Light Gray */
+.p8-bg-3 { background-color: #e284ff; } /* Light Gray */
 .p8-bg-4 { background-color: #ffffff; } /* Pure White */
+
+/* Product 9 Colors (Sunflower) */
+.p9-bg-1 { background-color: #fbc02d; } /* Sunflower Yellow */
+.p9-bg-3 { background-color: #f9a825; } /* Gold */
+.p9-bg-4 { background-color: #fff9c4; } /* Pale Yellow */
+
+/* Product 10 Colors (Diwali Ladoo) */
+.p10-bg-1 { background-color: #ef6c00; } /* Burnt Orange */
+.p10-bg-3 { background-color: #ff9800; } /* Bright Orange */
+.p10-bg-4 { background-color: #fff3e0; } /* Creamy Orange */
+
+/* Product 11 Colors (Fairytale Waltz) */
+.p11-bg-1 { background-color: #7b1fa2; } /* Dreamy Purple */
+.p11-bg-3 { background-color: #c2185b; } /* Deep Pink */
+.p11-bg-4 { background-color: #f3e5f5; } /* Lavender White */
+
+/* Product 12 Colors (Painted Taper) */
+.p12-bg-1 { background-color: #0288d1; } /* Blue */
+.p12-bg-3 { background-color: #388e3c; } /* Green */
+.p12-bg-4 { background-color: #f1f8e9; } /* Light Mint */
+
+/* Product 13 Colors (Sea Shell) */
+.p13-bg-1 { background-color: #0097a7; } /* Cyan Sea */
+.p13-bg-3 { background-color: #00acc1; } /* Bright Cyan */
+.p13-bg-4 { background-color: #e0f7fa; } /* Pale Cyan */
+
+/* Product 14 Colors (Tulip Boquet) */
+.p14-bg-1 { background-color: #d81b60; } /* Magenta */
+.p14-bg-3 { background-color: #8e24aa; } /* Purple Blossom */
+.p14-bg-4 { background-color: #fce4ec; } /* Soft Rose */
 
 /* Content */
 .content-wrapper {
@@ -259,6 +289,7 @@ body {
 }
 
 .product-section {
+  border-right: 1px solid var(--text-dark);
   width: 40%;
   display: flex;
   justify-content: center;
@@ -283,10 +314,13 @@ body {
 }
 
 .product-image {
-  width: 60%;
+  width: 80%;
   height: auto;
   display: block;
   filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.3));
+}
+#sunburst-img {
+  width: 95%;
 }
 
 .details-section {
@@ -368,15 +402,16 @@ body {
   position: relative;
   left: 7rem;
 }
-#Flavour {
+#Flavour { border: 1px solid var(--accent-blue);
+  border-radius: 1rem;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+    border-bottom: none;
   position: relative;
   border-radius: 1rem;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
   width: fit-content;
-
-  border: 1px solid var(--accent-blue);
-  border-bottom: none;
 }
 
 .anim-text {
@@ -394,19 +429,14 @@ body {
 
   position: relative;
 }
-
 .title {
-  border-radius: 1rem;
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
+ 
   width: fit-content;
   font-family: "Outfit", sans-serif;
   font-size: 3.5rem;
   line-height: 0.9;
   font-weight: 800;
   text-transform: uppercase;
-  border: 1px solid var(--accent-blue);
-  border-bottom: none;
   color: var(--accent-blue);
   display: flex;
   flex-direction: column;
@@ -414,16 +444,19 @@ body {
   padding: 1rem;
 }
 #title-2 {
-  border: none;
+ border: 1px solid var(--accent-blue);
+  border-radius: 1rem;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom: none;
 }
 .description-box {
   padding: 20px;
   display: flex;
   gap: 20px;
 }
-.description-box-1 {
+.description-box-1 { border: 1px solid var(--accent-blue);
   border-radius: 1rem;
-  border: 1px solid var(--accent-blue);
   padding: 20px;
   display: flex;
   gap: 20px;
@@ -479,7 +512,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid rgb(44, 62, 80);
+  border-top: 1px solid var(--text-dark);
   padding: 2rem;
   width: 100%;
 }
@@ -509,9 +542,10 @@ body {
 }
 .add-btn {
   border-radius: 1rem;
-  background: var(--block-1);
-  color: #fff;
-  border: none;
+  
+  background: var(--bg-primary);
+  color: var(--text-dark);
+  border: 1px solid var(--text-dark);
   padding: 0 30px;
   font-family: "Outfit", sans-serif;
   font-weight: 700;
@@ -524,6 +558,7 @@ body {
   transform: scale(1.05);
   background: var(--text-dark);
   color: var(--bg-primary);
+    border: 1px solid var(--bg-primary);
 }
 
 /* Price Animation Updates */
