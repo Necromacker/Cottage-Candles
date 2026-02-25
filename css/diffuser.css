@@ -9,10 +9,14 @@
   --body-bg: #4a2b36;
 
   /* Block Colors (Light/Default) - Wild Berry */
-  --block-1: #8e44ad; /* Purple */
-  --block-2: #9b59b6; /* Lighter Purple */
-  --block-3: #7d3c98; /* Deep Purple */
-  --block-4: #bb8fce; /* Soft Purple */
+  --block-1: #8e44ad;
+  /* Purple */
+  --block-2: #9b59b6;
+  /* Lighter Purple */
+  --block-3: #7d3c98;
+  /* Deep Purple */
+  --block-4: #bb8fce;
+  /* Soft Purple */
 }
 
 body.dark-theme {
@@ -42,7 +46,8 @@ body {
 }
 
 .scroll-spacer {
-  height: 600vh; /* Increased for longer scroll feel */
+  height: 600vh;
+  /* Increased for longer scroll feel */
   position: absolute;
   top: 0;
   left: 0;
@@ -92,10 +97,12 @@ body {
   background-color: var(--block-1);
   position: relative;
 }
+
 .block-2 {
   width: 60%;
   background-color: var(--block-2);
 }
+
 .block-3 {
   height: 30%;
   width: 50%;
@@ -103,6 +110,7 @@ body {
   position: relative;
   overflow: hidden;
 }
+
 .block-4 {
   height: 30%;
   width: 50%;
@@ -117,9 +125,11 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 0%; /* Slide from top means height grows */
+  height: 0%;
+  /* Slide from top means height grows */
   z-index: 0;
 }
+
 /* Ensure Block 1 children (3 & 4) are above its overlays */
 .block-3,
 .block-4 {
@@ -130,7 +140,8 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 0%; /* Slide from left */
+  width: 0%;
+  /* Slide from left */
   height: 100%;
   z-index: 1;
 }
@@ -138,43 +149,61 @@ body {
 .bg-overlay-4 {
   position: absolute;
   top: 0;
-  right: 0; /* Slide from right means anchored right */
+  right: 0;
+  /* Slide from right means anchored right */
   width: 0%;
   height: 100%;
   z-index: 1;
 }
+
 .p2-bg-4 {
   height: 0%;
   width: 100%;
   top: auto;
   bottom: 0;
 }
+
 /* Product 2 Colors (Calming Brew - Coffee) */
 .p2-bg-1 {
-  background-color: #5d4037; /* Coffee Bean */
+  background-color: #5d4037;
+  /* Coffee Bean */
 }
+
 .p2-bg-3 {
-  background-color: #3e2723; /* Dark Roast */
+  background-color: #3e2723;
+  /* Dark Roast */
 }
+
 .p2-bg-4 {
-  background-color: #d7ccc8; /* Latte foam */
+  background-color: #d7ccc8;
+  /* Latte foam */
 }
 
 /* Product 3 Colors (Vanilla Bean - Gold/Cream) */
 .p3-bg-1 {
-  background-color: #f1c40f; /* Gold */
-  height: 100%; /* Override default height 0 */
-  width: 0%; /* Start width 0 for L to R slide */
+  background-color: #f1c40f;
+  /* Gold */
+  height: 100%;
+  /* Override default height 0 */
+  width: 0%;
+  /* Start width 0 for L to R slide */
 }
+
 .p3-bg-3 {
-  background-color: #f7dc6f; /* Light Gold */
-  top: auto; /* Override default top: 0 */
+  background-color: #f7dc6f;
+  /* Light Gold */
+  top: auto;
+  /* Override default top: 0 */
   bottom: 0;
-  width: 100%; /* Override default width 0 */
-  height: 0%; /* Start height 0 for Bottom to Up slide */
+  width: 100%;
+  /* Override default width 0 */
+  height: 0%;
+  /* Start height 0 for Bottom to Up slide */
 }
+
 .p3-bg-4 {
-  background-color: #fcf3cf; /* Cream */
+  background-color: #fcf3cf;
+  /* Cream */
 }
 
 /* Content */
@@ -225,6 +254,7 @@ body {
 .nav-links a:last-child {
   border-right: none;
 }
+
 .nav-links a:hover,
 .nav-links a.active {
   background: rgba(255, 255, 255, 0.2);
@@ -251,7 +281,8 @@ body {
   height: 100%;
 }
 
-.product-section {border-right: 1px solid var(--text-dark);
+.product-section {
+  border-right: 1px solid var(--text-dark);
   width: 40%;
   display: flex;
   justify-content: center;
@@ -287,7 +318,7 @@ body {
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   position: relative;
   color: var(--accent-blue);
 }
@@ -317,12 +348,14 @@ body {
   transform: rotate(45deg);
   width: 50px;
 }
+
 .leaf-2 {
   top: 30%;
   right: 10%;
   transform: rotate(-30deg);
   width: 30px;
 }
+
 .leaf-3 {
   top: 15%;
   right: 40%;
@@ -355,18 +388,20 @@ body {
   display: block;
   position: relative;
 }
+
 .text-mask-flavour {
   overflow: hidden;
   display: block;
   position: relative;
   left: 5rem;
 }
+
 #Odour {
   border: 1px solid var(--accent-blue);
   border-radius: 1rem;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-    border-bottom: none;
+  border-bottom: none;
   position: relative;
   border-radius: 1rem;
   border-bottom-left-radius: 0px;
@@ -408,14 +443,17 @@ body {
   align-items: center;
   padding: 1rem;
 }
+
 #title-2 {
   border: none;
 }
+
 .description-box {
   padding: 20px;
   display: flex;
   gap: 20px;
 }
+
 .description-box-1 {
   border-radius: 1rem;
   border: 1px solid var(--accent-blue);
@@ -423,6 +461,7 @@ body {
   display: flex;
   gap: 20px;
 }
+
 .desc-text {
   font-size: 0.85rem;
   line-height: 1.5;
@@ -494,14 +533,17 @@ body {
   align-items: center;
   font-weight: 600;
 }
+
 #price1 {
   padding: 5px;
   border-radius: 1rem;
   border: var(--accent-blue) 1px solid;
 }
+
 #price {
   padding: 5px;
 }
+
 .add-btn {
   border-radius: 1rem;
   background: var(--bg-primary);
@@ -519,7 +561,7 @@ body {
   transform: scale(1.05);
   background: var(--text-dark);
   color: var(--bg-primary);
-    border: 1px solid var(--bg-primary);
+  border: 1px solid var(--bg-primary);
 }
 
 /* Price Animation Updates */

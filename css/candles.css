@@ -9,10 +9,14 @@
   --body-bg: #4a2b36;
 
   /* Block Colors (Light/Default) */
-  --block-1: #fdabab; /* Coffee */
-  --block-2: #ce8676; /* Tan */
-  --block-3: #ffe6e5; /* Cocoa */
-  --block-4: #fcc9c9; /* Cream */
+  --block-1: #fdabab;
+  /* Coffee */
+  --block-2: #ce8676;
+  /* Tan */
+  --block-3: #ffe6e5;
+  /* Cocoa */
+  --block-4: #fcc9c9;
+  /* Cream */
 }
 
 body.dark-theme {
@@ -42,7 +46,8 @@ body {
 }
 
 .scroll-spacer {
-  height: 1400vh; /* Increased for longer scroll feel */
+  height: 1400vh;
+  /* Increased for longer scroll feel */
   position: absolute;
   top: 0;
   left: 0;
@@ -92,10 +97,12 @@ body {
   background-color: var(--block-1);
   position: relative;
 }
+
 .block-2 {
   width: 60%;
   background-color: var(--block-2);
 }
+
 .block-3 {
   height: 30%;
   width: 50%;
@@ -103,6 +110,7 @@ body {
   position: relative;
   overflow: hidden;
 }
+
 .block-4 {
   height: 30%;
   width: 50%;
@@ -117,9 +125,11 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 0%; /* Slide from top means height grows */
+  height: 0%;
+  /* Slide from top means height grows */
   z-index: 0;
 }
+
 /* Ensure Block 1 children (3 & 4) are above its overlays */
 .block-3,
 .block-4 {
@@ -130,7 +140,8 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 0%; /* Slide from left */
+  width: 0%;
+  /* Slide from left */
   height: 100%;
   z-index: 1;
 }
@@ -138,81 +149,231 @@ body {
 .bg-overlay-4 {
   position: absolute;
   top: 0;
-  right: 0; /* Slide from right means anchored right */
+  right: 0;
   width: 0%;
   height: 100%;
   z-index: 1;
 }
+
 .p2-bg-4 {
   height: 0%;
   width: 100%;
   top: auto;
   bottom: 0;
 }
+
 /* Product 2 Colors (Sunburst) */
-.p2-bg-1 { background-color: #ffb74d; }
-.p2-bg-3 { background-color: #e65100; }
-.p2-bg-4 { background-color: #fff8e1; }
+.p2-bg-1 {
+  background-color: #ffb74d;
+}
+
+.p2-bg-3 {
+  background-color: #e65100;
+}
+
+.p2-bg-4 {
+  background-color: #fff8e1;
+}
 
 /* Product 3 Colors (Strawberry) */
-.p3-bg-1 { background-color: #ec407a; }
-.p3-bg-3 { background-color: #f48fb1; }
-.p3-bg-4 { background-color: #fce4ec; }
+.p3-bg-1 {
+  background-color: #ec407a;
+}
+
+.p3-bg-3 {
+  background-color: #f48fb1;
+}
+
+.p3-bg-4 {
+  background-color: #fce4ec;
+}
 
 /* Product 4 Colors (Mystic Ocean) */
-.p4-bg-1 { background-color: #00897b; } /* Teal */
-.p4-bg-3 { background-color: #004d40; } /* Dark Teal */
-.p4-bg-4 { background-color: #e0f2f1; } /* Light Teal */
+.p4-bg-1 {
+  background-color: #00897b;
+}
+
+/* Teal */
+.p4-bg-3 {
+  background-color: #004d40;
+}
+
+/* Dark Teal */
+.p4-bg-4 {
+  background-color: #e0f2f1;
+}
+
+/* Light Teal */
 
 /* Product 5 Colors (Merry Christmas) */
-.p5-bg-1 { background-color: #c62828; } /* Red */
-.p5-bg-3 { background-color: #2e7d32; } /* Green */
-.p5-bg-4 { background-color: #fffde7; } /* Goldish */
+.p5-bg-1 {
+  background-color: #c62828;
+}
+
+/* Red */
+.p5-bg-3 {
+  background-color: #2e7d32;
+}
+
+/* Green */
+.p5-bg-4 {
+  background-color: #fffde7;
+}
+
+/* Goldish */
 
 /* Product 6 Colors (Cooki) */
-.p6-bg-1 { background-color: #5d4037; } /* Brown */
-.p6-bg-3 { background-color: #3e2723; } /* Dark Brown */
-.p6-bg-4 { background-color: #d7ccc8; } /* Light Brown */
+.p6-bg-1 {
+  background-color: #5d4037;
+}
+
+/* Brown */
+.p6-bg-3 {
+  background-color: #3e2723;
+}
+
+/* Dark Brown */
+.p6-bg-4 {
+  background-color: #d7ccc8;
+}
+
+/* Light Brown */
 
 /* Product 7 Colors (Moon Bloom) */
-.p7-bg-1 { background-color: #311b92; } /* Deep Purple */
-.p7-bg-3 { background-color: #4527a0; } /* Purple */
-.p7-bg-4 { background-color: #ede7f6; } /* Pale Purple */
+.p7-bg-1 {
+  background-color: #311b92;
+}
+
+/* Deep Purple */
+.p7-bg-3 {
+  background-color: #4527a0;
+}
+
+/* Purple */
+.p7-bg-4 {
+  background-color: #ede7f6;
+}
+
+/* Pale Purple */
 
 /* Product 8 Colors (Swan) */
-.p8-bg-1 { background-color: #e0e0e0; } /* Silver */
-.p8-bg-3 { background-color: #e284ff; } /* Light Gray */
-.p8-bg-4 { background-color: #ffffff; } /* Pure White */
+.p8-bg-1 {
+  background-color: #e0e0e0;
+}
+
+/* Silver */
+.p8-bg-3 {
+  background-color: #e284ff;
+}
+
+/* Light Gray */
+.p8-bg-4 {
+  background-color: #ffffff;
+}
+
+/* Pure White */
 
 /* Product 9 Colors (Sunflower) */
-.p9-bg-1 { background-color: #fbc02d; } /* Sunflower Yellow */
-.p9-bg-3 { background-color: #f9a825; } /* Gold */
-.p9-bg-4 { background-color: #fff9c4; } /* Pale Yellow */
+.p9-bg-1 {
+  background-color: #fbc02d;
+}
+
+/* Sunflower Yellow */
+.p9-bg-3 {
+  background-color: #f9a825;
+}
+
+/* Gold */
+.p9-bg-4 {
+  background-color: #fff9c4;
+}
+
+/* Pale Yellow */
 
 /* Product 10 Colors (Diwali Ladoo) */
-.p10-bg-1 { background-color: #ef6c00; } /* Burnt Orange */
-.p10-bg-3 { background-color: #ff9800; } /* Bright Orange */
-.p10-bg-4 { background-color: #fff3e0; } /* Creamy Orange */
+.p10-bg-1 {
+  background-color: #ef6c00;
+}
+
+/* Burnt Orange */
+.p10-bg-3 {
+  background-color: #ff9800;
+}
+
+/* Bright Orange */
+.p10-bg-4 {
+  background-color: #fff3e0;
+}
+
+/* Creamy Orange */
 
 /* Product 11 Colors (Fairytale Waltz) */
-.p11-bg-1 { background-color: #7b1fa2; } /* Dreamy Purple */
-.p11-bg-3 { background-color: #c2185b; } /* Deep Pink */
-.p11-bg-4 { background-color: #f3e5f5; } /* Lavender White */
+.p11-bg-1 {
+  background-color: #7b1fa2;
+}
+
+/* Dreamy Purple */
+.p11-bg-3 {
+  background-color: #c2185b;
+}
+
+/* Deep Pink */
+.p11-bg-4 {
+  background-color: #f3e5f5;
+}
+
+/* Lavender White */
 
 /* Product 12 Colors (Painted Taper) */
-.p12-bg-1 { background-color: #0288d1; } /* Blue */
-.p12-bg-3 { background-color: #388e3c; } /* Green */
-.p12-bg-4 { background-color: #f1f8e9; } /* Light Mint */
+.p12-bg-1 {
+  background-color: #0288d1;
+}
+
+/* Blue */
+.p12-bg-3 {
+  background-color: #388e3c;
+}
+
+/* Green */
+.p12-bg-4 {
+  background-color: #f1f8e9;
+}
+
+/* Light Mint */
 
 /* Product 13 Colors (Sea Shell) */
-.p13-bg-1 { background-color: #0097a7; } /* Cyan Sea */
-.p13-bg-3 { background-color: #00acc1; } /* Bright Cyan */
-.p13-bg-4 { background-color: #e0f7fa; } /* Pale Cyan */
+.p13-bg-1 {
+  background-color: #0097a7;
+}
+
+/* Cyan Sea */
+.p13-bg-3 {
+  background-color: #00acc1;
+}
+
+/* Bright Cyan */
+.p13-bg-4 {
+  background-color: #e0f7fa;
+}
+
+/* Pale Cyan */
 
 /* Product 14 Colors (Tulip Boquet) */
-.p14-bg-1 { background-color: #d81b60; } /* Magenta */
-.p14-bg-3 { background-color: #8e24aa; } /* Purple Blossom */
-.p14-bg-4 { background-color: #fce4ec; } /* Soft Rose */
+.p14-bg-1 {
+  background-color: #d81b60;
+}
+
+/* Magenta */
+.p14-bg-3 {
+  background-color: #8e24aa;
+}
+
+/* Purple Blossom */
+.p14-bg-4 {
+  background-color: #fce4ec;
+}
+
+/* Soft Rose */
 
 /* Content */
 .content-wrapper {
@@ -262,6 +423,7 @@ body {
 .nav-links a:last-child {
   border-right: none;
 }
+
 .nav-links a:hover,
 .nav-links a.active {
   background: rgba(255, 255, 255, 0.2);
@@ -319,6 +481,7 @@ body {
   display: block;
   filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.3));
 }
+
 #sunburst-img {
   width: 95%;
 }
@@ -328,7 +491,7 @@ body {
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   position: relative;
   color: var(--accent-blue);
 }
@@ -358,12 +521,14 @@ body {
   transform: rotate(45deg);
   width: 50px;
 }
+
 .leaf-2 {
   top: 30%;
   right: 10%;
   transform: rotate(-30deg);
   width: 30px;
 }
+
 .leaf-3 {
   top: 15%;
   right: 40%;
@@ -396,17 +561,20 @@ body {
   display: block;
   position: relative;
 }
+
 .text-mask-flavour {
   overflow: hidden;
   display: block;
   position: relative;
   left: 7rem;
 }
-#Flavour { border: 1px solid var(--accent-blue);
+
+#Flavour {
+  border: 1px solid var(--accent-blue);
   border-radius: 1rem;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-    border-bottom: none;
+  border-bottom: none;
   position: relative;
   border-radius: 1rem;
   border-bottom-left-radius: 0px;
@@ -429,8 +597,9 @@ body {
 
   position: relative;
 }
+
 .title {
- 
+
   width: fit-content;
   font-family: "Outfit", sans-serif;
   font-size: 3.5rem;
@@ -443,24 +612,29 @@ body {
   align-items: center;
   padding: 1rem;
 }
+
 #title-2 {
- border: 1px solid var(--accent-blue);
+  border: 1px solid var(--accent-blue);
   border-radius: 1rem;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
   border-bottom: none;
 }
+
 .description-box {
   padding: 20px;
   display: flex;
   gap: 20px;
 }
-.description-box-1 { border: 1px solid var(--accent-blue);
+
+.description-box-1 {
+  border: 1px solid var(--accent-blue);
   border-radius: 1rem;
   padding: 20px;
   display: flex;
   gap: 20px;
 }
+
 .desc-text {
   font-size: 0.85rem;
   line-height: 1.5;
@@ -532,17 +706,20 @@ body {
   align-items: center;
   font-weight: 600;
 }
+
 #price1 {
   padding: 5px;
   border-radius: 1rem;
   border: var(--accent-blue) 1px solid;
 }
+
 #price {
   padding: 5px;
 }
+
 .add-btn {
   border-radius: 1rem;
-  
+
   background: var(--bg-primary);
   color: var(--text-dark);
   border: 1px solid var(--text-dark);
@@ -558,7 +735,7 @@ body {
   transform: scale(1.05);
   background: var(--text-dark);
   color: var(--bg-primary);
-    border: 1px solid var(--bg-primary);
+  border: 1px solid var(--bg-primary);
 }
 
 /* Price Animation Updates */
