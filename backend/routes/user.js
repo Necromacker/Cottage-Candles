@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
 const User = require('../models/User');
+const mongoose = require('mongoose');
 
 // Get current user profile
 router.get('/profile', auth, async (req, res) => {
@@ -61,12 +62,7 @@ router.delete('/addresses/:id', auth, async (req, res) => {
 router.get('/cart', auth, async (req, res) => {
     try {
         const user = await User.findById(req.user.id);
-        // Clean up invalid product IDs that might have slipped in
-        user.cart = user.cart.filter(item => mongoose.Types.ObjectId.isValid(item.productId));
-        await user.save();
-
-        const populatedUser = await User.findById(req.user.id).populate('cart.productId');
-        res.json(populatedUser.cart);
+        res.json(user.cart);
     } catch (err) {
         console.error('Error fetching cart:', err);
         res.status(500).json({ message: 'Server error', error: err.message });
@@ -74,18 +70,15 @@ router.get('/cart', auth, async (req, res) => {
 });
 
 router.post('/cart', auth, async (req, res) => {
-    const { productId, quantity, size, price } = req.body;
+    const { productId, name, imageLight, imageDark, quantity, size, price } = req.body;
     try {
-        if (!mongoose.Types.ObjectId.isValid(productId)) {
-            return res.status(400).json({ message: 'Invalid product ID' });
-        }
         const user = await User.findById(req.user.id);
-        const cartItem = user.cart.find(item => item.productId && item.productId.toString() === productId);
+        const cartItem = user.cart.find(item => item.productId === productId);
 
         if (cartItem) {
             cartItem.quantity += quantity;
         } else {
-            user.cart.push({ productId, quantity, size, price });
+            user.cart.push({ productId, name, imageLight, imageDark, quantity, size, price });
         }
 
         await user.save();
@@ -95,10 +88,26 @@ router.post('/cart', auth, async (req, res) => {
     }
 });
 
-router.delete('/cart/:id', auth, async (req, res) => {
+router.put('/cart/:productId', auth, async (req, res) => {
+    try {
+        const { quantity } = req.body;
+        const user = await User.findById(req.user.id);
+        const cartItem = user.cart.find(item => item.productId === req.params.productId);
+
+        if (cartItem) {
+            cartItem.quantity = quantity;
+            await user.save();
+        }
+        res.json(user.cart);
+    } catch (err) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+router.delete('/cart/:productId', auth, async (req, res) => {
     try {
         const user = await User.findById(req.user.id);
-        user.cart = user.cart.filter(item => item._id.toString() !== req.params.id);
+        user.cart = user.cart.filter(item => item.productId !== req.params.productId);
         await user.save();
         res.json(user.cart);
     } catch (err) {

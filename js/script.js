@@ -3,6 +3,7 @@ import { LitElement, html, css } from "https://esm.sh/lit";
 
 
 document.addEventListener("DOMContentLoaded", function () {
+  if (typeof gsap === 'undefined') return;
   gsap.from(".Branding", {
     duration: 1,
     x: -50,

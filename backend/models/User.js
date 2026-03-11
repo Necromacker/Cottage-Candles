@@ -10,7 +10,10 @@ const addressSchema = new mongoose.Schema({
 });
 
 const cartItemSchema = new mongoose.Schema({
-    productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+    productId: { type: String }, // Support both Mongo ObjectIds and fallback strings like "candle-1"
+    name: String,
+    imageLight: String,
+    imageDark: String,
     quantity: { type: Number, default: 1 },
     size: String,
     price: Number

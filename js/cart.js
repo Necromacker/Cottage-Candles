@@ -395,7 +395,7 @@ class ShoppingCart {
     }
   }
 
-  updateQuantity(id, change) {
+  async updateQuantity(id, change) {
     const item = this.cart.find((item) => item.id === id);
     if (item) {
       item.quantity += change;
@@ -404,6 +404,23 @@ class ShoppingCart {
       } else {
         this.saveCart();
         this.renderCart();
+
+        const token = localStorage.getItem('token');
+        if (token) {
+          try {
+            const API_BASE = window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5001/api' : 'http://localhost:5001/api';
+            await fetch(`${API_BASE}/user/cart/${id}`, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              },
+              body: JSON.stringify({ quantity: item.quantity })
+            });
+          } catch (err) {
+            console.error('Failed to update quantity to backend:', err);
+          }
+        }
       }
     }
   }
