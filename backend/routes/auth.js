@@ -159,12 +159,14 @@ router.post('/google', async (req, res) => {
         if (user) {
             if (!user.googleId) {
                 user.googleId = googleId;
-                await user.save();
             }
+            // Ensure required fields exist even for existing users
+            if (!user.lastName) user.lastName = lastName || ' ';
+            await user.save();
         } else {
             user = new User({
-                firstName,
-                lastName,
+                firstName: firstName || 'User',
+                lastName: lastName || ' ',
                 email,
                 googleId,
                 password: crypto.randomBytes(16).toString('hex') // Dummy password
@@ -184,7 +186,8 @@ router.post('/google', async (req, res) => {
             }
         });
     } catch (err) {
-        res.status(500).json({ message: 'Server error' });
+        console.error('Google Auth Error:', err);
+        res.status(500).json({ message: 'Server error', error: err.message });
     }
 });
 
