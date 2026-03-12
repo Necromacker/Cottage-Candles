@@ -148,18 +148,41 @@ async function loadCart() {
         total += item.price * item.quantity;
         const itemEl = document.createElement('div');
         itemEl.className = 'cart-item';
+        itemEl.style = "display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;";
         const isDark = document.body.classList.contains('dark-theme');
-        const itemImage = isDark
-            ? item.productId?.imageDark || item.productId?.images?.[0]
-            : item.productId?.imageLight || item.productId?.images?.[0];
+        
+        let itemImage = '';
+        if (isDark) {
+            itemImage = item.imageDark || item.imageLight || item.productId?.imageDark || item.productId?.images?.[0];
+        } else {
+            itemImage = item.imageLight || item.imageDark || item.productId?.imageLight || item.productId?.images?.[0];
+        }
+        
+        // Fallback ProductData lookup if needed
+        const tempId = item.productId?._id || item.productId || item.id;
+        if (window.PRODUCT_DATA && window.PRODUCT_DATA[tempId]) {
+            const data = window.PRODUCT_DATA[tempId];
+            itemImage = itemImage || data.imageLight || data.imageDark || data.image;
+        }
+
+        if (!itemImage || itemImage === 'undefined') {
+            itemImage = `images/placeholder.jpg`;
+        }
+
+        let itemName = item.name || item.productId?.name;
+        if (!itemName && window.PRODUCT_DATA && window.PRODUCT_DATA[tempId]) {
+            itemName = window.PRODUCT_DATA[tempId].name;
+        }
+        itemName = itemName || 'Product';
 
         itemEl.innerHTML = `
-            <img src="${itemImage || 'images/placeholder.jpg'}" class="item-img">
-            <div class="item-details">
-                <h4>${item.productId?.name || 'Product'}</h4>
-                <p>₹${item.price} x ${item.quantity}</p>
+            <img src="${itemImage}" alt="${itemName}" style="width: 90px; height: 90px; object-fit: cover; border-radius: 6px; border: 1px solid #eee;">
+            <div style="flex: 1;">
+                <h4 style="margin: 0 0 8px 0; font-size: 16px; color: #007185;">${itemName}</h4>
+                <div style="color: #565959; font-size: 14px; margin-bottom: 6px;">Qty: ${item.quantity}</div>
+                <div style="color: #b12704; font-weight: 700; font-size: 15px;">₹${item.price.toFixed(2)}</div>
             </div>
-            <button class="btn-delete" onclick="removeFromCart('${item._id}')"><i class="fas fa-trash"></i></button>
+            <button class="btn-delete" style="background: none; border: none; color: #cc0000; cursor: pointer; font-size: 18px;" onclick="removeFromCart('${item.productId || item._id}')"><i class="fas fa-trash"></i></button>
         `;
         container.appendChild(itemEl);
     });
@@ -217,18 +240,95 @@ async function loadOrders() {
     orders.forEach(order => {
         const orderEl = document.createElement('div');
         orderEl.className = 'order-card';
-        orderEl.style = "border: 1px solid #eee; padding: 15px; margin-bottom: 15px; border-radius: 8px;";
-        orderEl.innerHTML = `
-            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #f0f0f0; padding-bottom: 10px; margin-bottom: 10px;">
-                <strong>Order #${order._id.slice(-8)}</strong>
-                <span>${new Date(order.createdAt).toLocaleDateString()}</span>
+        orderEl.style = "border: 1px solid #d5d9d9; border-radius: 8px; margin-bottom: 20px; overflow: hidden; font-family: 'Inter', sans-serif;";
+        
+        let userName = "User";
+        if (currentUser && currentUser.firstName) {
+            userName = `${currentUser.firstName} ${currentUser.lastName || ''}`;
+        }
+        
+        const orderDate = new Date(order.createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+        
+        // Header HTML
+        const headerHtml = `
+            <div style="background-color: #f0f2f2; padding: 14px 18px; border-bottom: 1px solid #d5d9d9; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 15px; font-size: 13px; color: #565959;">
+                <div style="display: flex; gap: 40px;">
+                    <div style="display: flex; flex-direction: column;">
+                        <span style="text-transform: uppercase; font-size: 11px; margin-bottom: 4px;">Order Placed</span>
+                        <span style="color: #0f1111; font-weight: 500;">${orderDate}</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <span style="text-transform: uppercase; font-size: 11px; margin-bottom: 4px;">Total</span>
+                        <span style="color: #0f1111; font-weight: 500;">₹${order.totalAmount}</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <span style="text-transform: uppercase; font-size: 11px; margin-bottom: 4px;">Ship To</span>
+                        <span style="color: #007185; font-weight: 500; cursor: pointer;">${userName} <i class="fas fa-chevron-down" style="font-size: 10px;"></i></span>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                    <span style="text-transform: uppercase; font-size: 11px; margin-bottom: 4px;">Order # ${order.orderId || order._id.slice(-10)}</span>
+                    <div style="display: flex; gap: 10px;">
+                        <a href="#" style="color: #007185; text-decoration: none; font-weight: 500;">View order details</a>
+                        <span style="color: #ddd;">|</span>
+                        <a href="#" style="color: #007185; text-decoration: none; font-weight: 500;">Invoice <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+                    </div>
+                </div>
             </div>
-            <div>
-                ${order.items.map(item => `<div>${item.name} x ${item.quantity} - ₹${item.price}</div>`).join('')}
-            </div>
-            <div style="margin-top: 10px; font-weight: 700;">Total: ₹${order.totalAmount}</div>
-            <div style="margin-top: 5px; color: ${order.paymentStatus === 'paid' ? 'green' : 'orange'}">Payment: ${order.paymentStatus}</div>
         `;
+        
+        // Body HTML
+        const itemsHtml = order.items.map(item => {
+            let productImg = 'images/placeholder.jpg';
+            if (item.productId && typeof item.productId === 'object') {
+                if (item.productId.images && item.productId.images.length > 0) {
+                    productImg = item.productId.images[0];
+                } else if (item.productId.imageLight) {
+                    productImg = item.productId.imageLight;
+                }
+            } else if (window.PRODUCT_DATA && window.PRODUCT_DATA[item.productId || item.id]) {
+                const data = window.PRODUCT_DATA[item.productId || item.id];
+                productImg = data.imageLight || data.imageDark || data.image || productImg;
+            }
+                
+            const itemName = item.name || (item.productId && item.productId.name) || 'Product';
+            
+            return `
+            <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
+                <img src="${productImg}" alt="${itemName}" style="width: 90px; height: 90px; object-fit: cover; border-radius: 6px; border: 1px solid #eee;">
+                <div style="flex: 1;">
+                    <a href="#" style="color: #007185; text-decoration: none; font-weight: 500; font-size: 16px; display: block; margin-bottom: 6px;">${itemName}</a>
+                    <div style="color: #565959; font-size: 14px; margin-bottom: 6px;">Qty: ${item.quantity}</div>
+                    <div style="color: #b12704; font-weight: 700; font-size: 15px;">₹${item.price}</div>
+                </div>
+                <div>
+                    <button style="background: #fff; border: 1px solid #d5d9d9; border-radius: 8px; padding: 6px 14px; font-size: 13px; color: #0f1111; cursor: pointer; box-shadow: 0 2px 5px rgba(15,17,17,.15); display: flex; align-items: center; gap: 8px; font-family: inherit; transition: background 0.2s;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        Contact Seller
+                    </button>
+                </div>
+            </div>
+            `;
+        }).join('');
+        
+        let statusText = order.orderStatus ? order.orderStatus.charAt(0).toUpperCase() + order.orderStatus.slice(1) : 'Processing';
+        let statusColor = '#0f1111';
+        if (order.orderStatus === 'delivered') statusColor = 'green';
+        else if (order.orderStatus === 'cancelled') statusColor = 'red';
+        else if (statusText === 'Processing') statusColor = '#e67a00';
+        
+        const bodyHtml = `
+            <div style="padding: 20px;">
+                <div style="font-size: 18px; font-weight: 700; margin-bottom: 20px; color: ${statusColor};">
+                    ${statusText}
+                </div>
+                ${itemsHtml}
+            </div>
+        `;
+        
+        orderEl.innerHTML = headerHtml + bodyHtml;
         container.appendChild(orderEl);
     });
 }
@@ -299,7 +399,11 @@ async function handleCheckout() {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     },
                     body: JSON.stringify({
-                        items: cart.map(i => ({ productId: i.productId._id, name: i.productId.name, quantity: i.quantity, price: i.price })),
+                        items: cart.map(i => {
+                            const pId = i.productId?._id || i.productId || i.id;
+                            const pName = i.name || i.productId?.name || 'Product';
+                            return { productId: pId, name: pName, quantity: i.quantity, price: i.price };
+                        }),
                         totalAmount: total,
                         shippingAddress: selectedAddress,
                         paymentId: response.razorpay_payment_id,
