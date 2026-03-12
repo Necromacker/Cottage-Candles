@@ -392,7 +392,7 @@ async function handleCheckout() {
 
             if (verifyRes.ok) {
                 // Save Order to DB
-                await fetch(`${API_BASE}/orders`, {
+                const saveRes = await fetch(`${API_BASE}/orders`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -410,8 +410,15 @@ async function handleCheckout() {
                         orderId: response.razorpay_order_id
                     })
                 });
-                alert('Order placed successfully!');
-                window.location.reload();
+
+                if (saveRes.ok) {
+                    localStorage.removeItem('cottageCart');
+                    alert('Order placed successfully!');
+                    window.location.reload();
+                } else {
+                    const errData = await saveRes.json();
+                    alert(`Failed to save order: ${errData.message || 'Unknown error'}`);
+                }
             } else {
                 alert('Payment verification failed');
             }

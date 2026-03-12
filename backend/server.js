@@ -8,7 +8,6 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const orderRoutes = require('./routes/orders');
 const paymentRoutes = require('./routes/payments');
-const productRoutes = require('./routes/products');
 
 const app = express();
 
@@ -34,7 +33,6 @@ app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/payments', paymentRoutes);
-app.use('/api/products', productRoutes);
 
 // Health check
 app.get('/', (req, res) => {

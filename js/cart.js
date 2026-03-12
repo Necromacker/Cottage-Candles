@@ -64,41 +64,10 @@ class ShoppingCart {
   async init() {
     await loadProductsJson();
     this.injectCartHTML();
-    await this.fetchProducts();
     this.renderCart();
     this.setupEventListeners();
     this.setupThemeObserver();
     await this.syncWithBackend();
-  }
-
-  async fetchProducts() {
-    try {
-      const API_BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : 'https://cottage-candles.onrender.com/api';
-      const res = await fetch(`${API_BASE}/products`);
-      if (!res.ok) throw new Error('Network response was not ok');
-      const products = await res.json();
-
-      products.forEach(p => {
-        // Map backend product to PRODUCT_DATA
-        PRODUCT_DATA[p._id] = {
-          id: p._id,
-          name: p.name,
-          price: p.price,
-          imageLight: p.imageLight,
-          imageDark: p.imageDark,
-          category: p.category
-        };
-
-        // Match legacy IDs by name
-        Object.keys(PRODUCT_DATA).forEach(key => {
-          if (PRODUCT_DATA[key].name === p.name) {
-            PRODUCT_DATA[key].dbId = p._id;
-          }
-        });
-      });
-    } catch (err) {
-      console.error('Failed to fetch products from backend:', err);
-    }
   }
 
   async syncWithBackend() {

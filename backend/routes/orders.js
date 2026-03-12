@@ -7,7 +7,6 @@ const Order = require('../models/Order');
 router.get('/my-orders', auth, async (req, res) => {
     try {
         const orders = await Order.find({ user: req.user.id })
-            .populate('items.productId')
             .sort({ createdAt: -1 });
         res.json(orders);
     } catch (err) {
