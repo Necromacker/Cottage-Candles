@@ -1,6 +1,6 @@
-const API_BASE = window.location.hostname === '127.0.0.1'
-    ? 'http://127.0.0.1:5001/api'
-    : 'http://localhost:5001/api';
+const API_BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost'
+    ? 'http://localhost:5001/api'
+    : 'https://cottage-candles.onrender.com/api';
 let currentUser = null;
 
 document.addEventListener('DOMContentLoaded', () => {

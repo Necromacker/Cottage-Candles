@@ -149,7 +149,7 @@ class ShoppingCart {
 
   async fetchProducts() {
     try {
-      const API_BASE = window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5001/api' : 'http://localhost:5001/api';
+      const API_BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : 'https://cottage-candles.onrender.com/api';
       const res = await fetch(`${API_BASE}/products`);
       if (!res.ok) throw new Error('Network response was not ok');
       const products = await res.json();
@@ -182,7 +182,7 @@ class ShoppingCart {
     if (!token) return;
 
     try {
-      const API_BASE = window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5001/api' : 'http://localhost:5001/api';
+      const API_BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : 'https://cottage-candles.onrender.com/api';
       const res = await fetch(`${API_BASE}/user/cart`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -357,7 +357,7 @@ class ShoppingCart {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const API_BASE = window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5001/api' : 'http://localhost:5001/api';
+        const API_BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : 'https://cottage-candles.onrender.com/api';
         await fetch(`${API_BASE}/user/cart`, {
           method: 'POST',
           headers: {
@@ -384,7 +384,7 @@ class ShoppingCart {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const API_BASE = window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5001/api' : 'http://localhost:5001/api';
+        const API_BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : 'https://cottage-candles.onrender.com/api';
         await fetch(`${API_BASE}/user/cart/${id}`, {
           method: 'DELETE',
           headers: { 'Authorization': `Bearer ${token}` }
@@ -408,7 +408,7 @@ class ShoppingCart {
         const token = localStorage.getItem('token');
         if (token) {
           try {
-            const API_BASE = window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5001/api' : 'http://localhost:5001/api';
+            const API_BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : 'https://cottage-candles.onrender.com/api';
             await fetch(`${API_BASE}/user/cart/${id}`, {
               method: 'PUT',
               headers: {
