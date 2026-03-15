@@ -75,8 +75,11 @@ body {
     width: 100%;
 }
 
-.nav-item i {
+.nav-item i,
+.nav-item svg {
     width: 20px;
+    height: 20px;
+    stroke-width: 1.5px;
 }
 
 .nav-item:hover {

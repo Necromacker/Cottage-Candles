@@ -2,6 +2,7 @@
   font-family: Product Sans;
   src: url(Fonts/Product\ Sans\ Regular.ttf);
 }
+
 @font-face {
   font-family: Product Sans B;
   src: url(Fonts/Product\ Sans\ Bold.ttf);
@@ -15,18 +16,58 @@
   height: 100vh;
   background: var(--bg-primary);
   position: relative;
+  top: 70px;
 }
 
-.one h1 {
+body.static-layout .one {
+  height: 95vh;
+  background: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.serenity-text {
   font-size: 20vw;
   font-family: Product Sans B;
-  color: #4a3b32;
+  color: #4a3b3260;
   opacity: 0.1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-body.dark-theme .one h1 {
-  color: #f5f5dc;
+.static-label {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20vw;
+  font-family: Product Sans B;
+  color: var(--bg-primary);
+  opacity: 0.1;
+  z-index: 5;
+  letter-spacing: 2vw;
 }
+
+body.static-layout .serenity-text {
+  display: none;
+}
+
+body.static-layout .static-label {
+  display: block;
+}
+
+body.static-layout .static-label.top {
+  top: 15%;
+}
+
+body.static-layout .static-label.bottom {
+  bottom: 15%;
+}
+
+
+
 
 #hero-candle {
   position: absolute;
@@ -34,8 +75,16 @@ body.dark-theme .one h1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2;
+  z-index: 999;
   transition: all cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+}
+
+body.static-layout #hero-candle {
+  width: 85%;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%) !important;
 }
 
 #dried-orange {
@@ -75,11 +124,17 @@ body.dark-theme .one h1 {
 }
 
 .two {
+  position: relative;
+  top: 70px;
   font-family: poppins;
   display: flex;
   width: 100%;
   height: 100vh;
   background: var(--text-primary);
+}
+
+body.static-layout .two {
+  display: none !important;
 }
 
 .lft-two,
@@ -94,9 +149,11 @@ body.dark-theme .one h1 {
 }
 
 .lft-two svg {
-  margin-top: 50vh;
 
-  width: 90%;
+  position: relative;
+  top: 7rem;
+  left: 4rem;
+  width: 70%;
   transform: rotateX(50deg);
 }
 
@@ -113,67 +170,85 @@ body.dark-theme .one h1 {
 }
 
 .three {
+
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  top: 70px;
   gap: 5vw;
   width: 100%;
   height: 100vh;
   background: var(--bg-primary);
 }
 
-.card {
-  position: relative;
+.card-content {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 1rem;
+}
 
+.card-shop {
+  position: relative;
+  padding-bottom: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   flex-direction: column;
   gap: 2vh;
   width: 25vw;
-  height: 70vh;
+  height: 60vh;
+  max-height: 300px;
   margin-top: 10vh;
   border-radius: 20px;
-  background-color: #fff;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-body.dark-theme .card {
-  background-color: #2a2a2a;
+body.dark-theme .card-shop {
+  background-color: rgba(42, 42, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.card h1 {
+.card-shop h1 {
   font-family: ovo;
-  margin-top: 40vh;
+
   font-size: 3vw;
   color: var(--text-primary);
 }
 
 #diffuser {
-  top: -15%;
-  position: absolute;
+
   width: 50%;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  transition: all cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+
+}
+
+.card-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #hamper {
-  position: absolute;
+
   width: 70%;
-  left: 50%;
-  transform: translate(-50%, 0%);
+
   transition: all cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
 }
 
 .petal {
-  position: absolute;
-  left: 50%;
+
   width: 15vw;
-  transform: translate(-50%, 0%);
+
   transition: all cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
   opacity: 0.8;
 }
+
 /* From Uiverse.io by Mike11jr */
 .btn {
   font-family: poppins;
@@ -217,4 +292,106 @@ body.dark-theme .card {
 
 .btn:active {
   transform: scale(0.9);
+}
+
+
+@media (max-width: 1000px) {
+  .three {
+    flex-direction: column;
+
+    height: auto;
+    padding: 5vh 0;
+    gap: 5vh;
+  }
+
+  .card-shop {
+    justify-content: center;
+    flex-direction: row;
+    width: 85vw;
+    height: 40vh;
+    padding-bottom: 0vh;
+    margin-top: 0vh;
+  }
+
+  /* Reordering: Candle (2nd) first, Diffuser (1st) second, Hamper (3rd) third */
+  .card-shop:nth-child(2) {
+    order: 1;
+  }
+
+  .card-shop:nth-child(1) {
+    order: 2;
+  }
+
+  .card-shop:nth-child(3) {
+    order: 3;
+  }
+
+  .card-content {
+    width: 60%;
+
+  }
+
+  .card-content h1 {
+    font-size: clamp(2rem, 8vw, 3rem);
+    text-align: center;
+    line-height: 1.1;
+  }
+
+  .btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.7rem;
+    width: 80%;
+  }
+
+  .card-img {
+    height: 100%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    background: var(--bg-primary);
+    border: 2px solid var(--text-primary);
+    border-radius: inherit;
+    width: 40%;
+    min-width: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+
+  .petal {
+    width: 70%;
+  }
+
+  #hamper {
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 500px) {
+  .card-shop {
+    height: 20vh;
+  }
+}
+
+#hero-candle-static {
+  display: none;
+  width: 90%;
+}
+
+body.static-layout #hero-candle-static {
+  display: block;
+}
+
+body.static-layout #hero-candle {
+  opacity: 1 !important;
+  transition: none !important;
+}
+
+body.static-layout #dried-orange,
+body.static-layout #lavender,
+body.static-layout #flower-petal,
+body.static-layout #flower-petal2 {
+  display: none !important;
 }

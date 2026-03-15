@@ -118,6 +118,7 @@ class ShoppingCart {
   }
 
   injectCartHTML() {
+    if (window.location.pathname.includes("profile.html")) return;
     const cartHTML = `
             <div class="cart-overlay" id="cartOverlay"></div>
             <div class="cart-drawer" id="cartDrawer">

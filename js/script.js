@@ -204,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const themeToggle = document.getElementById("theme-toggle");
   const body = document.body;
   const brandLogo = document.querySelector(".Brand-logo");
-  const footerLogo = document.querySelector(".Footer-logo");
+
 
   if (!themeToggle) {
     console.error("Theme toggle button not found!");
@@ -247,13 +247,13 @@ document.addEventListener("DOMContentLoaded", function () {
       themeToggle.classList.remove("light-mode");
       themeToggle.classList.add("dark-mode");
       if (brandLogo) brandLogo.src = "/images/logo-light.png";
-      if (footerLogo) footerLogo.src = "/images/logo-dark.png";
+
     } else {
       body.classList.remove("dark-theme");
       themeToggle.classList.remove("dark-mode");
       themeToggle.classList.add("light-mode");
       if (brandLogo) brandLogo.src = "/images/logo-dark.png";
-      if (footerLogo) footerLogo.src = "/images/logo-light.png";
+
     }
   }
 });
@@ -261,75 +261,99 @@ document.addEventListener("DOMContentLoaded", function () {
 // Mobile Menu Functionality
 document.addEventListener("DOMContentLoaded", function () {
   const checkbox = document.getElementById("checkbox2");
-  const mobileMenu = document.querySelector(".MobileMenu");
 
   if (!checkbox) {
     console.error("Mobile menu checkbox not found!");
     return;
   }
 
-  // Function to toggle theme for mobile menu
-  function toggleThemeForMobileMenu() {
-    const body = document.body;
-    const isDark = body.classList.contains("dark-theme");
-    const brandLogo = document.querySelector(".Brand-logo");
-    if (isDark) {
-      // If currently dark, switch to light for mobile menu
-      body.classList.remove("dark-theme");
-      if (brandLogo) brandLogo.src = "/images/logo-dark.png";
-    } else {
-      // If currently light, switch to dark for mobile menu
-      body.classList.add("dark-theme");
-      if (brandLogo) brandLogo.src = "/images/logo-light.png";
-    }
-  }
-
   // Create mobile menu overlay
   const menuOverlay = document.createElement("div");
   menuOverlay.className = "mobile-menu-overlay";
   menuOverlay.innerHTML = `
-        <div class="mobile-menu-content">
+        <div class="mobile-menu-top">
             <div class="mobile-menu-items">
                 <a href="index.html" class="mobile-menu-item">Home</a>
                 <a href="shop.html" class="mobile-menu-item">Shop</a>
-                <a href="#" class="mobile-menu-item">About</a>
-                <a href="#" class="mobile-menu-item">Blog</a>
+                <a href="about.html" class="mobile-menu-item">About</a>
+                <a href="blog.html" class="mobile-menu-item">Blog</a>
             </div>
+        </div>
+        <div class="mobile-menu-icons">
+            <button class="mobile-icon-btn mobile-theme-toggle" aria-label="Toggle theme">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                  class="mobile-moon-icon">
+                  <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                  class="mobile-sun-icon" style="display:none;">
+                  <circle cx="12" cy="12" r="4"/>
+                  <path d="M12 2v2"/><path d="M12 20v2"/>
+                  <path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/>
+                  <path d="M2 12h2"/><path d="M20 12h2"/>
+                  <path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>
+                </svg>
+                <span>Theme</span>
+            </button>
+            <a href="profile.html" class="mobile-icon-btn" aria-label="Profile">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <span>Profile</span>
+            </a>
+            <button class="mobile-icon-btn mobile-cart-btn" aria-label="Cart">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 10a4 4 0 0 1-8 0"/>
+                  <path d="M3.103 6.034h17.794"/>
+                  <path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/>
+                </svg>
+                <span>Cart</span>
+            </button>
         </div>
     `;
 
   document.body.appendChild(menuOverlay);
 
+  // Sync mobile theme toggle icon with current theme state
+  function syncMobileThemeIcon() {
+    const isDark = document.body.classList.contains("dark-theme");
+    const moonIcon = menuOverlay.querySelector(".mobile-moon-icon");
+    const sunIcon  = menuOverlay.querySelector(".mobile-sun-icon");
+    if (moonIcon) moonIcon.style.display = isDark ? "none"  : "block";
+    if (sunIcon)  sunIcon.style.display  = isDark ? "block" : "none";
+  }
+
+  // Wire mobile theme button to the existing desktop theme toggle
+  const mobileThemeBtn = menuOverlay.querySelector(".mobile-theme-toggle");
+  const desktopThemeBtn = document.getElementById("theme-toggle");
+  if (mobileThemeBtn && desktopThemeBtn) {
+    mobileThemeBtn.addEventListener("click", function () {
+      desktopThemeBtn.click();
+      syncMobileThemeIcon();
+    });
+  }
+
+  // Wire mobile cart button to the existing desktop cart button
+  const mobileCartBtn = menuOverlay.querySelector(".mobile-cart-btn");
+  const desktopCartBtn = document.querySelector('.nav-btn[aria-label="Shopping cart"]');
+  if (mobileCartBtn && desktopCartBtn) {
+    mobileCartBtn.addEventListener("click", function () {
+      desktopCartBtn.click();
+    });
+  }
+
   // Toggle menu when checkbox changes
   checkbox.addEventListener("change", function () {
     if (this.checked) {
       menuOverlay.classList.add("active");
-      document.body.style.overflow = "hidden";
-
-      // Toggle theme when menu opens
-      toggleThemeForMobileMenu();
-
-      // GSAP animation for menu items
-      gsap.fromTo(
-        ".mobile-menu-item",
-        {
-          y: 50,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power2.out",
-        }
-      );
+      syncMobileThemeIcon();
     } else {
       menuOverlay.classList.remove("active");
-      document.body.style.overflow = "auto";
-
-      // Toggle theme back when menu closes
-      toggleThemeForMobileMenu();
     }
   });
 
@@ -338,21 +362,15 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e.target === menuOverlay) {
       checkbox.checked = false;
       menuOverlay.classList.remove("active");
-      document.body.style.overflow = "auto";
-      // Toggle theme back when menu closes
-      toggleThemeForMobileMenu();
     }
   });
 
-  // Close menu when clicking on menu items
+  // Close menu when clicking on nav links
   const menuItems = menuOverlay.querySelectorAll(".mobile-menu-item");
   menuItems.forEach((item) => {
     item.addEventListener("click", function () {
       checkbox.checked = false;
       menuOverlay.classList.remove("active");
-      document.body.style.overflow = "auto";
-      // Toggle theme back when menu closes
-      toggleThemeForMobileMenu();
     });
   });
 });

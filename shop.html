@@ -53,23 +53,13 @@
             </svg>
           </button>
           <a href="profile.html" class="nav-btn cursor-target" aria-label="User account">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                data-lucide="user"
-                class="lucide lucide-user"
-              >
-                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg>
-            </a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="user"
+              class="lucide lucide-user">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </a>
           <button class="nav-btn cursor-target" aria-label="Shopping cart">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -97,7 +87,9 @@
 
   <div id="main">
     <div class="one">
-      <h1>SERENITY</h1>
+      <h1 class="serenity-text">SERENITY</h1>
+      <h1 class="static-label top">SHOP</h1>
+      <h1 class="static-label bottom">NOW</h1>
       <img id="dried-orange" src="/images/Flower.png" alt="" />
       <img id="hero-candle" src="/images/Hero-Candle.png" alt="" />
       <img id="lavender" src="images/lavender.png" alt="" />
@@ -123,26 +115,39 @@
       </div>
     </div>
     <div class="three">
-      <div class="card">
-        <img class="petal petal2" src="/images/Products/Diffusers/Hero-Diffuser.png" alt="" />
-        <h1>Diffusers</h1>
+      <div class="card-shop">
+        <div class="card-img">
+          <img class="petal petal2" src="/images/Products/Diffusers/Hero-Diffuser.png" alt="" />
+        </div>
+        <div class="card-content">
+          <h1>Diffusers</h1>
 
-        <button class="btn" onclick="location.href='diffuser-collection.html'">
-          Shop now
-        </button>
+          <button class="btn" onclick="location.href='diffuser-collection.html'">
+            Shop now
+          </button>
+        </div>
       </div>
-      <div class="card">
-        <h1>Candle</h1>
-        <button class="btn" onclick="location.href='candle-collection.html'">
-          Shop now
-        </button>
+      <div class="card-shop">
+        <div class="card-img" id="candle-target">
+          <img id="hero-candle-static" src="/images/Hero-Candle.png" alt="Candle" />
+        </div>
+        <div class="card-content">
+          <h1>Candle</h1>
+          <button class="btn" onclick="location.href='candle-collection.html'">
+            Shop now
+          </button>
+        </div>
       </div>
-      <div class="card">
-        <img id="hamper" src="images/hamper2.png" alt="" />
-        <h1>Hampers</h1>
-        <button class="btn" onclick="location.href='hampers-collection.html'">
-          Shop now
-        </button>
+      <div class="card-shop">
+        <div class="card-img">
+          <img id="hamper" src="images/Products/Hampers/Hero-Hamper.png" alt="" />
+        </div>
+        <div class="card-content">
+          <h1>Hampers</h1>
+          <button class="btn" onclick="location.href='hampers-collection.html'">
+            Shop now
+          </button>
+        </div>
       </div>
     </div>
   </div>
