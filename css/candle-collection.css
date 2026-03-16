@@ -54,12 +54,15 @@ body.dark-theme .btn-buy:hover {
 body.dark-theme .promo-card {
     background-color: #2a2a2a;
 }
+
 body.dark-theme .promo-content h3 {
     color: #fff;
 }
+
 body.dark-theme .promo-content p {
     color: #ccc;
 }
+
 body.dark-theme .promo-content .shop-btn {
     background-color: #fff;
     color: #000;
@@ -69,10 +72,12 @@ body.dark-theme .promo-content .shop-btn {
 
 .product-card {
     background-color: #fff;
-    border-radius: 8px; /* Slightly softer corners */
+    border-radius: 8px;
+    /* Slightly softer corners */
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer; /* Indicate clickability */
+    cursor: pointer;
+    /* Indicate clickability */
     display: flex;
     flex-direction: column;
     /* Remove text-align: center if you want left align, but image center is good */
@@ -82,23 +87,25 @@ body.dark-theme .promo-content .shop-btn {
 
 .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
 }
 
 .card-image {
     overflow: hidden;
     position: relative;
     padding: 20px;
-    background-color: #f9f9f9; /* Light gray background for image area */
+    background-color: #f9f9f9;
+    /* Light gray background for image area */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 250px; /* Fixed height for consistency */
+    height: 250px;
+    /* Fixed height for consistency */
 }
 
 .card-image img {
     max-width: 115%;
- 
+
     object-fit: contain;
     transition: transform 0.5s ease;
 }
@@ -148,11 +155,13 @@ body.dark-theme .promo-content .shop-btn {
 .card-actions {
     display: flex;
     gap: 10px;
-    margin-top: auto; /* Push to bottom if flex column */
+    margin-top: auto;
+    /* Push to bottom if flex column */
     margin-bottom: 15px;
 }
 
-.btn-view, .btn-buy {
+.btn-view,
+.btn-buy {
     flex: 1;
     padding: 8px 0;
     border: 1px solid #222;
@@ -205,7 +214,8 @@ body.dark-theme .promo-content .shop-btn {
 
 /* Promo Card */
 .promo-card {
-    background-color: #f4e4e4; /* Light rose/brown tint */
+    background-color: #f4e4e4;
+    /* Light rose/brown tint */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -247,16 +257,18 @@ body.dark-theme .promo-content .shop-btn {
 /* Responsive Grid */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive columns */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    /* Responsive columns */
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 100px 20px;
 }
 
 /* Filter Bar styles (from previous, ensured here) */
 .collection-header {
-    margin-top: 80px; /* Space for fixed navbar */
+    margin-top: 80px;
+    /* Space for fixed navbar */
     padding: 20px 0;
     border-bottom: 1px solid #eaeaea;
 }
@@ -301,7 +313,8 @@ body.dark-theme .promo-content .shop-btn {
     transition: all 0.2s;
 }
 
-.chip.active, .chip:hover {
+.chip.active,
+.chip:hover {
     background-color: #222;
     color: #fff;
     border-color: #222;
@@ -321,17 +334,22 @@ body.dark-theme .promo-content .shop-btn {
 body.dark-theme .sort-dropdown {
     color: #fff;
 }
+
 body.dark-theme .filter-icon {
     color: #fff;
 }
+
 body.dark-theme .chip {
     border-color: #444;
     color: #ccc;
 }
-body.dark-theme .chip.active, body.dark-theme .chip:hover {
+
+body.dark-theme .chip.active,
+body.dark-theme .chip:hover {
     background-color: #fff;
     color: #000;
 }
+
 body.dark-theme .collection-header {
     border-bottom-color: #333;
 }

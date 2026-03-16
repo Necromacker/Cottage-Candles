@@ -200,7 +200,7 @@ body.static-layout .two {
   gap: 2vh;
   width: 25vw;
   height: 60vh;
-  max-height: 300px;
+  max-height: 400px;
   margin-top: 10vh;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.4);

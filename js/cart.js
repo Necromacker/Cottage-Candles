@@ -4,55 +4,75 @@ let PRODUCT_DATA = {};
 window.PRODUCT_DATA = PRODUCT_DATA;
 
 const PAGE_PRODUCT_MAP = {
-  "candles.html": ["candle-3", "candle-2", "candle-1", "candle-4", "candle-5", "candle-6", "candle-7", "candle-8", "jar-5", "jar-2", "jar-3", "jar-4", "jar-1", "jar-6"],
+  "candles.html": ["candle-1", "candle-2", "candle-3", "candle-4", "candle-5", "candle-6", "candle-7", "candle-8", "candle-9", "candle-10", "candle-11", "candle-12", "candle-13", "candle-14"],
   "diffuser.html": ["diffuser-1", "diffuser-2"],
-  "hampers.html": ["hamper-1", "hamper-2", "hamper-3"],
-  "jar.html": ["jar-5", "jar-2", "jar-3", "jar-4", "jar-1", "jar-6"] // Legacy support
+  "hampers.html": ["hamper-1", "hamper-2", "hamper-3"]
 };
 
 async function loadProductsJson() {
-    try {
-        const res = await fetch('/products.json');
-        const data = await res.json();
-        Object.assign(PRODUCT_DATA, data);
-        updateFrontendUI();
-    } catch (e) {
-        console.error('Failed to load products.json', e);
-    }
+  try {
+    const res = await fetch('products.json');
+    const data = await res.json();
+    Object.assign(PRODUCT_DATA, data);
+    updateFrontendUI();
+  } catch (e) {
+    console.error('Failed to load products.json', e);
+  }
 }
 
 function updateFrontendUI() {
-    // Dynamically update product listings in the frontend (such as candle-collection.html, diffuser.html)
-    document.querySelectorAll('[onclick*="addToCart("]').forEach(btn => {
-        const match = btn.getAttribute('onclick').match(/addToCart\(['"]([^'"]+)['"]\)/);
-        if (match && match[1]) {
-            const id = match[1];
-            const data = PRODUCT_DATA[id];
-            if (data) {
-                const card = btn.closest('.product-card');
-                if (card) {
-                    const priceEl = card.querySelector('.price');
-                    // Format appropriately, default frontend seemed to use $ previously, but backend uses ₹
-                    if (priceEl) priceEl.innerText = `₹${data.price.toFixed(2)}`;
-                    
-                    const titleEl = card.querySelector('h3');
-                    if (titleEl) titleEl.innerText = data.name;
-                    
-                    const img = card.querySelector('.theme-switchable-image') || card.querySelector('img');
-                    if (img && (data.imageLight || data.imageDark)) {
-                        if (img.classList.contains('theme-switchable-image')) {
-                            img.setAttribute('data-light-src', data.imageLight);
-                            img.setAttribute('data-dark-src', data.imageDark);
-                            const isDark = document.body.classList.contains('dark-theme');
-                            img.src = isDark ? data.imageDark : data.imageLight;
-                        } else {
-                            img.src = data.imageLight || data.image;
-                        }
-                    }
-                }
+  // Dynamically update product listings in the frontend (such as candle-collection.html, diffuser.html)
+  document.querySelectorAll('[onclick*="addToCart("]').forEach(btn => {
+    const match = btn.getAttribute('onclick').match(/addToCart\(['"]([^'"]+)['"]\)/);
+    if (match && match[1]) {
+      const id = match[1];
+      const data = PRODUCT_DATA[id];
+      if (data) {
+        const card = btn.closest('.product-card');
+        if (card) {
+          const priceEl = card.querySelector('.price');
+          if (priceEl) priceEl.innerText = `$${data.price.toFixed(2)}`;
+
+          const titleEl = card.querySelector('h3');
+          if (titleEl) titleEl.innerText = data.name;
+
+          const img = card.querySelector('.theme-switchable-image') || card.querySelector('img');
+          if (img && (data.imageLight || data.imageDark)) {
+            if (img.classList.contains('theme-switchable-image')) {
+              img.setAttribute('data-light-src', data.imageLight);
+              img.setAttribute('data-dark-src', data.imageDark);
+              const isDark = document.body.classList.contains('dark-theme');
+              img.src = isDark ? data.imageDark : data.imageLight;
+            } else {
+              img.src = data.imageLight || data.image;
             }
+          }
         }
-    });
+      }
+    }
+  });
+
+  // Handle price-display elements in detail pages
+  document.querySelectorAll('[data-product-id]').forEach(el => {
+    const id = el.getAttribute('data-product-id');
+    const data = PRODUCT_DATA[id];
+    if (data) {
+      // If it's a price-display container
+      const priceDisplay = el.querySelector('.price-display');
+      if (priceDisplay) {
+        priceDisplay.innerText = `$${data.price.toFixed(2)}`;
+      }
+      // If the element itself is a price element
+      if (el.classList.contains('price') || el.classList.contains('price-display')) {
+        el.innerText = `$${data.price.toFixed(2)}`;
+      }
+      // Handle titles if needed
+      const titleDisplay = el.querySelector('.title-display');
+      if (titleDisplay) {
+        titleDisplay.innerText = data.name;
+      }
+    }
+  });
 }
 
 class ShoppingCart {
@@ -338,16 +358,16 @@ class ShoppingCart {
       this.cart.forEach((item) => {
         const data = PRODUCT_DATA[item.id] || item;
         total += item.price * item.quantity;
-        
+
         let itemImage = '';
         if (isDark) {
-            itemImage = data.imageDark || data.image || item.imageDark || item.image || item.imageLight;
+          itemImage = data.imageDark || data.image || item.imageDark || item.image || item.imageLight;
         } else {
-            itemImage = data.imageLight || data.image || item.imageLight || item.image || item.imageDark;
+          itemImage = data.imageLight || data.image || item.imageLight || item.image || item.imageDark;
         }
 
         if (!itemImage || itemImage === 'undefined') {
-            itemImage = 'images/placeholder.jpg';
+          itemImage = 'images/placeholder.jpg';
         }
 
         const itemName = data.name || item.name || 'Product';
@@ -358,7 +378,7 @@ class ShoppingCart {
                         <div class="cart-item-details">
                             <div>
                                 <h3 class="item-name">${itemName}</h3>
-                                <div class="item-price">₹${item.price.toFixed(2)}</div>
+                                <div class="item-price">$${item.price.toFixed(2)}</div>
                             </div>
                             <div class="item-controls">
                                 <div class="quantity-controls">
@@ -375,7 +395,7 @@ class ShoppingCart {
       });
     }
 
-    subtotalEl.textContent = `₹${total.toFixed(2)}`;
+    subtotalEl.textContent = `$${total.toFixed(2)}`;
   }
 
   openCart() {

@@ -93,81 +93,12 @@
     </div>
   </div>
 
-  <!-- Collection Header / Filter Bar -->
-  <div class="collection-header">
-    <div class="filter-bar">
-      <div class="filter-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="4" y1="21" x2="4" y2="14"></line>
-          <line x1="4" y1="10" x2="4" y2="3"></line>
-          <line x1="12" y1="21" x2="12" y2="12"></line>
-          <line x1="12" y1="8" x2="12" y2="3"></line>
-          <line x1="20" y1="21" x2="20" y2="16"></line>
-          <line x1="20" y1="12" x2="20" y2="3"></line>
-          <line x1="1" y1="14" x2="7" y2="14"></line>
-          <line x1="9" y1="8" x2="15" y2="8"></line>
-          <line x1="17" y1="16" x2="23" y2="16"></line>
-        </svg>
-        <span>FILTER (2 products)</span>
-      </div>
-      <div class="filter-chips">
-        <button class="chip active">ALL</button>
-        <button class="chip">HOME</button>
-        <button class="chip">CAR</button>
-      </div>
-      <div class="sort-dropdown">
-        FEATURED <i class="ri-arrow-down-s-line"></i>
-      </div>
-    </div>
-  </div>
+
 
   <!-- Product Grid -->
   <div class="product-grid-container">
-    <div class="product-grid">
-      <!-- Product 1: ROOM AND BATHROOM DIFFUSERS -->
-      <div class="product-card">
-        <div class="card-image">
-          <span class="badge">BESTSELLER</span>
-          <img src="images/Products/Diffusers/Hero-Diffuser.png" alt="Room And Bathroom Diffusers"
-            data-light-src="images/Products/Diffusers/Hero-Diffuser.png"
-            data-dark-src="images/Products/Diffusers/Hero-Diffuser.png" class="theme-switchable-image">
-        </div>
-        <div class="card-details">
-          <h3>ROOM AND BATHROOM DIFFUSERS</h3>
-          <p class="sub-text">Continuous Freshness</p>
-          <div class="card-actions">
-            <button class="btn-view"
-              onclick="event.stopPropagation(); location.href='diffuser.html?product=0'">View</button>
-            <button class="btn-buy" onclick="event.stopPropagation(); addToCart('diffuser-1')">Buy Now</button>
-          </div>
-          <div class="price-row">
-            <span class="price">$45.00</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 2: CAR DIFFUSERS -->
-      <div class="product-card">
-        <div class="card-image">
-          <span class="badge">TRAVEL</span>
-          <img src="images/Products/Diffusers/Hero-Diffuser.png" alt="Car Diffusers"
-            data-light-src="images/Products/Diffusers/Hero-Diffuser.png"
-            data-dark-src="images/Products/Diffusers/Hero-Diffuser.png" class="theme-switchable-image">
-        </div>
-        <div class="card-details">
-          <h3>CAR DIFFUSERS</h3>
-          <p class="sub-text">On-the-go Scent</p>
-          <div class="card-actions">
-            <button class="btn-view"
-              onclick="event.stopPropagation(); location.href='diffuser.html?product=1'">View</button>
-            <button class="btn-buy" onclick="event.stopPropagation(); addToCart('diffuser-2')">Buy Now</button>
-          </div>
-          <div class="price-row">
-            <span class="price">$25.00</span>
-          </div>
-        </div>
-      </div>
+    <div class="product-grid" id="diffuser-grid">
+      <!-- Products will be loaded from products.json -->
     </div>
   </div>
 
@@ -197,6 +128,61 @@
           }
         });
       }
+
+      // Load products from JSON
+      fetch('products.json')
+        .then(r => r.json())
+        .then(products => {
+          const grid = document.getElementById('diffuser-grid');
+          grid.innerHTML = ''; // Clear existing
+
+          const categories = {
+            "diffuser-1": "Continuous Freshness",
+            "diffuser-2": "On-the-go Scent"
+          };
+
+          const badges = {
+            "diffuser-1": "BESTSELLER",
+            "diffuser-2": "TRAVEL"
+          };
+
+          // Add products
+          let diffuserIndex = 0;
+          Object.values(products).forEach((p) => {
+            if (p.id.startsWith('diffuser-')) {
+              const currentIndex = diffuserIndex++;
+              const card = document.createElement('div');
+              card.className = 'product-card';
+              
+              const badgeHtml = badges[p.id] ? `<span class="badge">${badges[p.id]}</span>` : '';
+              const subText = categories[p.id] || "";
+              
+              card.innerHTML = `
+                <div class="card-image">
+                  ${badgeHtml}
+                  <img src="${p.imageLight}" alt="${p.name}"
+                    data-light-src="${p.imageLight}"
+                    data-dark-src="${p.imageDark}" class="theme-switchable-image">
+                </div>
+                <div class="card-details">
+                  <h3>${p.name}</h3>
+                  <p class="sub-text">${subText}</p>
+                  <div class="card-actions">
+                    <button class="btn-view"
+                      onclick="event.stopPropagation(); location.href='diffuser.html?product=${currentIndex}'">View</button>
+                    <button class="btn-buy" onclick="event.stopPropagation(); addToCart('${p.id}')">Buy Now</button>
+                  </div>
+                  <div class="price-row">
+                    <span class="price">$${p.price.toFixed(2)}</span>
+                  </div>
+                </div>
+              `;
+              grid.appendChild(card);
+            }
+          });
+          
+          updateThemeImages();
+        });
 
       // Update images on initial load based on saved theme
       updateThemeImages();

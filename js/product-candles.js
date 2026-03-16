@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (targetProduct !== null) {
       const productIndex = parseInt(targetProduct);
       if (!isNaN(productIndex) && productIndex >= 0 && productIndex < products.length) {
+        window.activeProductIndex = productIndex;
         // Wait for page to fully load and ScrollTrigger to initialize
         window.addEventListener('load', () => {
           setTimeout(() => {
@@ -72,7 +73,10 @@ document.addEventListener("DOMContentLoaded", () => {
        const label = `transition${i+1}`;
        scrollTl.addLabel(label);
        
-       scrollTl.call(() => window.activeProductIndex = i + 1, null, label);
+       scrollTl.call(() => {
+         const isReversed = scrollTl.scrollTrigger && scrollTl.scrollTrigger.direction < 0;
+         window.activeProductIndex = isReversed ? i : i + 1;
+       }, null, label);
   
        // 1. Current Text Exits
        const currentTexts = [

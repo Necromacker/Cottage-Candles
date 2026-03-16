@@ -147,86 +147,12 @@
        </div>
     </div>
 
-    <!-- Collection Header / Filter Bar -->
-    <div class="collection-header">
-       <div class="filter-bar">
-           <div class="filter-icon">
-               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
-               <span>FILTER (3 products)</span>
-           </div>
-           <div class="filter-chips">
-               <button class="chip active">ALL</button>
-               <button class="chip">LUXURY</button>
-               <button class="chip">GIFT SETS</button>
-           </div>
-           <div class="sort-dropdown">
-               FEATURED <i class="ri-arrow-down-s-line"></i>
-           </div>
-       </div>
-    </div>
+
 
     <!-- Product Grid -->
     <div class="product-grid-container">
-        <div class="product-grid">
-            <!-- Product 1: LUXURY GIFT HAMPER -->
-            <div class="product-card">
-                <div class="card-image">
-                    <img src="images/hamper2.png" 
-                         alt="Luxury Gift Hamper"
-                         class="theme-switchable-image">
-                </div>
-                <div class="card-details">
-                    <h3>LUXURY GIFT HAMPER</h3>
-                    <p class="sub-text">Premium Selection</p>
-                    <div class="card-actions">
-                        <button class="btn-view" onclick="event.stopPropagation(); location.href='hampers.html?product=0'">View</button>
-                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('hamper-1')">Buy Now</button>
-                    </div>
-                    <div class="price-row">
-                        <span class="price">$55.00</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product 2: SERENITY SCENTS TRIO -->
-            <div class="product-card">
-                <div class="card-image">
-                    <img src="images/hamper1.png" 
-                         alt="Serenity Scents Trio"
-                         class="theme-switchable-image">
-                </div>
-                <div class="card-details">
-                    <h3>SERENITY SCENTS TRIO</h3>
-                    <p class="sub-text">Calming Collection</p>
-                    <div class="card-actions">
-                        <button class="btn-view" onclick="event.stopPropagation(); location.href='hampers.html?product=1'">View</button>
-                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('hamper-2')">Buy Now</button>
-                    </div>
-                    <div class="price-row">
-                        <span class="price">$42.00</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product 3: FESTIVE SPARKLE BOX -->
-            <div class="product-card">
-                <div class="card-image">
-                    <img src="images/hamper.png" 
-                         alt="Festive Sparkle Box"
-                         class="theme-switchable-image">
-                </div>
-                <div class="card-details">
-                    <h3>FESTIVE SPARKLE BOX</h3>
-                    <p class="sub-text">Holiday Special</p>
-                    <div class="card-actions">
-                        <button class="btn-view" onclick="event.stopPropagation(); location.href='hampers.html?product=2'">View</button>
-                        <button class="btn-buy" onclick="event.stopPropagation(); addToCart('hamper-3')">Buy Now</button>
-                    </div>
-                    <div class="price-row">
-                        <span class="price">$48.00</span>
-                    </div>
-                </div>
-            </div>
+        <div class="product-grid" id="hamper-grid">
+            <!-- Products will be loaded from products.json -->
         </div>
     </div>
 
@@ -262,6 +188,54 @@
             }
           });
         }
+
+        // Load products from JSON
+        fetch('products.json')
+          .then(r => r.json())
+          .then(products => {
+            const grid = document.getElementById('hamper-grid');
+            grid.innerHTML = ''; // Clear existing
+
+            const categories = {
+              "hamper-1": "Premium Selection",
+              "hamper-2": "Calming Collection",
+              "hamper-3": "Holiday Special"
+            };
+
+            // Add products
+            let hamperIndex = 0;
+            Object.values(products).forEach((p) => {
+              if (p.id.startsWith('hamper-')) {
+                const currentIndex = hamperIndex++;
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                
+                const subText = categories[p.id] || "";
+                
+                card.innerHTML = `
+                  <div class="card-image">
+                    <img src="${p.imageLight}" alt="${p.name}"
+                      data-light-src="${p.imageLight}"
+                      data-dark-src="${p.imageDark}" class="theme-switchable-image">
+                  </div>
+                  <div class="card-details">
+                    <h3>${p.name}</h3>
+                    <p class="sub-text">${subText}</p>
+                    <div class="card-actions">
+                      <button class="btn-view" onclick="event.stopPropagation(); location.href='hampers.html?product=${currentIndex}'">View</button>
+                      <button class="btn-buy" onclick="event.stopPropagation(); addToCart('${p.id}')">Buy Now</button>
+                    </div>
+                    <div class="price-row">
+                      <span class="price">$${p.price.toFixed(2)}</span>
+                    </div>
+                  </div>
+                `;
+                grid.appendChild(card);
+              }
+            });
+            
+            updateThemeImages();
+          });
         
         // Update images on initial load based on saved theme
         updateThemeImages();
