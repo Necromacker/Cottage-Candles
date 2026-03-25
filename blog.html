@@ -8,90 +8,337 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="css/cart.css" />
     <style>
-        .blog-section {
+        .sovit-hero {
             padding: 10rem 5% 5rem;
-            min-height: 60vh;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
+            padding-bottom: 3rem;
+            min-height: 80vh;
+            background-color: var(--bg-primary, #f7f7f5);
+            color: var(--text-primary, #111);
             font-family: 'Poppins', sans-serif;
-        }
-
-        .blog-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .blog-header h1 {
-            font-family: 'Ovo', serif;
-            font-size: 3rem;
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .blog-post {
-            background-color: var(--card-bg, #fff);
-            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            position: relative;
         }
 
-        .blog-post:hover {
-            transform: translateY(-5px);
+        .hero-title {
+            text-align: center;
+            font-size: clamp(2.5rem, 5vw, 5.5rem);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            line-height: 1.1;
+            letter-spacing: -1px;
+
+            z-index: 2;
+            position: relative;
+
         }
 
-        .blog-post img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
+        .marker-text {
+            font-family: 'Permanent Marker', cursive;
+            font-size: clamp(3rem, 6vw, 6.5rem);
+            font-weight: 400;
+
+            letter-spacing: 2px;
+            margin-left: 0.5rem;
         }
 
-        .blog-post-content {
-            padding: 1.5rem;
+        .color-orange {
+            color: #d16b47;
         }
 
-        .blog-post-content h2 {
-            font-family: 'Ovo', serif;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .blog-post-content p {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-            color: var(--text-secondary, #555);
-        }
-
-        .read-more {
+        .relative-box {
+            position: relative;
             display: inline-block;
-            padding: 0.5rem 1rem;
-            background-color: var(--primary-color, #000);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 0.9rem;
         }
 
-        .theme-toggle.light-mode~.blog-section .blog-post {
-            background-color: #1e1e1e;
-            color: #fff;
+        .hero-subtext {
+            text-align: center;
+            font-size: clamp(0.9rem, 1.8vw, 1.25rem);
+            color: var(--text-secondary, #666);
+            max-width: 500px;
+            margin: 2rem;
+            font-weight: 400;
+            line-height: 1.6;
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Hide flame when title wraps on mobile/small screens */
+        @media (max-width: 451px) {
+            .fire-container {
+                display: none;
+            }
+        }
+
+        .hero-character {
+            width: 50vw;
+            height: 30vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-character img {
+            width: 100%;
+            position: relative;
+            left: 25vw;
+            object-fit: cover;
+            transition: filter 0.3s ease, left 0.3s ease, width 0.3s ease;
+        }
+
+        body.dark-theme .hero-character img {
+            filter: invert(1);
+        }
+
+        @media (max-width: 1000px) {
+            .hero-character {
+                width: 100%;
+                height: auto;
+            }
+
+            .hero-character img {
+                left: 0;
+                width: 120%;
+                object-fit: contain;
+            }
+        }
+
+        .svg-oval {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 110%;
+            height: 130%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: visible;
+        }
+
+        .svg-lines {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120%;
+            height: 25px;
+            z-index: -1;
+            pointer-events: none;
+            overflow: visible;
+        }
+
+        .pixel-font {
+            font-family: 'Pixelify Sans', sans-serif !important;
+            letter-spacing: 2px;
+            font-size: 1.1em;
+        }
+
+        .flame-l {
+            position: relative;
+            display: inline-block;
+        }
+
+        .fire-container {
+            position: absolute;
+            bottom: 60%;
+            left: 50%;
+            transform: translateX(-50%) scale(0.35);
+            width: 60px;
+            height: 60px;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .fire {
+            position: relative;
+            width: 60px;
+            height: 60px;
+        }
+
+        .flame {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            opacity: .9;
+            width: 100%;
+            height: 100%;
+            border-bottom-right-radius: 70%;
+            border-bottom-left-radius: 70%;
+            border-top-left-radius: 70%;
+            transform: rotate(-45deg) skew(-10deg, -10deg);
+            background-color: rgb(255, 34, 0);
+            background-image: linear-gradient(to top right, rgba(255, 34, 0, 0.9), rgba(255, 106, 0, 0.7));
+            z-index: 1;
+            animation-iteration-count: infinite;
+            animation-fill-mode: forwards;
+            animation-name: burn-left;
+            animation-duration: 300ms;
+        }
+
+        .flame:nth-of-type(2n) {
+            animation-name: burn-right;
+            animation-duration: 400ms;
+        }
+
+        .flame:nth-of-type(2) {
+            height: 80%;
+            width: 80%;
+            left: 10%;
+            background-color: rgb(255, 106, 0);
+            background-image: linear-gradient(to top right, rgba(255, 106, 0, 0.9), rgba(255, 200, 0, 0.9));
+            z-index: 2;
+        }
+
+        .flame:nth-of-type(3) {
+            height: 50%;
+            width: 50%;
+            left: 25%;
+            background-image: linear-gradient(to top right, rgb(255, 200, 0), white);
+            z-index: 3;
+        }
+
+        .flame:nth-of-type(4) {
+            height: 30%;
+            width: 30%;
+            left: 35%;
+            background-color: white;
+            background-image: linear-gradient(to top right, rgba(255, 255, 255, 0.7), rgba(0, 55, 255, 0.1));
+            opacity: 1;
+            z-index: 4;
+        }
+
+        .spark {
+            position: absolute;
+            bottom: 46%;
+            left: 15%;
+            width: 3px;
+            height: 3px;
+            background-color: rgba(255, 106, 0, 0.6);
+            animation-name: fly-up-burnout-1;
+            animation-duration: 6s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-delay: .4s;
+        }
+
+        .spark:nth-of-type(2n) {
+            animation-name: fly-up-burnout-2;
+            animation-duration: 8.4s;
+            animation-delay: 1s;
+        }
+
+        .spark:nth-of-type(3n) {
+            animation-delay: 1.9s;
+            animation-duration: 8s;
+            left: 55%;
+        }
+
+        .spark:nth-of-type(4n) {
+            animation-delay: 2.6s;
+            animation-duration: 7s;
+            left: 88%;
+        }
+
+        .spark:nth-of-type(5n) {
+            animation-delay: 1.4s;
+            animation-duration: 7s;
+            left: 22%;
+        }
+
+        @keyframes burn-left {
+
+            0%,
+            100% {
+                transform: rotate(-45deg) skew(-10deg, -10deg) scale(1);
+            }
+
+            30%,
+            60% {
+                transform: rotate(-44deg) skew(-12deg, -12deg) scale(1.01);
+            }
+        }
+
+        @keyframes burn-right {
+
+            0%,
+            100% {
+                transform: rotate(-45deg) skew(-10deg, -10deg) scale(1);
+            }
+
+            30%,
+            60% {
+                transform: rotate(-46deg) skew(-6deg, -6deg) scale(1.01);
+            }
+        }
+
+        @keyframes fly-up-burnout-1 {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+
+            33% {
+                transform: translate(12px, -70px);
+            }
+
+            66% {
+                transform: translate(0, -140px);
+                opacity: .6;
+            }
+
+            100% {
+                transform: translate(6px, -200px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fly-up-burnout-2 {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translate(-10px, -80px);
+            }
+
+            80% {
+                transform: translate(-4px, -140px);
+                opacity: .6;
+            }
+
+            100% {
+                transform: translate(-6px, -160px);
+                opacity: 0;
+            }
+        }
+
+        /* Fix profile icon hover color in light mode */
+        .nav-btn:hover svg {
+            color: var(--text-primary) !important;
+            stroke: var(--text-primary) !important;
+        }
+
+        body.dark-theme .nav-btn:hover svg {
+            color: var(--text-primary) !important;
+            stroke: var(--text-primary) !important;
         }
     </style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Ovo&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Ovo&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Permanent+Marker&family=Pixelify+Sans:wght@400..700&display=swap"
         rel="stylesheet" />
     <link href="https://cdn.lineicons.com/5.0/lineicons.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
 <body>
@@ -102,11 +349,11 @@
                 <h1>Cottage Candles</h1>
             </div>
             <div class="Nav-links">
-        <a href="index.html" id="buttons"><span class="text">Home</span><span>Home</span></a>
-        <a href="shop.html" id="buttons"><span class="text">Shop</span><span>Shop</span></a>
-        <a href="about.html" id="buttons"><span class="text">About</span><span>About</span></a>
-        <a href="blog.html" id="buttons"><span class="text">Blog</span><span>Blog</span></a>
-      </div>
+                <a href="index.html" id="buttons"><span class="text">Home</span><span>Home</span></a>
+                <a href="shop.html" id="buttons"><span class="text">Shop</span><span>Shop</span></a>
+                <a href="about.html" id="buttons"><span class="text">About</span><span>About</span></a>
+                <a href="blog.html" id="buttons"><span class="text">Blog</span><span>Blog</span></a>
+            </div>
 
             <div class="Nav-buttons">
                 <div class="nav-actions desktop-nav">
@@ -166,45 +413,49 @@
         </div>
     </div>
 
-    <section class="blog-section">
-        <div class="blog-header">
-            <h1>Candle Making & Stories</h1>
-        </div>
-        <div class="blog-grid">
-            <!-- Post 1 -->
-            <div class="blog-post">
-                <img src="/images/diffuser-pc.jpg" alt="Blog Image" />
-                <div class="blog-post-content">
-                    <h2>The Art of Aromatherapy</h2>
-                    <p>Discover how the right scents can completely change your mood and enhance your daily living
-                        space.</p>
-                    <a href="#" class="read-more">Read More</a>
-                </div>
-            </div>
-            <!-- Post 2 -->
-            <div class="blog-post">
-                <img src="/images/candle-pc.jpg" alt="Blog Image" />
-                <div class="blog-post-content">
-                    <h2>Choosing Hand-Poured Candles</h2>
-                    <p>Why artisanal, hand-poured candles make a difference for a safer, cleaner burn.</p>
-                    <a href="#" class="read-more">Read More</a>
-                </div>
-            </div>
-            <!-- Post 3 -->
-            <div class="blog-post">
-                <img src="/images/gift-pc.jpg" alt="Blog Image" />
-                <div class="blog-post-content">
-                    <h2>Perfect Gifts for Any Occasion</h2>
-                    <p>Looking for a housewarming gift? A curated hamper is the ultimate sign of affection.</p>
-                    <a href="#" class="read-more">Read More</a>
-                </div>
-            </div>
+    <section class="sovit-hero">
+        <h1 class="hero-title">
+            WE CREATE <span class="relative-box"><span class="marker-text color-orange pixel-font">CAND<span
+                        class="flame-l">l
+                        <div class="fire-container">
+                            <div class="fire">
+                                <div class="flame"></div>
+                                <div class="flame"></div>
+                                <div class="flame"></div>
+                                <div class="flame"></div>
+                                <div class="spark"></div>
+                                <div class="spark"></div>
+                                <div class="spark"></div>
+                                <div class="spark"></div>
+                                <div class="spark"></div>
+                            </div>
+                        </div>
+                    </span>ES</span>
+                <svg class="svg-oval" viewBox="0 0 400 100" preserveAspectRatio="none">
+                    <path d="M40,50 C10,10 390,-10 370,50 C360,100 20,90 40,50" fill="none" stroke="#d16b47"
+                        stroke-width="3" />
+                </svg>
+            </span><br />
+            THAT LIGHT UP YOUR<br />
+            <span class="relative-box">MOMENTS
+                <svg class="svg-lines" viewBox="0 0 300 30" preserveAspectRatio="none">
+                    <path d="M-10,15 Q150,25 310,15 M0,25 Q150,15 300,25" fill="none" stroke="#d16b47"
+                        stroke-width="3" />
+                </svg>
+            </span>
+        </h1>
+        <p class="hero-subtext">
+            Hand-poured candles crafted to bring warmth, calm, and beautiful fragrance into every space.
+        </p>
+
+        <div class="hero-character">
+            <img src="/images/candle-character.png" alt="Candle Character" />
         </div>
     </section>
 
 
 
-    <script type="module" src="/js/script.js"></script>
+    <script type="module" src="js/script.js"></script>
     <script type="module" src="js/cart.js"></script>
 </body>
 
