@@ -1411,459 +1411,459 @@ a {
   color: skyblue;
   text-decoration: none;
 
+}
 
+p a {
+  font-size: 1.25rem;
+}
 
-  p a {
-    font-size: 1.25rem;
+.best-sellers-grid {
+  margin: auto;
+  width: 90vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Bestseller-description {
+  font-family: Poppins;
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  color: light-dark(var(--text-primary), var(--text-secondary));
+}
+
+.activities-count {
+  font-family: Poppins;
+  grid-column: 2 / -1;
+  place-self: start;
+  z-index: 99;
+  color: light-dark(var(--text-primary), var(--text-secondary));
+
+  @container activities-widget (width < 300px) {
+    display: none;
+  }
+}
+
+.Bestseller-heading {
+  font-family: Poppins;
+  font-size: clamp(2rem, 2.5vw, 3rem);
+}
+
+activities-widget {
+  container: activities-widget / inline-size;
+
+  padding: 3rem 10vw;
+  inline-size: min(100%, 50vw);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1lh auto auto;
+  gap: 0.5rem 5rem;
+
+  >* {
+    grid-area: 1 / 1 / 1 / 1;
+    margin-left: 0px;
   }
 
-  .best-sellers-grid {
-    margin: auto;
-    width: 90vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  >.activity {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-template-columns: subgrid;
+
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+
+    /* Using a div wrapper here because Firefox was blowing out the grid when making the image itself aspect-ratio: 1; */
+    .img {
+      margin-bottom: 3rem;
+      grid-column: 1 / 2;
+      grid-row: 1 / 4;
+      width: 100%;
+      aspect-ratio: 1;
+
+      overflow: clip;
+      border-radius: 8px;
+      border: 3px solid light-dark(var(--text-primary), var(--text-secondary));
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+      rotate: var(--imgRotate, 0deg);
+      transition: 0.2s;
+
+      >img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+
+    &:nth-child(1) {
+      .img {
+        --imgRotate: 4deg;
+      }
+    }
+
+    &:nth-child(2) {
+      .img {
+        --imgRotate: -2deg;
+      }
+    }
+
+    &:nth-child(3) {
+      .img {
+        --imgRotate: -9deg;
+      }
+    }
+
+    &:nth-child(4) {
+      .img {
+        --imgRotate: 7deg;
+      }
+    }
+
+    .text {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+
+      color: light-dark(var(--text-primary), var(--text-secondary));
+      opacity: 0;
+
+      translate: 0 20px;
+      transition: 0.5s cubic-bezier(0.85, 0, 0.15, 1);
+
+      pointer-events: none;
+
+      h3 {
+        color: light-dark(var(--text-primary), var(--text-secondary));
+        margin: 0;
+      }
+    }
+
+    &.active {
+      .text {
+        opacity: 1;
+        translate: 0 0;
+        pointer-events: all;
+      }
+
+      .img {
+        animation: 0.66s moveOutIn cubic-bezier(0.34, 1.56, 0.64, 1);
+        animation-fill-mode: forwards;
+      }
+    }
+
+    @container activities-widget (width < 400px) {
+      display: block;
+      padding: 1rem;
+      inline-size: min(100%, 40vw);
+
+      .activity {
+        display: block;
+        margin-block-end: 3rem;
+
+        .img {
+          max-inline-size: 125px;
+          margin-inline: auto;
+        }
+
+        .text {
+          opacity: 1;
+          translate: 0 0;
+          pointer-events: all;
+          background: none;
+        }
+      }
+    }
   }
 
-  .Bestseller-description {
-    font-family: Poppins;
-    font-size: clamp(1rem, 1.5vw, 1.5rem);
-    color: light-dark(var(--text-primary), var(--text-secondary));
+  &.children-animating {
+    .img {
+      animation: 0.75s straightenImages;
+    }
   }
 
-  .activities-count {
-    font-family: Poppins;
-    grid-column: 2 / -1;
-    place-self: start;
+  .activities-navigation {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+
+    user-select: none;
+    place-self: end;
     z-index: 99;
-    color: light-dark(var(--text-primary), var(--text-secondary));
+
+    >button {
+      border: 1px solid light-dark(var(--text-primary), var(--text-secondary));
+      background: 0;
+      border-radius: 50px;
+      aspect-ratio: 1;
+
+      &:hover {
+        background: CanvasText;
+        color: Canvas;
+      }
+    }
 
     @container activities-widget (width < 300px) {
       display: none;
     }
   }
+}
 
-  .Bestseller-heading {
-    font-family: Poppins;
-    font-size: clamp(2rem, 2.5vw, 3rem);
+@keyframes straightenImages {
+  50% {
+    --imgRotate: 0deg;
+  }
+}
+
+@keyframes moveOutIn {
+
+  /* image */
+  50% {
+    translate: -100% 0;
+    scale: 1.15;
   }
 
-  activities-widget {
-    container: activities-widget / inline-size;
-
-    padding: 3rem 10vw;
-    inline-size: min(100%, 50vw);
-
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1lh auto auto;
-    gap: 0.5rem 5rem;
-
-    >* {
-      grid-area: 1 / 1 / 1 / 1;
-      margin-left: 0px;
-    }
-
-    >.activity {
-      display: grid;
-      grid-template-rows: subgrid;
-      grid-template-columns: subgrid;
-
-      grid-column: 1 / -1;
-      grid-row: 1 / -1;
-
-      /* Using a div wrapper here because Firefox was blowing out the grid when making the image itself aspect-ratio: 1; */
-      .img {
-        margin-bottom: 3rem;
-        grid-column: 1 / 2;
-        grid-row: 1 / 4;
-        width: 100%;
-        aspect-ratio: 1;
-
-        overflow: clip;
-        border-radius: 8px;
-        border: 3px solid light-dark(var(--text-primary), var(--text-secondary));
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-
-        rotate: var(--imgRotate, 0deg);
-        transition: 0.2s;
-
-        >img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
-      }
-
-      &:nth-child(1) {
-        .img {
-          --imgRotate: 4deg;
-        }
-      }
-
-      &:nth-child(2) {
-        .img {
-          --imgRotate: -2deg;
-        }
-      }
-
-      &:nth-child(3) {
-        .img {
-          --imgRotate: -9deg;
-        }
-      }
-
-      &:nth-child(4) {
-        .img {
-          --imgRotate: 7deg;
-        }
-      }
-
-      .text {
-        grid-column: 2 / 3;
-        grid-row: 2 / 3;
-
-        color: light-dark(var(--text-primary), var(--text-secondary));
-        opacity: 0;
-
-        translate: 0 20px;
-        transition: 0.5s cubic-bezier(0.85, 0, 0.15, 1);
-
-        pointer-events: none;
-
-        h3 {
-          color: light-dark(var(--text-primary), var(--text-secondary));
-          margin: 0;
-        }
-      }
-
-      &.active {
-        .text {
-          opacity: 1;
-          translate: 0 0;
-          pointer-events: all;
-        }
-
-        .img {
-          animation: 0.66s moveOutIn cubic-bezier(0.34, 1.56, 0.64, 1);
-          animation-fill-mode: forwards;
-        }
-      }
-
-      @container activities-widget (width < 400px) {
-        display: block;
-        padding: 1rem;
-        inline-size: min(100%, 40vw);
-
-        .activity {
-          display: block;
-          margin-block-end: 3rem;
-
-          .img {
-            max-inline-size: 125px;
-            margin-inline: auto;
-          }
-
-          .text {
-            opacity: 1;
-            translate: 0 0;
-            pointer-events: all;
-            background: none;
-          }
-        }
-      }
-    }
-
-    &.children-animating {
-      .img {
-        animation: 0.75s straightenImages;
-      }
-    }
-
-    .activities-navigation {
-      grid-column: 2 / 3;
-      grid-row: 3 / 4;
-
-      user-select: none;
-      place-self: end;
-      z-index: 99;
-
-      >button {
-        border: 1px solid light-dark(var(--text-primary), var(--text-secondary));
-        background: 0;
-        border-radius: 50px;
-        aspect-ratio: 1;
-
-        &:hover {
-          background: CanvasText;
-          color: Canvas;
-        }
-      }
-
-      @container activities-widget (width < 300px) {
-        display: none;
-      }
-    }
-  }
-
-  @keyframes straightenImages {
-    50% {
-      --imgRotate: 0deg;
-    }
-  }
-
-  @keyframes moveOutIn {
-
-    /* image */
-    50% {
-      translate: -100% 0;
-      scale: 1.15;
-    }
-
-    100% {
-      translate: 0 0;
-      z-index: 1;
-    }
-  }
-
-  @keyframes show {
-    0% {
-      margin-top: -90px;
-    }
-
-    46% {
-      margin-top: -90px;
-    }
-
-    50% {
-      margin-top: 0px;
-    }
-
-    96% {
-      margin-top: 0px;
-    }
-
-    100% {
-      margin-top: -90px;
-    }
-  }
-
-  /* From Uiverse.io by Centered101 */
-  .card {
-    width: 280px;
-    height: 280px;
-    background: var(--flip-last-color);
-    border-radius: 32px;
-    padding: 3px;
-    position: relative;
-    box-shadow: #604b4a30 0px 70px 30px -50px;
-    transition: all 0.5s ease-in-out;
-  }
-
-  .card .mail {
-    position: absolute;
-    right: 2rem;
-    top: 1.4rem;
-    background: transparent;
-    border: none;
-  }
-
-  .card .mail svg {
-    stroke: var(--bg-primary);
-    stroke-width: 3px;
-  }
-
-  .card .mail svg:hover {
-    stroke: #f55d56;
-  }
-
-  .card .profile-pic {
-    position: absolute;
-    width: calc(100% - 6px);
-    height: calc(100% - 6px);
-    top: 3px;
-    left: 3px;
-    border-radius: 29px;
+  100% {
+    translate: 0 0;
     z-index: 1;
-    border: 0px solid var(--bg-primary);
-    overflow: hidden;
-    transition: all 0.5s ease-in-out 0.2s, z-index 0.5s ease-in-out 0.2s;
+  }
+}
+
+@keyframes show {
+  0% {
+    margin-top: -90px;
   }
 
-  .card .profile-pic img {
-    -o-object-fit: cover;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    -o-object-position: 0px 0px;
-    object-position: 0px 0px;
-    transition: all 0.5s ease-in-out 0s;
+  46% {
+    margin-top: -90px;
   }
 
-  .card .profile-pic svg {
-    width: 100%;
-    height: 100%;
-    -o-object-fit: cover;
-    object-fit: cover;
-    -o-object-position: 0px 0px;
-    object-position: 0px 0px;
-    transform-origin: 45% 20%;
-    transition: all 0.5s ease-in-out 0s;
+  50% {
+    margin-top: 0px;
   }
 
-  .card .bottom {
-    position: absolute;
-    bottom: 3px;
-    left: 3px;
-    right: 3px;
-    background: var(--bg-primary);
-    top: 80%;
-    border-radius: 29px;
-    z-index: 2;
-    box-shadow: rgba(96, 75, 74, 0.1882352941) 0px 5px 5px 0px inset;
-    overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+  96% {
+    margin-top: 0px;
   }
 
-  .card-div {
-    row-gap: 3.5rem;
-    column-gap: 1rem;
-    width: 100%;
-    align-items: center;
-    justify-content: space-evenly;
-    display: flex;
-    flex-wrap: wrap;
+  100% {
+    margin-top: -90px;
   }
+}
 
-  /* Hide 4th card only when exactly 3 fit per row (the 3+1 orphan pattern) */
-  @media (min-width: 930px) and (max-width: 1232px) {
-    .card-div .card:nth-child(4) {
-      display: none;
-    }
-  }
+/* From Uiverse.io by Centered101 */
+.card {
+  width: 280px;
+  height: 280px;
+  background: var(--flip-last-color);
+  border-radius: 32px;
+  padding: 3px;
+  position: relative;
+  box-shadow: #604b4a30 0px 70px 30px -50px;
+  transition: all 0.5s ease-in-out;
+}
 
-  .card .bottom .content {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    bottom: 4rem;
-    left: 1.5rem;
-    right: 1.5rem;
-    height: 160px;
-    gap: 4vw;
-  }
+.card .mail {
+  position: absolute;
+  right: 2rem;
+  top: 1.4rem;
+  background: transparent;
+  border: none;
+}
 
-  .card .bottom .content .name {
-    display: flex;
-    width: 73%;
-    justify-content: end;
-    font-size: 1.2rem;
-    color: var(--text-primary);
-    font-weight: bold;
-  }
+.card .mail svg {
+  stroke: var(--bg-primary);
+  stroke-width: 3px;
+}
 
-  .card .bottom .content .about-me {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--text-primary);
-  }
+.card .mail svg:hover {
+  stroke: #f55d56;
+}
 
-  .card .bottom .bottom-bottom {
-    position: absolute;
-    bottom: 1rem;
-    left: 1.5rem;
-    right: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+.card .profile-pic {
+  position: absolute;
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+  top: 3px;
+  left: 3px;
+  border-radius: 29px;
+  z-index: 1;
+  border: 0px solid var(--bg-primary);
+  overflow: hidden;
+  transition: all 0.5s ease-in-out 0.2s, z-index 0.5s ease-in-out 0.2s;
+}
 
-  .card .bottom .bottom-bottom .social-links-container {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: 0.2rem;
-  }
+.card .profile-pic img {
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  -o-object-position: 0px 0px;
+  object-position: 0px 0px;
+  transition: all 0.5s ease-in-out 0s;
+}
 
-  .card .bottom .bottom-bottom .social-links-container svg {
-    height: 20px;
-    fill: var(--text-primary);
-    filter: drop-shadow(0 5px 5px rgba(165, 132, 130, 0.1333333333));
-  }
+.card .profile-pic svg {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: 0px 0px;
+  object-position: 0px 0px;
+  transform-origin: 45% 20%;
+  transition: all 0.5s ease-in-out 0s;
+}
 
-  .card:hover {
-    border-top-left-radius: 55px;
-  }
+.card .bottom {
+  position: absolute;
+  bottom: 3px;
+  left: 3px;
+  right: 3px;
+  background: var(--bg-primary);
+  top: 80%;
+  border-radius: 29px;
+  z-index: 2;
+  box-shadow: rgba(96, 75, 74, 0.1882352941) 0px 5px 5px 0px inset;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+}
 
-  .card:hover .bottom {
-    top: 20%;
-    border-radius: 80px 29px 29px 29px;
-    transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
-  }
+.card-div {
+  row-gap: 3.5rem;
+  column-gap: 1rem;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
+}
 
-  .card:hover .profile-pic {
-    width: 100px;
-    height: 100px;
-    aspect-ratio: 1;
-    top: 10px;
-    left: 10px;
-    border-radius: 50%;
-    z-index: 3;
-    border: 7px solid var(--bg-primary);
-    box-shadow: rgba(96, 75, 74, 0.1882352941) 0px 5px 5px 0px;
-    transition: all 0.5s ease-in-out, z-index 0.5s ease-in-out 0.1s;
+/* Hide 4th card only when exactly 3 fit per row (the 3+1 orphan pattern) */
+@media (min-width: 930px) and (max-width: 1232px) {
+  .card-div .card:nth-child(4) {
+    display: none;
   }
+}
 
-  .card:hover .profile-pic:hover {
-    transform: scale(1.3);
-    border-radius: 0px;
-  }
+.card .bottom .content {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 4rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 160px;
+  gap: 4vw;
+}
 
-  .card:hover .profile-pic img {
-    transform: scale(1.5);
-    /* -o-object-position: 0px 25px; */
-    object-position: 0px 1rem;
-    transition: all 0.5s ease-in-out 0.5s;
-  }
+.card .bottom .content .name {
+  display: flex;
+  width: 73%;
+  justify-content: end;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  font-weight: bold;
+}
 
-  .card:hover .profile-pic svg {
-    transform: scale(2.5);
-    transition: all 0.5s ease-in-out 0.5s;
-  }
+.card .bottom .content .about-me {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
 
-  .Rating-para {
-    font-family: Poppins;
-    font-weight: 800;
-  }
+.card .bottom .bottom-bottom {
+  position: absolute;
+  bottom: 1rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  .input {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 1em 0;
-    font-family: poppins, sans-serif;
-  }
+.card .bottom .bottom-bottom .social-links-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 0.2rem;
+}
 
-  #input-div {
-    width: 90%;
-  }
+.card .bottom .bottom-bottom .social-links-container svg {
+  height: 20px;
+  fill: var(--text-primary);
+  filter: drop-shadow(0 5px 5px rgba(165, 132, 130, 0.1333333333));
+}
 
-  button {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    outline: none;
-    border: none;
-    vertical-align: middle;
-    text-decoration: none;
-    background: transparent;
-    padding: 0;
-    font-size: inherit;
-    font-family: inherit;
-  }
+.card:hover {
+  border-top-left-radius: 55px;
+}
+
+.card:hover .bottom {
+  top: 20%;
+  border-radius: 80px 29px 29px 29px;
+  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
+}
+
+.card:hover .profile-pic {
+  width: 100px;
+  height: 100px;
+  aspect-ratio: 1;
+  top: 10px;
+  left: 10px;
+  border-radius: 50%;
+  z-index: 3;
+  border: 7px solid var(--bg-primary);
+  box-shadow: rgba(96, 75, 74, 0.1882352941) 0px 5px 5px 0px;
+  transition: all 0.5s ease-in-out, z-index 0.5s ease-in-out 0.1s;
+}
+
+.card:hover .profile-pic:hover {
+  transform: scale(1.3);
+  border-radius: 0px;
+}
+
+.card:hover .profile-pic img {
+  transform: scale(1.5);
+  /* -o-object-position: 0px 25px; */
+  object-position: 0px 1rem;
+  transition: all 0.5s ease-in-out 0.5s;
+}
+
+.card:hover .profile-pic svg {
+  transform: scale(2.5);
+  transition: all 0.5s ease-in-out 0.5s;
+}
+
+.Rating-para {
+  font-family: Poppins;
+  font-weight: 800;
+}
+
+.input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1em 0;
+  font-family: poppins, sans-serif;
+}
+
+#input-div {
+  width: 90%;
+}
+
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
