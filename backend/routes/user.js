@@ -8,6 +8,21 @@ const mongoose = require('mongoose');
 router.get('/profile', auth, async (req, res) => {
     try {
         const user = await User.findById(req.user.id).select('-password');
+        
+        // AUTO-MIGRATION for existing sessions
+        if (user && (!user.profileDetails || !user.profileDetails.email)) {
+            const raw = user.toObject({ virtuals: false });
+            user.profileDetails = {
+                firstName: raw.firstName || "User",
+                lastName: raw.lastName || " ",
+                email: raw.email,
+                password: raw.password,
+                contact: raw.contact || "",
+                isAdmin: raw.isAdmin || false
+            };
+            await user.save();
+        }
+
         res.json(user);
     } catch (err) {
         res.status(500).json({ message: 'Server error' });
@@ -19,9 +34,9 @@ router.put('/profile', auth, async (req, res) => {
     const { firstName, lastName, contact } = req.body;
     try {
         const user = await User.findById(req.user.id);
-        if (firstName) user.firstName = firstName;
-        if (lastName) user.lastName = lastName;
-        if (contact) user.contact = contact;
+        if (firstName) user.profileDetails.firstName = firstName;
+        if (lastName) user.profileDetails.lastName = lastName;
+        if (contact) user.profileDetails.contact = contact;
         await user.save();
         res.json(user);
     } catch (err) {
@@ -111,6 +126,39 @@ router.delete('/cart/:productId', auth, async (req, res) => {
         await user.save();
         res.json(user.cart);
     } catch (err) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// Order operations (Moved from orders.js)
+router.get('/orders', auth, async (req, res) => {
+    try {
+        // req.user is populated by auth middleware
+        res.json(req.user.orders || []);
+    } catch (err) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+router.post('/orders', auth, async (req, res) => {
+    const { items, totalAmount, shippingAddress, paymentId, orderId } = req.body;
+    try {
+        const user = await User.findById(req.user.id);
+        const newOrder = {
+            items,
+            totalAmount,
+            shippingAddress,
+            paymentId,
+            orderId,
+            paymentStatus: 'paid'
+        };
+
+        user.orders.push(newOrder);
+        user.cart = []; // Clear cart
+        await user.save();
+        res.status(201).json(newOrder);
+    } catch (err) {
+        console.error('Order creation error:', err);
         res.status(500).json({ message: 'Server error' });
     }
 });

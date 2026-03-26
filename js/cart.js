@@ -8,6 +8,7 @@ const PAGE_PRODUCT_MAP = {
   "diffuser.html": ["diffuser-1", "diffuser-2"],
   "hampers.html": ["hamper-1", "hamper-2", "hamper-3"]
 };
+const API_BASE = 'https://cottage-candles.onrender.com/api';
 
 async function loadProductsJson() {
   try {
@@ -95,8 +96,7 @@ class ShoppingCart {
     if (!token) return;
 
     try {
-      const API_BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : 'https://cottage-candles.onrender.com/api';
-      const res = await fetch(`${API_BASE}/user/cart`, {
+            const res = await fetch(`${API_BASE}/user/cart`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
@@ -271,8 +271,7 @@ class ShoppingCart {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const API_BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : 'https://cottage-candles.onrender.com/api';
-        await fetch(`${API_BASE}/user/cart`, {
+                await fetch(`${API_BASE}/user/cart`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -298,8 +297,7 @@ class ShoppingCart {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const API_BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : 'https://cottage-candles.onrender.com/api';
-        await fetch(`${API_BASE}/user/cart/${id}`, {
+                await fetch(`${API_BASE}/user/cart/${id}`, {
           method: 'DELETE',
           headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -322,8 +320,7 @@ class ShoppingCart {
         const token = localStorage.getItem('token');
         if (token) {
           try {
-            const API_BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : 'https://cottage-candles.onrender.com/api';
-            await fetch(`${API_BASE}/user/cart/${id}`, {
+                        await fetch(`${API_BASE}/user/cart/${id}`, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',

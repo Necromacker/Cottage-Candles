@@ -17,13 +17,19 @@ router.post('/signup', async (req, res) => {
     const { firstName, lastName, email, password, contact } = req.body;
 
     try {
-        let userByEmail = await User.findOne({ email });
+        // Search both old and new email locations
+        let userByEmail = await User.findOne({ 
+            $or: [{ 'profileDetails.email': email }, { 'email': email }] 
+        });
+        
         if (userByEmail) {
             return res.status(400).json({ message: 'User with this email already exists' });
         }
 
         if (contact) {
-            let userByPhone = await User.findOne({ contact });
+            let userByPhone = await User.findOne({ 
+                $or: [{ 'profileDetails.contact': contact }, { 'contact': contact }] 
+            });
             if (userByPhone) {
                 return res.status(400).json({ message: 'User with this phone number already exists' });
             }
@@ -32,11 +38,13 @@ router.post('/signup', async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const user = new User({
-            firstName,
-            lastName,
-            email,
-            password: hashedPassword,
-            contact
+            profileDetails: {
+                firstName,
+                lastName: lastName || ' ',
+                email,
+                password: hashedPassword,
+                contact
+            }
         });
 
         await user.save();
@@ -47,9 +55,9 @@ router.post('/signup', async (req, res) => {
             token,
             user: {
                 id: user._id,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email
+                firstName: user.profileDetails.firstName,
+                lastName: user.profileDetails.lastName,
+                email: user.profileDetails.email
             }
         });
     } catch (err) {
@@ -63,16 +71,34 @@ router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ 
+            $or: [{ 'profileDetails.email': email }, { 'email': email }] 
+        });
+
         if (!user) {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
 
-        if (!user.password) {
+        // AUTO-MIGRATION: If user is found but data is at root
+        if (!user.profileDetails || !user.profileDetails.email) {
+            console.log("Migrating old user profile for login:", email);
+            const raw = user.toObject({ virtuals: false });
+            user.profileDetails = {
+                firstName: raw.firstName || "User",
+                lastName: raw.lastName || " ",
+                email: raw.email || email,
+                password: raw.password,
+                contact: raw.contact || "",
+                isAdmin: raw.isAdmin || false
+            };
+            await user.save();
+        }
+
+        if (!user.profileDetails.password) {
             return res.status(400).json({ message: 'Please login using Google' });
         }
 
-        const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await bcrypt.compare(password, user.profileDetails.password);
         if (!isMatch) {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
@@ -83,9 +109,9 @@ router.post('/login', async (req, res) => {
             token,
             user: {
                 id: user._id,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email
+                firstName: user.profileDetails.firstName,
+                lastName: user.profileDetails.lastName,
+                email: user.profileDetails.email
             }
         });
     } catch (err) {
@@ -99,7 +125,9 @@ router.post('/forgot-password', async (req, res) => {
     const { email } = req.body;
 
     try {
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ 
+            $or: [{ 'profileDetails.email': email }, { 'email': email }] 
+        });
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
@@ -110,7 +138,7 @@ router.post('/forgot-password', async (req, res) => {
         await user.save();
 
         await sendEmail({
-            email: user.email,
+            email: user.profileDetails.email,
             subject: 'Password Reset OTP',
             html: `<h3>Your OTP for password reset is: <b>${otp}</b></h3><p>It is valid for 1 hour.</p>`
         });
@@ -128,7 +156,7 @@ router.post('/reset-password', async (req, res) => {
 
     try {
         const user = await User.findOne({
-            email,
+            $or: [{ 'profileDetails.email': email }, { 'email': email }],
             resetPasswordOTP: otp,
             resetPasswordExpires: { $gt: Date.now() }
         });
@@ -137,7 +165,7 @@ router.post('/reset-password', async (req, res) => {
             return res.status(400).json({ message: 'Invalid or expired OTP' });
         }
 
-        user.password = await bcrypt.hash(newPassword, 10);
+        user.profileDetails.password = await bcrypt.hash(newPassword, 10);
         user.resetPasswordOTP = undefined;
         user.resetPasswordExpires = undefined;
         await user.save();
@@ -154,22 +182,37 @@ router.post('/google', async (req, res) => {
     const { email, firstName, lastName, googleId } = req.body;
 
     try {
-        let user = await User.findOne({ email });
+        let user = await User.findOne({ 
+            $or: [{ 'profileDetails.email': email }, { 'email': email }] 
+        });
 
         if (user) {
+            // AUTO-MIGRATION for Google Users
+            if (!user.profileDetails || !user.profileDetails.email) {
+                const raw = user.toObject({ virtuals: false });
+                user.profileDetails = {
+                    firstName: raw.firstName || firstName || "User",
+                    lastName: raw.lastName || lastName || " ",
+                    email: raw.email || email,
+                    password: raw.password || crypto.randomBytes(16).toString('hex'),
+                    contact: raw.contact || "",
+                    isAdmin: raw.isAdmin || false
+                };
+            }
+
             if (!user.googleId) {
                 user.googleId = googleId;
             }
-            // Ensure required fields exist even for existing users
-            if (!user.lastName) user.lastName = lastName || ' ';
             await user.save();
         } else {
             user = new User({
-                firstName: firstName || 'User',
-                lastName: lastName || ' ',
-                email,
-                googleId,
-                password: crypto.randomBytes(16).toString('hex') // Dummy password
+                profileDetails: {
+                    firstName: firstName || 'User',
+                    lastName: lastName || ' ',
+                    email,
+                    password: crypto.randomBytes(16).toString('hex')
+                },
+                googleId: googleId
             });
             await user.save();
         }
@@ -180,9 +223,9 @@ router.post('/google', async (req, res) => {
             token,
             user: {
                 id: user._id,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email
+                firstName: user.profileDetails.firstName,
+                lastName: user.profileDetails.lastName,
+                email: user.profileDetails.email
             }
         });
     } catch (err) {

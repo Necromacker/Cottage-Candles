@@ -1,6 +1,4 @@
-const API_BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost'
-    ? 'http://localhost:5001/api'
-    : 'https://cottage-candles.onrender.com/api';
+const API_BASE = 'https://cottage-candles.onrender.com/api';
 let currentUser = null;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -52,14 +50,16 @@ async function loadProfile() {
         if (!res.ok) throw new Error('Failed to load profile');
 
         currentUser = await res.json();
-        document.getElementById('user-name').innerText = `${currentUser.firstName} ${currentUser.lastName}`;
-        document.getElementById('user-email').innerText = currentUser.email;
+        const details = currentUser.profileDetails || {};
+        
+        document.getElementById('user-name').innerText = `${details.firstName || 'User'} ${details.lastName || ''}`;
+        document.getElementById('user-email').innerText = details.email || '';
 
         // Populate form
-        document.getElementById('firstName').value = currentUser.firstName;
-        document.getElementById('lastName').value = currentUser.lastName;
-        document.getElementById('email').value = currentUser.email;
-        document.getElementById('contact').value = currentUser.contact || '';
+        document.getElementById('firstName').value = details.firstName || '';
+        document.getElementById('lastName').value = details.lastName || '';
+        document.getElementById('email').value = details.email || '';
+        document.getElementById('contact').value = details.contact || '';
     } catch (err) {
         console.error(err);
         localStorage.removeItem('token');
@@ -230,7 +230,7 @@ window.deleteAddress = async (id) => {
 };
 
 async function loadOrders() {
-    const res = await fetch(`${API_BASE}/orders/my-orders`, {
+    const res = await fetch(`${API_BASE}/user/orders`, {
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     });
     const orders = await res.json();
@@ -243,8 +243,8 @@ async function loadOrders() {
         orderEl.style = "border: 1px solid #d5d9d9; border-radius: 8px; margin-bottom: 20px; overflow: hidden; font-family: 'Inter', sans-serif;";
         
         let userName = "User";
-        if (currentUser && currentUser.firstName) {
-            userName = `${currentUser.firstName} ${currentUser.lastName || ''}`;
+        if (currentUser && currentUser.profileDetails) {
+            userName = `${currentUser.profileDetails.firstName} ${currentUser.profileDetails.lastName || ''}`;
         }
         
         const orderDate = new Date(order.createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -392,7 +392,7 @@ async function handleCheckout() {
 
             if (verifyRes.ok) {
                 // Save Order to DB
-                const saveRes = await fetch(`${API_BASE}/orders`, {
+                const saveRes = await fetch(`${API_BASE}/user/orders`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -424,9 +424,9 @@ async function handleCheckout() {
             }
         },
         prefill: {
-            name: `${currentUser.firstName} ${currentUser.lastName}`,
-            email: currentUser.email,
-            contact: currentUser.contact
+            name: `${currentUser.profileDetails.firstName} ${currentUser.profileDetails.lastName}`,
+            email: currentUser.profileDetails.email,
+            contact: currentUser.profileDetails.contact
         },
         theme: { color: "#d4a373" }
     };
