@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 router.get('/profile', auth, async (req, res) => {
     try {
         const user = await User.findById(req.user.id).select('-password');
-        
+
         // AUTO-MIGRATION for existing sessions
         if (user && (!user.profileDetails || !user.profileDetails.email)) {
             const raw = user.toObject({ virtuals: false });

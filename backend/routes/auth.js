@@ -61,6 +61,7 @@ router.post('/signup', async (req, res) => {
             }
         });
     } catch (err) {
+        console.error('Signup error:', err.message);
         res.status(500).json({ message: 'Server error' });
     }
 });
@@ -132,6 +133,21 @@ router.post('/forgot-password', async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
+        // AUTO-MIGRATION logic for password reset
+        if (!user.profileDetails || !user.profileDetails.email) {
+            console.log("Migrating user profile for forgot-password:", email);
+            const raw = user.toObject({ virtuals: false });
+            user.profileDetails = {
+                firstName: raw.firstName || "User",
+                lastName: raw.lastName || " ",
+                email: raw.email || email,
+                password: raw.password,
+                contact: raw.contact || "",
+                isAdmin: raw.isAdmin || false
+            };
+            await user.save();
+        }
+
         const otp = Math.floor(100000 + Math.random() * 900000).toString();
         user.resetPasswordOTP = otp;
         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
@@ -145,6 +161,7 @@ router.post('/forgot-password', async (req, res) => {
 
         res.json({ message: 'OTP sent to email' });
     } catch (err) {
+        console.error('forgot-password error:', err.message);
         res.status(500).json({ message: 'Server error' });
     }
 });
@@ -165,6 +182,20 @@ router.post('/reset-password', async (req, res) => {
             return res.status(400).json({ message: 'Invalid or expired OTP' });
         }
 
+        // AUTO-MIGRATION logic for reset-password
+        if (!user.profileDetails || !user.profileDetails.email) {
+            console.log("Migrating user profile for reset-password:", email);
+            const raw = user.toObject({ virtuals: false });
+            user.profileDetails = {
+                firstName: raw.firstName || "User",
+                lastName: raw.lastName || " ",
+                email: raw.email || email,
+                password: raw.password,
+                contact: raw.contact || "",
+                isAdmin: raw.isAdmin || false
+            };
+        }
+
         user.profileDetails.password = await bcrypt.hash(newPassword, 10);
         user.resetPasswordOTP = undefined;
         user.resetPasswordExpires = undefined;
@@ -172,6 +203,7 @@ router.post('/reset-password', async (req, res) => {
 
         res.json({ message: 'Password reset successful' });
     } catch (err) {
+        console.error('reset-password error:', err.message);
         res.status(500).json({ message: 'Server error' });
     }
 });

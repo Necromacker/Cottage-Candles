@@ -106,6 +106,7 @@ body.static-layout #hero-candle {
 }
 
 #flower-petal {
+  z-index: 100;
   top: 15%;
   left: 5%;
   transform: rotate(60deg);
@@ -115,6 +116,7 @@ body.static-layout #hero-candle {
 }
 
 #flower-petal2 {
+  z-index: 100;
   top: 70%;
   left: 80%;
   transform: rotate(-90deg);

@@ -1,4 +1,6 @@
-const API_BASE = 'https://cottage-candles.onrender.com/api';
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5001/api'
+    : 'https://cottage-candles.onrender.com/api';
 let currentUser = null;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -176,13 +178,13 @@ async function loadCart() {
         itemName = itemName || 'Product';
 
         itemEl.innerHTML = `
-            <img src="${itemImage}" alt="${itemName}" style="width: 90px; height: 90px; object-fit: cover; border-radius: 6px; border: 1px solid #eee;">
-            <div style="flex: 1;">
-                <h4 style="margin: 0 0 8px 0; font-size: 16px; color: #007185;">${itemName}</h4>
-                <div style="color: #565959; font-size: 14px; margin-bottom: 6px;">Qty: ${item.quantity}</div>
-                <div style="color: #b12704; font-weight: 700; font-size: 15px;">₹${item.price.toFixed(2)}</div>
+            <img src="${itemImage}" alt="${itemName}" class="item-img">
+            <div class="item-details">
+                <h4 class="cart-item-name">${itemName}</h4>
+                <p class="cart-item-qty">Qty: ${item.quantity}</p>
+                <div class="cart-item-price">₹${item.price.toFixed(2)}</div>
             </div>
-            <button class="btn-delete" style="background: none; border: none; color: #cc0000; cursor: pointer; font-size: 18px;" onclick="removeFromCart('${item.productId || item._id}')"><i class="fas fa-trash"></i></button>
+            <button class="btn-delete" onclick="removeFromCart('${item.productId || item._id}')"><i class="fas fa-trash"></i></button>
         `;
         container.appendChild(itemEl);
     });
@@ -240,7 +242,6 @@ async function loadOrders() {
     orders.forEach(order => {
         const orderEl = document.createElement('div');
         orderEl.className = 'order-card';
-        orderEl.style = "border: 1px solid #d5d9d9; border-radius: 8px; margin-bottom: 20px; overflow: hidden; font-family: 'Inter', sans-serif;";
         
         let userName = "User";
         if (currentUser && currentUser.profileDetails) {
@@ -294,18 +295,15 @@ async function loadOrders() {
             const itemName = item.name || (item.productId && item.productId.name) || 'Product';
             
             return `
-            <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
-                <img src="${productImg}" alt="${itemName}" style="width: 90px; height: 90px; object-fit: cover; border-radius: 6px; border: 1px solid #eee;">
-                <div style="flex: 1;">
-                    <a href="#" style="color: #007185; text-decoration: none; font-weight: 500; font-size: 16px; display: block; margin-bottom: 6px;">${itemName}</a>
-                    <div style="color: #565959; font-size: 14px; margin-bottom: 6px;">Qty: ${item.quantity}</div>
-                    <div style="color: #b12704; font-weight: 700; font-size: 15px;">₹${item.price}</div>
+            <div class="order-item">
+                <img src="${productImg}" alt="${itemName}" class="item-img">
+                <div class="item-details">
+                    <h4 class="cart-item-name">${itemName}</h4>
+                    <p class="cart-item-qty">Qty: ${item.quantity}</p>
+                    <div class="cart-item-price">₹${item.price}</div>
                 </div>
                 <div>
-                    <button style="background: #fff; border: 1px solid #d5d9d9; border-radius: 8px; padding: 6px 14px; font-size: 13px; color: #0f1111; cursor: pointer; box-shadow: 0 2px 5px rgba(15,17,17,.15); display: flex; align-items: center; gap: 8px; font-family: inherit; transition: background 0.2s;">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                        </svg>
+                    <button class="btn-premium-outline contact-seller-btn">
                         Contact Seller
                     </button>
                 </div>
@@ -314,14 +312,14 @@ async function loadOrders() {
         }).join('');
         
         let statusText = order.orderStatus ? order.orderStatus.charAt(0).toUpperCase() + order.orderStatus.slice(1) : 'Processing';
-        let statusColor = '#0f1111';
+        let statusColor = 'var(--text-primary)';
         if (order.orderStatus === 'delivered') statusColor = 'green';
         else if (order.orderStatus === 'cancelled') statusColor = 'red';
         else if (statusText === 'Processing') statusColor = '#e67a00';
         
         const bodyHtml = `
             <div style="padding: 20px;">
-                <div style="font-size: 18px; font-weight: 700; margin-bottom: 20px; color: ${statusColor};">
+                <div class="order-status-header" style="color: ${statusColor};">
                     ${statusText}
                 </div>
                 ${itemsHtml}
@@ -334,6 +332,16 @@ async function loadOrders() {
 }
 
 async function handleCheckout() {
+    // Check if contact number exists
+    if (!currentUser || !currentUser.profileDetails || !currentUser.profileDetails.contact || currentUser.profileDetails.contact.trim() === "") {
+        alert('Please enter your contact number in Profile Details before proceeding to buy.');
+        // Switch to profile tab and focus contact input
+        const profileTab = document.querySelector('.nav-item[data-tab="profile"]');
+        if (profileTab) profileTab.click();
+        setTimeout(() => document.getElementById('contact').focus(), 100);
+        return;
+    }
+
     const res = await fetch(`${API_BASE}/user/cart`, {
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     });
